@@ -1,45 +1,42 @@
 package zoo;
-import  java.util.ArrayList;
+import java.util.List;
 import java.util.Comparator;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.util.logging.Logger;
 
 public class Operations {
 
+    private static final Logger LOGGER = Logger.getLogger(Operations.class.getName());
+
     // metodo animale più alto
-    public Animal tallest(ArrayList<Animal> animals) {
-        Animal tallestAnimal = animals.stream().max(Comparator.comparingDouble(Animal::getHeight)).orElse(null);
-        return tallestAnimal;
+    public Animal tallest(List<Animal> animals) {
+        return animals.stream().max(Comparator.comparingDouble(Animal::getHeight)).orElse(null);
     }
 
     // metodo animale più basso
-    public Animal shortest(ArrayList<Animal> animals) {
-        Animal shortestAnimal = animals.stream().min(Comparator.comparingDouble(Animal::getHeight)).orElse(null);
-        return shortestAnimal;
+    public Animal shortest(List<Animal> animals) {
+        return animals.stream().min(Comparator.comparingDouble(Animal::getHeight)).orElse(null);
     }
 
     // metodo animale più pesante
-    public Animal heaviest(ArrayList<Animal> animals) {
-        Animal heaviestAnimal = animals.stream().max(Comparator.comparingDouble(Animal::getWeight)).orElse(null);
-        return heaviestAnimal;
+    public Animal heaviest(List<Animal> animals) {
+        return animals.stream().max(Comparator.comparingDouble(Animal::getWeight)).orElse(null);
     }
 
     // metodo animale più leggero
-    public Animal lightest(ArrayList<Animal> animals) {
-        Animal lightestAnimal = animals.stream().min(Comparator.comparingDouble(Animal::getWeight)).orElse(null);
-        return lightestAnimal;
+    public Animal lightest(List<Animal> animals) {
+        return animals.stream().min(Comparator.comparingDouble(Animal::getWeight)).orElse(null);
     }
 
     // metodo animale con la coda più lunga
-    public Tailed longestTail(ArrayList<Tailed> taileds) {
-        Tailed longestTail = taileds.stream().max(Comparator.comparingDouble(Tailed::getTailLength)).orElse(null);
-        return longestTail;
+    public Tailed longestTail(List<Tailed> taileds) {
+        return taileds.stream().max(Comparator.comparingDouble(Tailed::getTailLength)).orElse(null);
     }
 
     // metodo animale con maggiore apertura alare
-    public Winged largestWingspan(ArrayList<Winged> wingeds) {
-        Winged largestWingspan = wingeds.stream().max(Comparator.comparingDouble(Winged::getWingspan)).orElse(null);
-        return largestWingspan;
+    public Winged largestWingspan(List<Winged> wingeds) {
+        return wingeds.stream().max(Comparator.comparingDouble(Winged::getWingspan)).orElse(null);
     }
 
     // metodo menu di selezione ricerca
@@ -49,24 +46,21 @@ public class Operations {
         boolean again = false;
 
         do {
-            System.out.println("Digitare il numero della ricerca da effettuare");
-            System.out.println("1 - Esemplare più alto");
-            System.out.println("2 - Esemplare più basso");
-            System.out.println("3 - Esemplare più pesante");
-            System.out.println("4 - Esemplare più leggero");
-            System.out.println("5 - Esemplare con la coda più lunga");
-            System.out.println("6 - Esemplare con la maggiore apertura alare");
-            System.out.println("7 - Chiudi il programma");
+            LOGGER.info("Digitare il numero della ricerca da effettuare");
+            LOGGER.info("1 - Esemplare più alto");
+            LOGGER.info("2 - Esemplare più basso");
+            LOGGER.info("3 - Esemplare più pesante");
+            LOGGER.info("4 - Esemplare più leggero");
+            LOGGER.info("5 - Esemplare con la coda più lunga");
+            LOGGER.info("6 - Esemplare con la maggiore apertura alare");
+            LOGGER.info("7 - Chiudi il programma");
             try {
                 search = input.nextInt();
-                System.out.println();
                 again = false;
             }
             catch (InputMismatchException exception) {
-                System.out.println();
-                System.out.println("Caratteri inseriti non validi!");
+                LOGGER.info("Caratteri inseriti non validi!");
                 input.nextLine();
-                System.out.println();
                 again = true;
             }
         } while(again);
@@ -81,21 +75,18 @@ public class Operations {
         boolean again = false;
 
         do {
-            System.out.println("Per quale specie vuoi effettuare la ricerca (digitare il numero corrispondente)?");
-            System.out.println("1 - Tigri");
-            System.out.println("2 - Leoni");
-            System.out.println("3 - Aquile");
-            System.out.println("4 - Torna indietro");
+            LOGGER.info("Per quale specie vuoi effettuare la ricerca (digitare il numero corrispondente)?");
+            LOGGER.info("1 - Tigri");
+            LOGGER.info("2 - Leoni");
+            LOGGER.info("3 - Aquile");
+            LOGGER.info("4 - Torna indietro");
             try {
                 selectedSpecies = input.nextInt();
-                System.out.println();
                 again = false;
             }
             catch (InputMismatchException exception) {
-                System.out.println();
-                System.out.println("Caratteri inseriti non validi!");
+                LOGGER.info("Caratteri inseriti non validi!");
                 input.nextLine();
-                System.out.println();
                 again = true;
             }
         } while(again);

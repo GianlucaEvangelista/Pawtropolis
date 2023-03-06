@@ -1,11 +1,14 @@
 package zoo;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 public class Zoo {
     public static void main(String[] args) {
 
+        final Logger LOGGER = Logger.getLogger(Zoo.class.getName());
         Operations operations = new Operations();
+        String notValid = "Valore inserito non valido!";
 
         // liste di animali
         ArrayList<Animal> animals = new ArrayList<>();
@@ -17,10 +20,10 @@ public class Zoo {
 
         // dati animali hard-codati aggiunti all'ArrayList animali
         animals.add(new Tailed("tigre","Black", "Carne di mucca", 7, LocalDate.of(2022,4,5), 220.30, 92.70, 82.10));
-        animals.add(new Tailed("tigre","Zelda", "Carne di maiale", 8, LocalDate.of(2021,9,10), 242.80, 87.90, 81.80));
+        animals.add(new Tailed("tigre","Zelda", "Carne di pecora", 8, LocalDate.of(2021,9,10), 242.80, 87.90, 81.80));
         animals.add(new Tailed("tigre","Arya", "Carne di maiale", 10, LocalDate.of(2020,7,11), 260.00, 94.00, 86.50));
         animals.add(new Tailed("leone","Leo", "Carne di vitello", 7, LocalDate.of(2019,6,27), 190.00, 118.50, 91.20));
-        animals.add(new Tailed("leone","Asia", "Carne di maiale", 5, LocalDate.of(2020,12,7), 172.00, 109.20, 84.30));
+        animals.add(new Tailed("leone","Asia", "Carne di mucca", 5, LocalDate.of(2020,12,7), 172.00, 109.20, 84.30));
         animals.add(new Tailed("leone","Simba", "Carne di maiale", 6, LocalDate.of(2021,3,10), 184.60, 112.50, 87.40));
         animals.add(new Tailed("leone","Argo", "Carne di vitello", 9, LocalDate.of(2020,6,23), 192.10, 116.80, 92.10));
         animals.add(new Winged("aquila","Sky", "Carne di pernice", 3, LocalDate.of(2021,4,20), 4.50, 81.20, 210.10));
@@ -44,8 +47,7 @@ public class Zoo {
 
 
         // inizio interazione utente
-        System.out.println("Benvenuto nel sistema di gestione dello zoo");
-        System.out.println();
+        LOGGER.info("Benvenuto nel sistema di gestione dello zoo");
         boolean again = true;
         do {
             // gestione richiesta utente
@@ -54,101 +56,83 @@ public class Zoo {
                 case 1:
                     switch(operations.speciesSelection()) {
                         case 1:
-                            System.out.println("La tigre più alta è " + operations.tallest(tigers).getName() + " (" + operations.tallest(tigers).getHeight() + " cm)");
-                            System.out.println();
+                            LOGGER.info("La tigre più alta è " + operations.tallest(tigers).getName() + " (" + operations.tallest(tigers).getHeight() + " cm)");
                             break;
                         case 2:
-                            System.out.println("Il leone più alto è " + operations.tallest(lions).getName() + " (" + operations.tallest(lions).getHeight() + " cm)");
-                            System.out.println();
+                            LOGGER.info("Il leone più alto è " + operations.tallest(lions).getName() + " (" + operations.tallest(lions).getHeight() + " cm)");
                             break;
                         case 3:
-                            System.out.println("L'aquila più alta è " + operations.tallest(eagles).getName() + " (" + operations.tallest(eagles).getHeight() + " cm)");
-                            System.out.println();
+                            LOGGER.info("L'aquila più alta è " + operations.tallest(eagles).getName() + " (" + operations.tallest(eagles).getHeight() + " cm)");
                             break;
                         case 4:
                             continue;
                         default:
-                            System.out.println("Valore inserito non valido!");
-                            System.out.println();
+                            LOGGER.info(notValid);
                     }
                     break;
                 // richiesta animale più basso
                 case 2:
                     switch(operations.speciesSelection()) {
                         case 1:
-                            System.out.println("La tigre più bassa è " + operations.shortest(tigers).getName() + " (" + operations.shortest(tigers).getHeight() + " cm)");
-                            System.out.println();
+                            LOGGER.info("La tigre più bassa è " + operations.shortest(tigers).getName() + " (" + operations.shortest(tigers).getHeight() + " cm)");
                             break;
                         case 2:
-                            System.out.println("Il leone più basso è " + operations.shortest(lions).getName() + " (" + operations.shortest(lions).getHeight() + " cm)");
-                            System.out.println();
+                            LOGGER.info("Il leone più basso è " + operations.shortest(lions).getName() + " (" + operations.shortest(lions).getHeight() + " cm)");
                             break;
                         case 3:
-                            System.out.println("L'aquila più bassa è " + operations.shortest(eagles).getName() + " (" + operations.shortest(eagles).getHeight() + " cm)");
-                            System.out.println();
+                            LOGGER.info("L'aquila più bassa è " + operations.shortest(eagles).getName() + " (" + operations.shortest(eagles).getHeight() + " cm)");
                             break;
                         case 4:
                             continue;
                         default:
-                            System.out.println("Valore inserito non valido!");
-                            System.out.println();
+                            LOGGER.info(notValid);
                     }
                     break;
                 // richiesta animale più pesante
                 case 3:
                     switch(operations.speciesSelection()) {
                         case 1:
-                            System.out.println("La tigre più pesante è " + operations.heaviest(tigers).getName() + " (" + operations.heaviest(tigers).getWeight() + " kg)");
-                            System.out.println();
+                            LOGGER.info("La tigre più pesante è " + operations.heaviest(tigers).getName() + " (" + operations.heaviest(tigers).getWeight() + " kg)");
                             break;
                         case 2:
-                            System.out.println("Il leone più pesante è " + operations.heaviest(lions).getName() + " (" + operations.heaviest(lions).getWeight() + " kg)");
-                            System.out.println();
+                            LOGGER.info("Il leone più pesante è " + operations.heaviest(lions).getName() + " (" + operations.heaviest(lions).getWeight() + " kg)");
                             break;
                         case 3:
-                            System.out.println("L'aquila più pesante è " + operations.heaviest(eagles).getName() + " (" + operations.heaviest(eagles).getWeight() + " kg)");
-                            System.out.println();
+                            LOGGER.info("L'aquila più pesante è " + operations.heaviest(eagles).getName() + " (" + operations.heaviest(eagles).getWeight() + " kg)");
                             break;
                         case 4:
                             continue;
                         default:
-                            System.out.println("Valore inserito non valido!");
-                            System.out.println();
+                            LOGGER.info(notValid);
                     }
                     break;
                 // richiesta animale più leggero
                 case 4:
                     switch(operations.speciesSelection()) {
                         case 1:
-                            System.out.println("La tigre più leggera è " + operations.lightest(tigers).getName() + " (" + operations.lightest(tigers).getWeight() + " kg)");
-                            System.out.println();
+                            LOGGER.info("La tigre più leggera è " + operations.lightest(tigers).getName() + " (" + operations.lightest(tigers).getWeight() + " kg)");
                             break;
                         case 2:
-                            System.out.println("Il leone più leggero è " + operations.lightest(lions).getName() + " (" + operations.lightest(lions).getWeight() + " kg)");
-                            System.out.println();
+                            LOGGER.info("Il leone più leggero è " + operations.lightest(lions).getName() + " (" + operations.lightest(lions).getWeight() + " kg)");
                             break;
                         case 3:
-                            System.out.println("L'aquila più leggera è " + operations.lightest(eagles).getName() + " (" + operations.lightest(eagles).getWeight() + " kg)");
-                            System.out.println();
+                            LOGGER.info("L'aquila più leggera è " + operations.lightest(eagles).getName() + " (" + operations.lightest(eagles).getWeight() + " kg)");
                             break;
                         case 4:
                             continue;
                         default:
-                            System.out.println("Valore inserito non valido!");
-                            System.out.println();
+                            LOGGER.info(notValid);
                     }
                     break;
                 // richiesta animale con coda più lunga
                 case 5:
                     Tailed tail = operations.longestTail(taileds);
-                    System.out.println("L'esemplare con la coda più lunga è " + tail.getName() + ", " + tail.getSpecies() + " con la coda di " + tail.getTailLength() + " cm.");
-                    System.out.println();
+                    LOGGER.info("L'esemplare con la coda più lunga è " + tail.getName() + ", " + tail.getSpecies() + " con la coda di " + tail.getTailLength() + " cm.");
                     break;
                 // richiesta animale con maggiore apertura alare
                 case 6:
                     Winged wings = operations.largestWingspan(wingeds);
-                    System.out.println("L'esemplare con l'apertura alare maggiore è " + wings.getName() + ", " + wings.getSpecies() + " con l'apertura alare di " + wings.getWingspan() + " cm.");
-                    System.out.println();
+                    LOGGER.info("L'esemplare con l'apertura alare maggiore è " + wings.getName() + ", " + wings.getSpecies() + " con l'apertura alare di " + wings.getWingspan() + " cm.");
                     break;
                 // richiesta chiusura programma
                 case 7:
@@ -156,13 +140,12 @@ public class Zoo {
                     break;
                 // richiesta non valida
                 default:
-                    System.out.println("Valore inserito non valido!");
-                    System.out.println();
+                    LOGGER.info(notValid);
             }
         } while(again);
 
         // chiusura programma
-        System.out.println("Ricerca terminata!");
+        LOGGER.info("Ricerca terminata!");
         System.exit(0);
 
     }
