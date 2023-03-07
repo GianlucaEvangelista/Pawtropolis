@@ -5,38 +5,38 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
-public class Operations {
+public class ZooController {
 
-    private static final Logger LOGGER = Logger.getLogger(Operations.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(ZooController.class.getName());
 
-    public Animal tallest(List<Animal> animals) {
+    public Animal getTallestAnimal(List<Animal> animals) {
         return animals.stream().max(Comparator.comparingDouble(Animal::getHeight)).orElse(null);
     }
 
-    public Animal shortest(List<Animal> animals) {
+    public Animal getShortestAnimal(List<Animal> animals) {
         return animals.stream().min(Comparator.comparingDouble(Animal::getHeight)).orElse(null);
     }
 
-    public Animal heaviest(List<Animal> animals) {
+    public Animal getHeaviestAnimal(List<Animal> animals) {
         return animals.stream().max(Comparator.comparingDouble(Animal::getWeight)).orElse(null);
     }
 
-    public Animal lightest(List<Animal> animals) {
+    public Animal getLightestAnimal(List<Animal> animals) {
         return animals.stream().min(Comparator.comparingDouble(Animal::getWeight)).orElse(null);
     }
 
-    public Tailed longestTail(List<Tailed> taileds) {
-        return taileds.stream().max(Comparator.comparingDouble(Tailed::getTailLength)).orElse(null);
+    public Tailed getLongestTailAnimal(List<Tailed> tailedAnimals) {
+        return tailedAnimals.stream().max(Comparator.comparingDouble(Tailed::getTailLength)).orElse(null);
     }
 
-    public Winged largestWingspan(List<Winged> wingeds) {
-        return wingeds.stream().max(Comparator.comparingDouble(Winged::getWingspan)).orElse(null);
+    public Winged getLargestWingspanAnimal(List<Winged> wingedAnimals) {
+        return wingedAnimals.stream().max(Comparator.comparingDouble(Winged::getWingspan)).orElse(null);
     }
 
-    public int searchMenu() {
+    public int displayMenuOptions() {
         Scanner input = new Scanner(System.in);
-        int search = 0;
-        boolean again = false;
+        int userSelection = 0;
+        boolean displayMenuAgain = false;
 
         do {
             LOGGER.info("Digitare il numero della ricerca da effettuare");
@@ -48,23 +48,23 @@ public class Operations {
             LOGGER.info("6 - Esemplare con la maggiore apertura alare");
             LOGGER.info("7 - Chiudi il programma");
             try {
-                search = input.nextInt();
-                again = false;
+                userSelection = input.nextInt();
+                displayMenuAgain = false;
             }
             catch (InputMismatchException exception) {
                 LOGGER.info("Caratteri inseriti non validi!");
                 input.nextLine();
-                again = true;
+                displayMenuAgain = true;
             }
-        } while(again);
+        } while(displayMenuAgain);
 
-        return search;
+        return userSelection;
     }
 
-    public int speciesSelection() {
+    public int displaySpeciesOptions() {
         Scanner input = new Scanner(System.in);
         int selectedSpecies = 0;
-        boolean again = false;
+        boolean displayOptionsAgain = false;
 
         do {
             LOGGER.info("Per quale specie vuoi effettuare la ricerca (digitare il numero corrispondente)?");
@@ -74,14 +74,14 @@ public class Operations {
             LOGGER.info("4 - Torna indietro");
             try {
                 selectedSpecies = input.nextInt();
-                again = false;
+                displayOptionsAgain = false;
             }
             catch (InputMismatchException exception) {
                 LOGGER.info("Caratteri inseriti non validi!");
                 input.nextLine();
-                again = true;
+                displayOptionsAgain = true;
             }
-        } while(again);
+        } while(displayOptionsAgain);
 
         return selectedSpecies;
     }

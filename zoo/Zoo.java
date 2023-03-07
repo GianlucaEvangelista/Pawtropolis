@@ -7,15 +7,15 @@ public class Zoo {
     public static void main(String[] args) {
 
         Logger logger = Logger.getLogger(Zoo.class.getName());
-        Operations operations = new Operations();
-        String notValid = "Valore inserito non valido!";
+        ZooController zooController = new ZooController();
+        String optionNotValid = "Valore inserito non valido!";
 
         ArrayList<Animal> animals = new ArrayList<>();
         ArrayList<Animal> tigers = new ArrayList<>();
         ArrayList<Animal> lions = new ArrayList<>();
         ArrayList<Animal> eagles = new ArrayList<>();
-        ArrayList<Tailed> taileds = new ArrayList<>();
-        ArrayList<Winged> wingeds = new ArrayList<>();
+        ArrayList<Tailed> tailedAnimals = new ArrayList<>();
+        ArrayList<Winged> wingedAnimals = new ArrayList<>();
 
         animals.add(new Tailed("tigre","Black", "Carne di mucca", 7, LocalDate.of(2022,4,5), 220.30, 92.70, 82.10));
         animals.add(new Tailed("tigre","Zelda", "Carne di pecora", 8, LocalDate.of(2021,9,10), 242.80, 87.90, 81.80));
@@ -32,104 +32,104 @@ public class Zoo {
         for(Animal animal : animals) {
             if(animal.getSpecies().equals("tigre")) {
                 tigers.add(animal);
-                taileds.add((Tailed) animal);
+                tailedAnimals.add((Tailed) animal);
             } else if(animal.getSpecies().equals("leone")) {
                 lions.add(animal);
-                taileds.add((Tailed) animal);
+                tailedAnimals.add((Tailed) animal);
             } else {
                 eagles.add(animal);
-                wingeds.add((Winged) animal);
+                wingedAnimals.add((Winged) animal);
             }
         }
 
 
         logger.info("Benvenuto nel sistema di gestione dello zoo");
-        boolean again = true;
+        boolean closeProgram = false;
         do {
-            switch(operations.searchMenu()) {
+            switch(zooController.displayMenuOptions()) {
                 case 1:
-                    switch(operations.speciesSelection()) {
+                    switch(zooController.displaySpeciesOptions()) {
                         case 1:
-                            logger.info("La tigre più alta è " + operations.tallest(tigers).getName() + " (" + operations.tallest(tigers).getHeight() + " cm)");
+                            logger.info("La tigre più alta è " + zooController.getTallestAnimal(tigers).getName() + " (" + zooController.getTallestAnimal(tigers).getHeight() + " cm)");
                             break;
                         case 2:
-                            logger.info("Il leone più alto è " + operations.tallest(lions).getName() + " (" + operations.tallest(lions).getHeight() + " cm)");
+                            logger.info("Il leone più alto è " + zooController.getTallestAnimal(lions).getName() + " (" + zooController.getTallestAnimal(lions).getHeight() + " cm)");
                             break;
                         case 3:
-                            logger.info("L'aquila più alta è " + operations.tallest(eagles).getName() + " (" + operations.tallest(eagles).getHeight() + " cm)");
+                            logger.info("L'aquila più alta è " + zooController.getTallestAnimal(eagles).getName() + " (" + zooController.getTallestAnimal(eagles).getHeight() + " cm)");
                             break;
                         case 4:
                             continue;
                         default:
-                            logger.info(notValid);
+                            logger.info(optionNotValid);
                     }
                     break;
                 case 2:
-                    switch(operations.speciesSelection()) {
+                    switch(zooController.displaySpeciesOptions()) {
                         case 1:
-                            logger.info("La tigre più bassa è " + operations.shortest(tigers).getName() + " (" + operations.shortest(tigers).getHeight() + " cm)");
+                            logger.info("La tigre più bassa è " + zooController.getShortestAnimal(tigers).getName() + " (" + zooController.getShortestAnimal(tigers).getHeight() + " cm)");
                             break;
                         case 2:
-                            logger.info("Il leone più basso è " + operations.shortest(lions).getName() + " (" + operations.shortest(lions).getHeight() + " cm)");
+                            logger.info("Il leone più basso è " + zooController.getShortestAnimal(lions).getName() + " (" + zooController.getShortestAnimal(lions).getHeight() + " cm)");
                             break;
                         case 3:
-                            logger.info("L'aquila più bassa è " + operations.shortest(eagles).getName() + " (" + operations.shortest(eagles).getHeight() + " cm)");
+                            logger.info("L'aquila più bassa è " + zooController.getShortestAnimal(eagles).getName() + " (" + zooController.getShortestAnimal(eagles).getHeight() + " cm)");
                             break;
                         case 4:
                             continue;
                         default:
-                            logger.info(notValid);
+                            logger.info(optionNotValid);
                     }
                     break;
                 case 3:
-                    switch(operations.speciesSelection()) {
+                    switch(zooController.displaySpeciesOptions()) {
                         case 1:
-                            logger.info("La tigre più pesante è " + operations.heaviest(tigers).getName() + " (" + operations.heaviest(tigers).getWeight() + " kg)");
+                            logger.info("La tigre più pesante è " + zooController.getHeaviestAnimal(tigers).getName() + " (" + zooController.getHeaviestAnimal(tigers).getWeight() + " kg)");
                             break;
                         case 2:
-                            logger.info("Il leone più pesante è " + operations.heaviest(lions).getName() + " (" + operations.heaviest(lions).getWeight() + " kg)");
+                            logger.info("Il leone più pesante è " + zooController.getHeaviestAnimal(lions).getName() + " (" + zooController.getHeaviestAnimal(lions).getWeight() + " kg)");
                             break;
                         case 3:
-                            logger.info("L'aquila più pesante è " + operations.heaviest(eagles).getName() + " (" + operations.heaviest(eagles).getWeight() + " kg)");
+                            logger.info("L'aquila più pesante è " + zooController.getHeaviestAnimal(eagles).getName() + " (" + zooController.getHeaviestAnimal(eagles).getWeight() + " kg)");
                             break;
                         case 4:
                             continue;
                         default:
-                            logger.info(notValid);
+                            logger.info(optionNotValid);
                     }
                     break;
                 case 4:
-                    switch(operations.speciesSelection()) {
+                    switch(zooController.displaySpeciesOptions()) {
                         case 1:
-                            logger.info("La tigre più leggera è " + operations.lightest(tigers).getName() + " (" + operations.lightest(tigers).getWeight() + " kg)");
+                            logger.info("La tigre più leggera è " + zooController.getLightestAnimal(tigers).getName() + " (" + zooController.getLightestAnimal(tigers).getWeight() + " kg)");
                             break;
                         case 2:
-                            logger.info("Il leone più leggero è " + operations.lightest(lions).getName() + " (" + operations.lightest(lions).getWeight() + " kg)");
+                            logger.info("Il leone più leggero è " + zooController.getLightestAnimal(lions).getName() + " (" + zooController.getLightestAnimal(lions).getWeight() + " kg)");
                             break;
                         case 3:
-                            logger.info("L'aquila più leggera è " + operations.lightest(eagles).getName() + " (" + operations.lightest(eagles).getWeight() + " kg)");
+                            logger.info("L'aquila più leggera è " + zooController.getLightestAnimal(eagles).getName() + " (" + zooController.getLightestAnimal(eagles).getWeight() + " kg)");
                             break;
                         case 4:
                             continue;
                         default:
-                            logger.info(notValid);
+                            logger.info(optionNotValid);
                     }
                     break;
                 case 5:
-                    Tailed tail = operations.longestTail(taileds);
-                    logger.info("L'esemplare con la coda più lunga è " + tail.getName() + ", " + tail.getSpecies() + " con la coda di " + tail.getTailLength() + " cm.");
+                    Tailed longestTailAnimal = zooController.getLongestTailAnimal(tailedAnimals);
+                    logger.info("L'esemplare con la coda più lunga è " + longestTailAnimal.getName() + ", " + longestTailAnimal.getSpecies() + " con la coda di " + longestTailAnimal.getTailLength() + " cm.");
                     break;
                 case 6:
-                    Winged wings = operations.largestWingspan(wingeds);
-                    logger.info("L'esemplare con l'apertura alare maggiore è " + wings.getName() + ", " + wings.getSpecies() + " con l'apertura alare di " + wings.getWingspan() + " cm.");
+                    Winged largestWingspanAnimal = zooController.getLargestWingspanAnimal(wingedAnimals);
+                    logger.info("L'esemplare con l'apertura alare maggiore è " + largestWingspanAnimal.getName() + ", " + largestWingspanAnimal.getSpecies() + " con l'apertura alare di " + largestWingspanAnimal.getWingspan() + " cm.");
                     break;
                 case 7:
-                    again = false;
+                    closeProgram = true;
                     break;
                 default:
-                    logger.info(notValid);
+                    logger.info(optionNotValid);
             }
-        } while(again);
+        } while(!closeProgram);
 
         logger.info("Ricerca terminata!");
         System.exit(0);
