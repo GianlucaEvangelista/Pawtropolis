@@ -4,9 +4,9 @@ import java.util.*;
 public class ZooController {
 
 
-    private List<Animal> tigers;
-    private List<Animal> lions;
-    private List<Animal> eagles;
+    private List<Tiger> tigers;
+    private List<Lion> lions;
+    private List<Eagle> eagles;
     private List<Tailed> tailedAnimals;
     private List<Winged> wingedAnimals;
 
@@ -19,27 +19,27 @@ public class ZooController {
     }
 
     public void addAnimal(Animal animal) {
-        if(animal.getSpecies().equals("tigre")) {
-            tigers.add(animal);
+        if(animal instanceof Tiger) {
+            tigers.add((Tiger) animal);
             tailedAnimals.add((Tailed) animal);
-        } else if(animal.getSpecies().equals("leone")) {
-            lions.add(animal);
+        } else if(animal instanceof Lion) {
+            lions.add((Lion) animal);
             tailedAnimals.add((Tailed) animal);
-        } else if(animal.getSpecies().equals("aquila")){
-            eagles.add(animal);
+        } else if(animal instanceof Eagle){
+            eagles.add((Eagle) animal);
             wingedAnimals.add((Winged) animal);
         }
     }
 
-    public List<Animal> getTigers() {
+    public List<Tiger> getTigers() {
         return tigers;
     }
 
-    public List<Animal> getLions() {
+    public List<Lion> getLions() {
         return lions;
     }
 
-    public List<Animal> getEagles() {
+    public List<Eagle> getEagles() {
         return eagles;
     }
 
@@ -51,19 +51,19 @@ public class ZooController {
         return wingedAnimals;
     }
 
-    public Animal getTallestAnimal(List<Animal> animals) {
+    public <T extends Animal> T getTallestAnimal(List<T> animals) {
         return animals.stream().max(Comparator.comparingDouble(Animal::getHeight)).orElse(null);
     }
 
-    public Animal getShortestAnimal(List<Animal> animals) {
+    public <T extends Animal> T  getShortestAnimal(List<T> animals) {
         return animals.stream().min(Comparator.comparingDouble(Animal::getHeight)).orElse(null);
     }
 
-    public Animal getHeaviestAnimal(List<Animal> animals) {
+    public <T extends Animal> T getHeaviestAnimal(List<T> animals) {
         return animals.stream().max(Comparator.comparingDouble(Animal::getWeight)).orElse(null);
     }
 
-    public Animal getLightestAnimal(List<Animal> animals) {
+    public <T extends Animal> T getLightestAnimal(List<T> animals) {
         return animals.stream().min(Comparator.comparingDouble(Animal::getWeight)).orElse(null);
     }
 

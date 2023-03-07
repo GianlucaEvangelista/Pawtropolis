@@ -9,16 +9,16 @@ public class Zoo {
         ZooController zooController = new ZooController();
         String optionNotValid = "Valore inserito non valido!";
 
-        zooController.addAnimal(new Tailed("tigre","Black", "Carne di mucca", 7, LocalDate.of(2022,4,5), 220.30, 92.70, 82.10));
-        zooController.addAnimal(new Tailed("tigre","Zelda", "Carne di pecora", 8, LocalDate.of(2021,9,10), 242.80, 87.90, 81.80));
-        zooController.addAnimal(new Tailed("tigre","Arya", "Carne di maiale", 10, LocalDate.of(2020,7,11), 260.00, 94.00, 86.50));
-        zooController.addAnimal(new Tailed("leone","Leo", "Carne di vitello", 7, LocalDate.of(2019,6,27), 190.00, 118.50, 91.20));
-        zooController.addAnimal(new Tailed("leone","Asia", "Carne di mucca", 5, LocalDate.of(2020,12,7), 172.00, 109.20, 84.30));
-        zooController.addAnimal(new Tailed("leone","Simba", "Carne di maiale", 6, LocalDate.of(2021,3,10), 184.60, 112.50, 87.40));
-        zooController.addAnimal(new Tailed("leone","Argo", "Carne di vitello", 9, LocalDate.of(2020,6,23), 192.10, 116.80, 92.10));
-        zooController.addAnimal(new Winged("aquila","Sky", "Carne di pernice", 3, LocalDate.of(2021,4,20), 4.50, 81.20, 210.10));
-        zooController.addAnimal(new Winged("aquila","White", "Carne di quaglia", 4, LocalDate.of(2019,2,5), 4.30, 80.50, 212.30));
-        zooController.addAnimal(new Winged("aquila","Jack", "Carne di pernice", 2, LocalDate.of(2022,7,20), 3.90, 77.20, 182.70));
+        zooController.addAnimal(new Tiger("Black", "Carne di mucca", 7, LocalDate.of(2022,4,5), 220.30, 92.70, 82.10));
+        zooController.addAnimal(new Tiger("Zelda", "Carne di pecora", 8, LocalDate.of(2021,9,10), 242.80, 87.90, 81.80));
+        zooController.addAnimal(new Tiger("Arya", "Carne di maiale", 10, LocalDate.of(2020,7,11), 260.00, 94.00, 86.50));
+        zooController.addAnimal(new Lion("Leo", "Carne di vitello", 7, LocalDate.of(2019,6,27), 190.00, 118.50, 91.20));
+        zooController.addAnimal(new Lion("Asia", "Carne di mucca", 5, LocalDate.of(2020,12,7), 172.00, 109.20, 84.30));
+        zooController.addAnimal(new Lion("Simba", "Carne di maiale", 6, LocalDate.of(2021,3,10), 184.60, 112.50, 87.40));
+        zooController.addAnimal(new Lion("Argo", "Carne di vitello", 9, LocalDate.of(2020,6,23), 192.10, 116.80, 92.10));
+        zooController.addAnimal(new Eagle("Sky", "Carne di pernice", 3, LocalDate.of(2021,4,20), 4.50, 81.20, 210.10));
+        zooController.addAnimal(new Eagle("White", "Carne di quaglia", 4, LocalDate.of(2019,2,5), 4.30, 80.50, 212.30));
+        zooController.addAnimal(new Eagle("Jack", "Carne di pernice", 2, LocalDate.of(2022,7,20), 3.90, 77.20, 182.70));
 
 
         logger.info("Benvenuto nel sistema di gestione dello zoo");
@@ -96,11 +96,11 @@ public class Zoo {
                     break;
                 case 5:
                     Tailed longestTailAnimal = zooController.getLongestTailAnimal(zooController.getTailedAnimals());
-                    logger.info("L'esemplare con la coda più lunga è " + longestTailAnimal.getName() + ", " + longestTailAnimal.getSpecies() + " con la coda di " + longestTailAnimal.getTailLength() + " cm.");
+                    logger.info("L'esemplare con la coda più lunga è " + longestTailAnimal.getName() + " (" + longestTailAnimal.getTailLength() + " cm).");
                     break;
                 case 6:
                     Winged largestWingspanAnimal = zooController.getLargestWingspanAnimal(zooController.getWingedAnimals());
-                    logger.info("L'esemplare con l'apertura alare maggiore è " + largestWingspanAnimal.getName() + ", " + largestWingspanAnimal.getSpecies() + " con l'apertura alare di " + largestWingspanAnimal.getWingspan() + " cm.");
+                    logger.info("L'esemplare con l'apertura alare maggiore è " + largestWingspanAnimal.getName() + " (" + largestWingspanAnimal.getWingspan() + " cm).");
                     break;
                 case 7:
                     closeProgram = true;

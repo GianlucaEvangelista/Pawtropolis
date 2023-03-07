@@ -1,8 +1,7 @@
 package zoo;
 import java.time.LocalDate;
 
-public class Animal {
-    private String species;
+public abstract class Animal {
     private String name;
     private String favouriteFood;
     private int age;
@@ -10,8 +9,7 @@ public class Animal {
     private double weight;
     private double height;
 
-    public Animal(String species, String name, String favouriteFood, int age, LocalDate arrivalDate, double weight, double height) {
-        this.species = species;
+    protected Animal(String name, String favouriteFood, int age, LocalDate arrivalDate, double weight, double height) {
         this.name = name;
         this.favouriteFood = favouriteFood;
         this.age = age;
@@ -20,14 +18,6 @@ public class Animal {
         this.height = height;
     }
 
-
-    public String getSpecies() {
-        return species;
-    }
-
-    public void setSpecies(String species) {
-        this.species = species;
-    }
 
     public String getName() {
         return name;
