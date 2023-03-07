@@ -1,13 +1,56 @@
 package zoo;
-import java.util.List;
-import java.util.Comparator;
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import java.util.*;
 import java.util.logging.Logger;
 
 public class ZooController {
 
     private static final Logger LOGGER = Logger.getLogger(ZooController.class.getName());
+    private List<Animal> tigers;
+    private List<Animal> lions;
+    private List<Animal> eagles;
+    private List<Tailed> tailedAnimals;
+    private List<Winged> wingedAnimals;
+
+    public ZooController() {
+        this.tigers = new ArrayList<>();
+        this.lions = new ArrayList<>();
+        this.eagles = new ArrayList<>();
+        this.tailedAnimals = new ArrayList<>();
+        this.wingedAnimals = new ArrayList<>();
+    }
+
+    public void addAnimal(Animal animal) {
+        if(animal.getSpecies().equals("tigre")) {
+            tigers.add(animal);
+            tailedAnimals.add((Tailed) animal);
+        } else if(animal.getSpecies().equals("leone")) {
+            lions.add(animal);
+            tailedAnimals.add((Tailed) animal);
+        } else if(animal.getSpecies().equals("aquila")){
+            eagles.add(animal);
+            wingedAnimals.add((Winged) animal);
+        }
+    }
+
+    public List<Animal> getTigers() {
+        return tigers;
+    }
+
+    public List<Animal> getLions() {
+        return lions;
+    }
+
+    public List<Animal> getEagles() {
+        return eagles;
+    }
+
+    public List<Tailed> getTailedAnimals() {
+        return tailedAnimals;
+    }
+
+    public List<Winged> getWingedAnimals() {
+        return wingedAnimals;
+    }
 
     public Animal getTallestAnimal(List<Animal> animals) {
         return animals.stream().max(Comparator.comparingDouble(Animal::getHeight)).orElse(null);
