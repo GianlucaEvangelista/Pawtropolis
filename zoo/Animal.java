@@ -11,13 +11,13 @@ public class Animal {
     private double height;
 
     public Animal(String species, String name, String favouriteFood, int age, LocalDate arrivalDate, double weight, double height) {
-        setSpecies(species);
-        setName(name);
-        setFavouriteFood(favouriteFood);
-        setAge(age);
-        setArrivalDate(arrivalDate);
-        setWeight(weight);
-        setHeight(height);
+        this.species = species;
+        this.name = name;
+        this.favouriteFood = favouriteFood;
+        this.age = age;
+        this.arrivalDate = arrivalDate;
+        this.weight = weight;
+        this.height = height;
     }
 
 

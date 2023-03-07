@@ -6,7 +6,7 @@ public class Tailed extends Animal {
 
     public Tailed(String species, String name, String favouriteFood, int age, LocalDate arrivalDate, double weight, double height, double tailLength) {
         super(species, name, favouriteFood, age, arrivalDate, weight, height);
-        setTailLength(tailLength);
+        this.tailLength = tailLength;
     }
 
     public double getTailLength() {
