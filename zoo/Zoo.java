@@ -10,7 +10,6 @@ public class Zoo {
         Operations operations = new Operations();
         String notValid = "Valore inserito non valido!";
 
-        // liste di animali
         ArrayList<Animal> animals = new ArrayList<>();
         ArrayList<Animal> tigers = new ArrayList<>();
         ArrayList<Animal> lions = new ArrayList<>();
@@ -18,7 +17,6 @@ public class Zoo {
         ArrayList<Tailed> taileds = new ArrayList<>();
         ArrayList<Winged> wingeds = new ArrayList<>();
 
-        // dati animali hard-codati aggiunti all'ArrayList animali
         animals.add(new Tailed("tigre","Black", "Carne di mucca", 7, LocalDate.of(2022,4,5), 220.30, 92.70, 82.10));
         animals.add(new Tailed("tigre","Zelda", "Carne di pecora", 8, LocalDate.of(2021,9,10), 242.80, 87.90, 81.80));
         animals.add(new Tailed("tigre","Arya", "Carne di maiale", 10, LocalDate.of(2020,7,11), 260.00, 94.00, 86.50));
@@ -31,7 +29,6 @@ public class Zoo {
         animals.add(new Winged("aquila","Jack", "Carne di pernice", 2, LocalDate.of(2022,7,20), 3.90, 77.20, 182.70));
 
 
-        // inizializzazione liste specifiche
         for(Animal animal : animals) {
             if(animal.getSpecies().equals("tigre")) {
                 tigers.add(animal);
@@ -46,13 +43,10 @@ public class Zoo {
         }
 
 
-        // inizio interazione utente
         logger.info("Benvenuto nel sistema di gestione dello zoo");
         boolean again = true;
         do {
-            // gestione richiesta utente
             switch(operations.searchMenu()) {
-                // richiesta animale più alto
                 case 1:
                     switch(operations.speciesSelection()) {
                         case 1:
@@ -70,7 +64,6 @@ public class Zoo {
                             logger.info(notValid);
                     }
                     break;
-                // richiesta animale più basso
                 case 2:
                     switch(operations.speciesSelection()) {
                         case 1:
@@ -88,7 +81,6 @@ public class Zoo {
                             logger.info(notValid);
                     }
                     break;
-                // richiesta animale più pesante
                 case 3:
                     switch(operations.speciesSelection()) {
                         case 1:
@@ -106,7 +98,6 @@ public class Zoo {
                             logger.info(notValid);
                     }
                     break;
-                // richiesta animale più leggero
                 case 4:
                     switch(operations.speciesSelection()) {
                         case 1:
@@ -124,27 +115,22 @@ public class Zoo {
                             logger.info(notValid);
                     }
                     break;
-                // richiesta animale con coda più lunga
                 case 5:
                     Tailed tail = operations.longestTail(taileds);
                     logger.info("L'esemplare con la coda più lunga è " + tail.getName() + ", " + tail.getSpecies() + " con la coda di " + tail.getTailLength() + " cm.");
                     break;
-                // richiesta animale con maggiore apertura alare
                 case 6:
                     Winged wings = operations.largestWingspan(wingeds);
                     logger.info("L'esemplare con l'apertura alare maggiore è " + wings.getName() + ", " + wings.getSpecies() + " con l'apertura alare di " + wings.getWingspan() + " cm.");
                     break;
-                // richiesta chiusura programma
                 case 7:
                     again = false;
                     break;
-                // richiesta non valida
                 default:
                     logger.info(notValid);
             }
         } while(again);
 
-        // chiusura programma
         logger.info("Ricerca terminata!");
         System.exit(0);
 

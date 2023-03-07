@@ -9,37 +9,30 @@ public class Operations {
 
     private static final Logger LOGGER = Logger.getLogger(Operations.class.getName());
 
-    // metodo animale più alto
     public Animal tallest(List<Animal> animals) {
         return animals.stream().max(Comparator.comparingDouble(Animal::getHeight)).orElse(null);
     }
 
-    // metodo animale più basso
     public Animal shortest(List<Animal> animals) {
         return animals.stream().min(Comparator.comparingDouble(Animal::getHeight)).orElse(null);
     }
 
-    // metodo animale più pesante
     public Animal heaviest(List<Animal> animals) {
         return animals.stream().max(Comparator.comparingDouble(Animal::getWeight)).orElse(null);
     }
 
-    // metodo animale più leggero
     public Animal lightest(List<Animal> animals) {
         return animals.stream().min(Comparator.comparingDouble(Animal::getWeight)).orElse(null);
     }
 
-    // metodo animale con la coda più lunga
     public Tailed longestTail(List<Tailed> taileds) {
         return taileds.stream().max(Comparator.comparingDouble(Tailed::getTailLength)).orElse(null);
     }
 
-    // metodo animale con maggiore apertura alare
     public Winged largestWingspan(List<Winged> wingeds) {
         return wingeds.stream().max(Comparator.comparingDouble(Winged::getWingspan)).orElse(null);
     }
 
-    // metodo menu di selezione ricerca
     public int searchMenu() {
         Scanner input = new Scanner(System.in);
         int search = 0;
@@ -68,7 +61,6 @@ public class Operations {
         return search;
     }
 
-    // metodo selezione specie da interrogare
     public int speciesSelection() {
         Scanner input = new Scanner(System.in);
         int selectedSpecies = 0;

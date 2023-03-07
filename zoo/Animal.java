@@ -10,7 +10,6 @@ public class Animal {
     private double weight;
     private double height;
 
-    // costruttore
     public Animal(String species, String name, String favouriteFood, int age, LocalDate arrivalDate, double weight, double height) {
         setSpecies(species);
         setName(name);
@@ -21,7 +20,6 @@ public class Animal {
         setHeight(height);
     }
 
-   // incapsulamento
 
     public String getSpecies() {
         return species;
