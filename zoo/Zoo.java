@@ -1,6 +1,5 @@
 package zoo;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.logging.Logger;
 
 public class Zoo {
@@ -23,11 +22,12 @@ public class Zoo {
 
 
         logger.info("Benvenuto nel sistema di gestione dello zoo");
+        InputOutputController inputOutputController = new InputOutputController();
         boolean closeProgram = false;
         do {
-            switch(zooController.displayMenuOptions()) {
+            switch(inputOutputController.displayMenuOptions()) {
                 case 1:
-                    switch(zooController.displaySpeciesOptions()) {
+                    switch(inputOutputController.displaySpeciesOptions()) {
                         case 1:
                             logger.info("La tigre più alta è " + zooController.getTallestAnimal(zooController.getTigers()).getName() + " (" + zooController.getTallestAnimal(zooController.getTigers()).getHeight() + " cm)");
                             break;
@@ -44,7 +44,7 @@ public class Zoo {
                     }
                     break;
                 case 2:
-                    switch(zooController.displaySpeciesOptions()) {
+                    switch(inputOutputController.displaySpeciesOptions()) {
                         case 1:
                             logger.info("La tigre più bassa è " + zooController.getShortestAnimal(zooController.getTigers()).getName() + " (" + zooController.getShortestAnimal(zooController.getTigers()).getHeight() + " cm)");
                             break;
@@ -61,7 +61,7 @@ public class Zoo {
                     }
                     break;
                 case 3:
-                    switch(zooController.displaySpeciesOptions()) {
+                    switch(inputOutputController.displaySpeciesOptions()) {
                         case 1:
                             logger.info("La tigre più pesante è " + zooController.getHeaviestAnimal(zooController.getTigers()).getName() + " (" + zooController.getHeaviestAnimal(zooController.getTigers()).getWeight() + " kg)");
                             break;
@@ -78,7 +78,7 @@ public class Zoo {
                     }
                     break;
                 case 4:
-                    switch(zooController.displaySpeciesOptions()) {
+                    switch(inputOutputController.displaySpeciesOptions()) {
                         case 1:
                             logger.info("La tigre più leggera è " + zooController.getLightestAnimal(zooController.getTigers()).getName() + " (" + zooController.getLightestAnimal(zooController.getTigers()).getWeight() + " kg)");
                             break;
