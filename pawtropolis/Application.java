@@ -1,14 +1,15 @@
-package pawtropolis.zoo;
+package pawtropolis;
+import pawtropolis.zoo.*;
 import java.time.LocalDate;
 import java.util.logging.Logger;
 
-public class Zoo {
+public class Application {
     public static void main(String[] args) {
         zooRequests();
     }
 
     public static void zooRequests() {
-        Logger logger = Logger.getLogger(Zoo.class.getName());
+        Logger logger = Logger.getLogger(Application.class.getName());
         ZooController zooController = new ZooController();
 
         zooController.addAnimal(new Tiger("Black", "lamb", 7, LocalDate.of(2022,4,5), 220.30, 92.70, 82.10));
