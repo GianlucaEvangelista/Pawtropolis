@@ -6,7 +6,7 @@ import java.util.logging.Logger;
 public class InputOutputController {
 
     private static final Logger LOGGER = Logger.getLogger(InputOutputController.class.getName());
-    String optionNotValid = "Option not valid!";
+    public static final String OPTION_NOT_VALID = "Option not valid!";
 
     public int displayMenuOptions() {
         Scanner input = new Scanner(System.in);
@@ -79,7 +79,7 @@ public class InputOutputController {
             case 4:
                 break;
             default:
-                LOGGER.info(optionNotValid);
+                LOGGER.info(OPTION_NOT_VALID);
         }
     }
 
@@ -100,7 +100,7 @@ public class InputOutputController {
             case 4:
                 break;
             default:
-                LOGGER.info(optionNotValid);
+                LOGGER.info(OPTION_NOT_VALID);
         }
     }
 
@@ -121,7 +121,7 @@ public class InputOutputController {
             case 4:
                 break;
             default:
-                LOGGER.info(optionNotValid);
+                LOGGER.info(OPTION_NOT_VALID);
         }
     }
 
@@ -142,7 +142,7 @@ public class InputOutputController {
             case 4:
                 break;
             default:
-                LOGGER.info(optionNotValid);
+                LOGGER.info(OPTION_NOT_VALID);
         }
     }
 

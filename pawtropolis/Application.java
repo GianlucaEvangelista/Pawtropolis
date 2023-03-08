@@ -51,7 +51,7 @@ public class Zoo {
                     closeProgram = true;
                     break;
                 default:
-                    logger.info(inputOutputController.optionNotValid);
+                    logger.info(InputOutputController.OPTION_NOT_VALID);
             }
         } while(!closeProgram);
 
