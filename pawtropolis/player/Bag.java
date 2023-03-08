@@ -24,4 +24,29 @@ public class Bag {
     public void setAvailableSlots(int availableSlots) {
         this.availableSlots = availableSlots;
     }
+
+    public void addItem(Item item) {
+        if(getAvailableSlots() - item.getRequiredSlots() >= 0) {
+            items.add(item);
+            availableSlots -= item.getRequiredSlots();
+        }
+    }
+
+    public void removeItem(Item item) {
+        for(Item i : items) {
+            if(i.getName().equals(item.getName())) {
+                items.remove(i);
+                availableSlots += i.getRequiredSlots();
+            }
+        }
+    }
+
+    public void removeItem(String itemName) {
+        for(Item i : items) {
+            if(i.getName().equals(itemName)) {
+                items.remove(i);
+                availableSlots += i.getRequiredSlots();
+            }
+        }
+    }
 }
