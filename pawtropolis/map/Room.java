@@ -49,4 +49,58 @@ public class Room {
     public void setAdjacentRooms(List<Room> adjacentRooms) {
         this.adjacentRooms = adjacentRooms;
     }
+
+    public void addAnimal(Animal animal) {
+        animals.add(animal);
+    }
+
+    public void removeAnimal(Animal animal) {
+        animals.removeIf(a -> a.getName().equals(animal.getName()));
+    }
+
+    public void addItem(Item item) {
+        items.add(item);
+    }
+
+    public void removeItem(Item item) {
+        items.removeIf(i -> i.getName().equals(item.getName()));
+    }
+
+    public void addAdjacentRoom(Room adjacentRoom, int direction) {
+        if(adjacentRooms.get(direction) == null || adjacentRoom.linkAdjacentRoom(this, direction)) {
+             adjacentRooms.add(direction, adjacentRoom);
+        }
+    }
+
+    public boolean linkAdjacentRoom(Room room, int reverseDirection) {
+        switch (reverseDirection) {
+            case 0:
+                if(adjacentRooms.get(2) == null) {
+                    adjacentRooms.add(2, room);
+                    return true;
+                }
+                break;
+            case 1:
+                if(adjacentRooms.get(3) == null) {
+                    adjacentRooms.add(3, room);
+                    return true;
+                }
+                break;
+            case 2:
+                if(adjacentRooms.get(0) == null) {
+                    adjacentRooms.add(0, room);
+                    return true;
+                }
+                break;
+            case 3:
+                if(adjacentRooms.get(1) == null) {
+                    adjacentRooms.add(1, room);
+                    return true;
+                }
+                break;
+            default:
+                break;
+        }
+        return false;
+    }
 }
