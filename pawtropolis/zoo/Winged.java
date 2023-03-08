@@ -1,4 +1,4 @@
-package zoo;
+package pawtropolis.zoo;
 import java.time.LocalDate;
 
 public class Winged extends Animal {

@@ -1,4 +1,4 @@
-package zoo;
+package pawtropolis.zoo;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.logging.Logger;
@@ -157,7 +157,7 @@ public class InputOutputController {
     }
 
     public void displayWelcomeMessage() {
-        LOGGER.info("Welcome to the zoo management system!");
+        LOGGER.info("Welcome to the pawtropolis.zoo management system!");
     }
 
     public void displayClosingMessage() {
