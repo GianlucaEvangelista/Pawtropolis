@@ -4,7 +4,10 @@ import java.util.logging.Logger;
 
 public class Zoo {
     public static void main(String[] args) {
+        zooRequests();
+    }
 
+    public static void zooRequests() {
         Logger logger = Logger.getLogger(Zoo.class.getName());
         ZooController zooController = new ZooController();
 
@@ -54,6 +57,5 @@ public class Zoo {
 
         inputOutputController.displayClosingMessage();
         System.exit(0);
-
     }
 }
