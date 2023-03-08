@@ -65,13 +65,16 @@ public class InputOutputController {
     public void tallestAnimalRequest(ZooController zooController) {
         switch(displaySpeciesOptions()) {
             case 1:
-                LOGGER.info("The tallest tiger is " + zooController.getTallestAnimal(zooController.getTigers()).getName() + " (" + zooController.getTallestAnimal(zooController.getTigers()).getHeight() + " cm)");
+                Tiger tallestTiger = zooController.getTallestAnimal(zooController.getTigers());
+                LOGGER.info("The tallest tiger is " + tallestTiger.getName() + " (" + tallestTiger.getHeight() + " cm)");
                 break;
             case 2:
-                LOGGER.info("The tallest lion is " + zooController.getTallestAnimal(zooController.getLions()).getName() + " (" + zooController.getTallestAnimal(zooController.getLions()).getHeight() + " cm)");
+                Lion tallestLion = zooController.getTallestAnimal(zooController.getLions());
+                LOGGER.info("The tallest lion is " + tallestLion.getName() + " (" + tallestLion.getHeight() + " cm)");
                 break;
             case 3:
-                LOGGER.info("The tallest eagle is " + zooController.getTallestAnimal(zooController.getEagles()).getName() + " (" + zooController.getTallestAnimal(zooController.getEagles()).getHeight() + " cm)");
+                Eagle tallestEagle = zooController.getTallestAnimal(zooController.getEagles());
+                LOGGER.info("The tallest eagle is " + tallestEagle.getName() + " (" + tallestEagle.getHeight() + " cm)");
                 break;
             case 4:
                 break;
@@ -83,13 +86,16 @@ public class InputOutputController {
     public void shortestAnimalRequest(ZooController zooController) {
         switch(displaySpeciesOptions()) {
             case 1:
-                LOGGER.info("The shortest tiger is " + zooController.getShortestAnimal(zooController.getTigers()).getName() + " (" + zooController.getShortestAnimal(zooController.getTigers()).getHeight() + " cm)");
+                Tiger shortestTiger = zooController.getShortestAnimal(zooController.getTigers());
+                LOGGER.info("The shortest tiger is " + shortestTiger.getName() + " (" + shortestTiger.getHeight() + " cm)");
                 break;
             case 2:
-                LOGGER.info("The shortest lion is " + zooController.getShortestAnimal(zooController.getLions()).getName() + " (" + zooController.getShortestAnimal(zooController.getLions()).getHeight() + " cm)");
+                Lion shortestLion = zooController.getShortestAnimal(zooController.getLions());
+                LOGGER.info("The shortest lion is " + shortestLion.getName() + " (" + shortestLion.getHeight() + " cm)");
                 break;
             case 3:
-                LOGGER.info("The shortest eagle is " + zooController.getShortestAnimal(zooController.getEagles()).getName() + " (" + zooController.getShortestAnimal(zooController.getEagles()).getHeight() + " cm)");
+                Eagle shortestEagle = zooController.getShortestAnimal(zooController.getEagles());
+                LOGGER.info("The shortest eagle is " + shortestEagle.getName() + " (" + shortestEagle.getHeight() + " cm)");
                 break;
             case 4:
                 break;
@@ -101,13 +107,16 @@ public class InputOutputController {
     public void heaviestAnimalRequest(ZooController zooController) {
         switch(displaySpeciesOptions()) {
             case 1:
-                LOGGER.info("The heaviest tiger is " + zooController.getHeaviestAnimal(zooController.getTigers()).getName() + " (" + zooController.getHeaviestAnimal(zooController.getTigers()).getWeight() + " kg)");
+                Tiger heaviestTiger = zooController.getHeaviestAnimal(zooController.getTigers());
+                LOGGER.info("The heaviest tiger is " + heaviestTiger.getName() + " (" + heaviestTiger.getWeight() + " kg)");
                 break;
             case 2:
-                LOGGER.info("The heaviest lion is " + zooController.getHeaviestAnimal(zooController.getLions()).getName() + " (" + zooController.getHeaviestAnimal(zooController.getLions()).getWeight() + " kg)");
+                Lion heaviestLion = zooController.getHeaviestAnimal(zooController.getLions());
+                LOGGER.info("The heaviest lion is " + heaviestLion.getName() + " (" + heaviestLion.getWeight() + " kg)");
                 break;
             case 3:
-                LOGGER.info("The heaviest eagle is " + zooController.getHeaviestAnimal(zooController.getEagles()).getName() + " (" + zooController.getHeaviestAnimal(zooController.getEagles()).getWeight() + " kg)");
+                Eagle heaviestEagle = zooController.getHeaviestAnimal(zooController.getEagles());
+                LOGGER.info("The heaviest eagle is " + heaviestEagle.getName() + " (" + heaviestEagle.getWeight() + " kg)");
                 break;
             case 4:
                 break;
@@ -119,13 +128,16 @@ public class InputOutputController {
     public void lightestAnimalRequest(ZooController zooController) {
         switch(displaySpeciesOptions()) {
             case 1:
-                LOGGER.info("The lightest tiger is " + zooController.getLightestAnimal(zooController.getTigers()).getName() + " (" + zooController.getLightestAnimal(zooController.getTigers()).getWeight() + " kg)");
+                Tiger lightestTiger = zooController.getLightestAnimal(zooController.getTigers());
+                LOGGER.info("The lightest tiger is " + lightestTiger.getName() + " (" + lightestTiger.getWeight() + " kg)");
                 break;
             case 2:
-                LOGGER.info("The lightest lion is " + zooController.getLightestAnimal(zooController.getLions()).getName() + " (" + zooController.getLightestAnimal(zooController.getLions()).getWeight() + " kg)");
+                Lion lightestLion = zooController.getLightestAnimal(zooController.getLions());
+                LOGGER.info("The lightest lion is " + lightestLion.getName() + " (" + lightestLion.getWeight() + " kg)");
                 break;
             case 3:
-                LOGGER.info("The lightest eagle is " + zooController.getLightestAnimal(zooController.getEagles()).getName() + " (" + zooController.getLightestAnimal(zooController.getEagles()).getWeight() + " kg)");
+                Eagle lightestEagle = zooController.getLightestAnimal(zooController.getEagles());
+                LOGGER.info("The lightest eagle is " + lightestEagle.getName() + " (" + lightestEagle.getWeight() + " kg)");
                 break;
             case 4:
                 break;
