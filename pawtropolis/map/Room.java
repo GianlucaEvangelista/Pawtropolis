@@ -9,13 +9,13 @@ public class Room {
     private String name;
     private List<Item> items;
     private List<Animal> animals;
-    private List<Room> adjacentRooms;
+    private Room[] adjacentRooms;
 
     public Room(String name) {
         this.name = name;
         this.items = new ArrayList<>();
         this.animals = new ArrayList<>();
-        this.adjacentRooms = new ArrayList<>(4);
+        this.adjacentRooms = new Room[4];
     }
 
     public String getName() {
@@ -42,11 +42,11 @@ public class Room {
         this.animals = animals;
     }
 
-    public List<Room> getAdjacentRooms() {
+    public Room[] getAdjacentRooms() {
         return adjacentRooms;
     }
 
-    public void setAdjacentRooms(List<Room> adjacentRooms) {
+    public void setAdjacentRooms(Room[] adjacentRooms) {
         this.adjacentRooms = adjacentRooms;
     }
 
@@ -67,34 +67,34 @@ public class Room {
     }
 
     public void addAdjacentRoom(Room adjacentRoom, int direction) {
-        if(adjacentRooms.get(direction) == null || adjacentRoom.linkAdjacentRoom(this, direction)) {
-             adjacentRooms.add(direction, adjacentRoom);
-        }
+            if (adjacentRoom != null && direction >= 0 && direction < 4 && adjacentRooms[direction] == null && adjacentRoom.linkAdjacentRoom(this, direction)) {
+                adjacentRooms[direction] = adjacentRoom;
+            }
     }
 
     public boolean linkAdjacentRoom(Room room, int reverseDirection) {
         switch (reverseDirection) {
             case 0:
-                if(adjacentRooms.get(2) == null) {
-                    adjacentRooms.add(2, room);
+                if(adjacentRooms[2] == null) {
+                    adjacentRooms[2] = room;
                     return true;
                 }
                 break;
             case 1:
-                if(adjacentRooms.get(3) == null) {
-                    adjacentRooms.add(3, room);
+                if(adjacentRooms[3] == null) {
+                    adjacentRooms[3] = room;
                     return true;
                 }
                 break;
             case 2:
-                if(adjacentRooms.get(0) == null) {
-                    adjacentRooms.add(0, room);
+                if(adjacentRooms[0] == null) {
+                    adjacentRooms[0] = room;
                     return true;
                 }
                 break;
             case 3:
-                if(adjacentRooms.get(1) == null) {
-                    adjacentRooms.add(1, room);
+                if(adjacentRooms[1] == null) {
+                    adjacentRooms[1] = room;
                     return true;
                 }
                 break;
