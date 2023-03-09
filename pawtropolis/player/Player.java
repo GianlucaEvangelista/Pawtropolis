@@ -4,11 +4,12 @@ public class Player {
 
     private String name;
     private int lifePoints;
+    private static final int MAX_LIFE_POINTS = 100;
     private final Bag bag;
 
-    public Player(String name, int lifePoints) {
+    public Player(String name) {
         this.name = name;
-        this.lifePoints = lifePoints;
+        this.lifePoints = MAX_LIFE_POINTS;
         this.bag = new Bag();
     }
 
