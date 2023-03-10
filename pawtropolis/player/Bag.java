@@ -33,12 +33,8 @@ public class Bag {
     }
 
     public void removeItem(Item item) {
-        for(Item i : items) {
-            if(i.getName().equals(item.getName())) {
-                items.remove(i);
-                availableSlots += i.getRequiredSlots();
-            }
-        }
+        items.removeIf(i -> i.getName().equals(item.getName()));
+        availableSlots += item.getRequiredSlots();
     }
 
     public void removeItem(String itemName) {
