@@ -1,16 +1,18 @@
 package pawtropolis.game;
+import pawtropolis.command.CommandController;
 import pawtropolis.map.MapController;
 import pawtropolis.player.Player;
-
 public class GameController {
 
     private Player player;
     private MapController mapController;
     private InputController inputController;
+    private CommandController commandController;
 
     public GameController() {
         this.mapController = new MapController();
         this.inputController = new InputController();
+        this.commandController = new CommandController(this);
     }
 
     public Player getPlayer() {
@@ -35,6 +37,14 @@ public class GameController {
 
     public void setInputController(InputController inputController) {
         this.inputController = inputController;
+    }
+
+    public CommandController getCommandController() {
+        return commandController;
+    }
+
+    public void setCommandController(CommandController commandController) {
+        this.commandController = commandController;
     }
 
     public void runGame() {
