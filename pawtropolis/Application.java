@@ -1,11 +1,16 @@
 package pawtropolis;
+import pawtropolis.game.GameController;
 import pawtropolis.zoo.*;
 import java.time.LocalDate;
 import java.util.logging.Logger;
 
 public class Application {
     public static void main(String[] args) {
-        zooRequests();
+
+        GameController gameController = new GameController();
+        gameController.runGame();
+        // zooRequests();
+
     }
 
     public static void zooRequests() {
