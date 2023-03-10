@@ -49,5 +49,10 @@ public class GameController {
 
     public void runGame() {
         player = new Player(inputController.getPlayerName());
+        boolean wantToEndGame = false;
+        do {
+            wantToEndGame = commandController.executeCommand(this);
+        } while(!wantToEndGame);
+        System.exit(0);
     }
 }
