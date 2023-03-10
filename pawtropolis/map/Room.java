@@ -2,20 +2,22 @@ package pawtropolis.map;
 import pawtropolis.player.Item;
 import pawtropolis.zoo.Animal;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Room {
 
     private String name;
     private List<Item> items;
     private List<Animal> animals;
-    private Room[] adjacentRooms;
+    private Map<String, Room> adjacentRooms;
 
     public Room(String name) {
         this.name = name;
         this.items = new ArrayList<>();
         this.animals = new ArrayList<>();
-        this.adjacentRooms = new Room[4];
+        this.adjacentRooms = new HashMap<>();
     }
 
     public String getName() {
@@ -42,11 +44,11 @@ public class Room {
         this.animals = animals;
     }
 
-    public Room[] getAdjacentRooms() {
+    public Map<String, Room> getAdjacentRooms() {
         return adjacentRooms;
     }
 
-    public void setAdjacentRooms(Room[] adjacentRooms) {
+    public void setAdjacentRooms(Map<String, Room> adjacentRooms) {
         this.adjacentRooms = adjacentRooms;
     }
 
@@ -66,35 +68,35 @@ public class Room {
         items.removeIf(i -> i.getName().equals(item.getName()));
     }
 
-    public void addAdjacentRoom(Room adjacentRoom, int direction) {
-            if (adjacentRoom != null && direction >= 0 && direction < 4 && adjacentRooms[direction] == null && adjacentRoom.linkAdjacentRoom(this, direction)) {
-                adjacentRooms[direction] = adjacentRoom;
+    public void addAdjacentRoom(Room adjacentRoom, String direction) {
+            if (adjacentRoom != null && !direction.isEmpty() && !adjacentRooms.containsKey(direction) && adjacentRoom.linkAdjacentRoom(this, direction)) {
+                adjacentRooms.put(direction, adjacentRoom);
             }
     }
 
-    public boolean linkAdjacentRoom(Room room, int reverseDirection) {
+    public boolean linkAdjacentRoom(Room room, String reverseDirection) {
         switch (reverseDirection) {
-            case 0:
-                if(adjacentRooms[2] == null) {
-                    adjacentRooms[2] = room;
+            case "north":
+                if (!adjacentRooms.containsKey("south")) {
+                    adjacentRooms.put("south", room);
                     return true;
                 }
                 break;
-            case 1:
-                if(adjacentRooms[3] == null) {
-                    adjacentRooms[3] = room;
+            case "south":
+                if (!adjacentRooms.containsKey("north")) {
+                    adjacentRooms.put("north", room);
                     return true;
                 }
                 break;
-            case 2:
-                if(adjacentRooms[0] == null) {
-                    adjacentRooms[0] = room;
+            case "east":
+                if (!adjacentRooms.containsKey("west")) {
+                    adjacentRooms.put("west", room);
                     return true;
                 }
                 break;
-            case 3:
-                if(adjacentRooms[1] == null) {
-                    adjacentRooms[1] = room;
+            case "west":
+                if (!adjacentRooms.containsKey("east")) {
+                    adjacentRooms.put("east", room);
                     return true;
                 }
                 break;

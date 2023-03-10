@@ -1,6 +1,7 @@
 package pawtropolis.command;
 import pawtropolis.game.GameController;
 import pawtropolis.map.Room;
+import java.util.Map;
 
 public class GoCommand extends Command{
     protected GoCommand(GameController gameController) {
@@ -9,7 +10,7 @@ public class GoCommand extends Command{
 
     @Override
     protected boolean execute(GameController gameController, String commandArgument) {
-        Room[] currentAdjacentRooms = gameController.getMapController().getCurrentRoom().getAdjacentRooms();
+        Map<String, Room> currentAdjacentRooms = gameController.getMapController().getCurrentRoom().getAdjacentRooms();
         String directionNotAvailable = "There isn't a room in the required direction!";
         switch(commandArgument) {
             case "north":
@@ -26,9 +27,9 @@ public class GoCommand extends Command{
         return false;
     }
 
-    public static boolean goNorth(GameController gameController, Room[] currentAdjacentRooms, String directionNotAvailable) {
-        if(currentAdjacentRooms[0] != null) {
-            gameController.getMapController().setCurrentRoom(currentAdjacentRooms[0]);
+    public static boolean goNorth(GameController gameController, Map<String, Room> currentAdjacentRooms, String directionNotAvailable) {
+        if(currentAdjacentRooms.containsKey("north")) {
+            gameController.getMapController().setCurrentRoom(currentAdjacentRooms.get("north"));
             return true;
         } else {
             System.out.println(directionNotAvailable);
@@ -36,9 +37,9 @@ public class GoCommand extends Command{
         }
     }
 
-    public static boolean goEast(GameController gameController, Room[] currentAdjacentRooms, String directionNotAvailable) {
-        if(currentAdjacentRooms[1] != null) {
-            gameController.getMapController().setCurrentRoom(currentAdjacentRooms[1]);
+    public static boolean goEast(GameController gameController, Map<String, Room> currentAdjacentRooms, String directionNotAvailable) {
+        if(currentAdjacentRooms.containsKey("east")) {
+            gameController.getMapController().setCurrentRoom(currentAdjacentRooms.get("east"));
             return true;
         } else {
             System.out.println(directionNotAvailable);
@@ -46,9 +47,9 @@ public class GoCommand extends Command{
         }
     }
 
-    public static boolean goSouth(GameController gameController, Room[] currentAdjacentRooms, String directionNotAvailable) {
-        if(currentAdjacentRooms[2] != null) {
-            gameController.getMapController().setCurrentRoom(currentAdjacentRooms[2]);
+    public static boolean goSouth(GameController gameController, Map<String, Room> currentAdjacentRooms, String directionNotAvailable) {
+        if(currentAdjacentRooms.containsKey("south")) {
+            gameController.getMapController().setCurrentRoom(currentAdjacentRooms.get("south"));
             return true;
         } else {
             System.out.println(directionNotAvailable);
@@ -56,9 +57,9 @@ public class GoCommand extends Command{
         }
     }
 
-    public static boolean goWest(GameController gameController, Room[] currentAdjacentRooms, String directionNotAvailable) {
-        if(currentAdjacentRooms[3] != null) {
-            gameController.getMapController().setCurrentRoom(currentAdjacentRooms[3]);
+    public static boolean goWest(GameController gameController, Map<String, Room> currentAdjacentRooms, String directionNotAvailable) {
+        if(currentAdjacentRooms.containsKey("west")) {
+            gameController.getMapController().setCurrentRoom(currentAdjacentRooms.get("west"));
             return true;
         } else {
             System.out.println(directionNotAvailable);
