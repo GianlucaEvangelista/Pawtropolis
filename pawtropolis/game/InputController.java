@@ -4,7 +4,6 @@ import java.util.Scanner;
 public class InputController {
 
     Scanner input = new Scanner(System.in);
-    private final String NOT_VALID_COMMAND = "Not valid command!";
 
     public String getPlayerName() {
         System.out.println("Welcome to Pawtropolis! Insert Player's name:");
