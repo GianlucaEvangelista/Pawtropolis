@@ -55,6 +55,7 @@ public class CommandController {
                     System.out.println("Goodbye " + gameController.getPlayer().getName() + "!");
                     break;
                 default:
+                    System.out.println("Command not valid!");
                     break;
             }
         } while(!commandIsValid);
