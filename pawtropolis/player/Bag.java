@@ -38,11 +38,10 @@ public class Bag {
     }
 
     public void removeItem(String itemName) {
-        for(Item i : items) {
-            if(i.getName().equals(itemName)) {
-                items.remove(i);
-                availableSlots += i.getRequiredSlots();
-            }
-        }
+        items.stream().filter(i -> i.getName().equals(itemName)).findFirst()
+                .ifPresent(i -> {
+                    items.remove(i);
+                    availableSlots += i.getRequiredSlots();
+                });
     }
 }
