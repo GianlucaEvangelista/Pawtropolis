@@ -16,8 +16,8 @@ public class BagCommand extends Command {
         if(bagItems.isEmpty()) {
             System.out.println("Bag is empty");
         } else {
-            List<String> bagItemsNames = bagItems.stream().map(Item::getName).collect(Collectors.toList());
-            System.out.println("In bag: " + String.join(", ", bagItemsNames));
+            String bagItemsNames = bagItems.stream().map(Item::getName).collect(Collectors.joining(", "));
+            System.out.println("In bag: " + bagItemsNames);
         }
         return true;
     }
