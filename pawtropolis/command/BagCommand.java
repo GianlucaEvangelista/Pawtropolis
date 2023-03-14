@@ -1,8 +1,5 @@
 package pawtropolis.command;
 import pawtropolis.game.GameController;
-import pawtropolis.player.Item;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class BagCommand extends Command {
 
@@ -12,12 +9,11 @@ public class BagCommand extends Command {
 
     @Override
     protected boolean execute(GameController gameController, String commandArgument) {
-        List<Item> bagItems = gameController.getPlayer().getBag().getItems();
-        if(bagItems.isEmpty()) {
+        if(gameController.getPlayer().getItemsInBag().isEmpty()) {
             System.out.println("Bag is empty");
         } else {
-            String bagItemsNames = bagItems.stream().map(Item::getName).collect(Collectors.joining(", "));
-            System.out.println("In bag: " + bagItemsNames);
+            String bagItems = String.join(", ", gameController.getPlayer().getItemsInBag());
+            System.out.println("In bag: " + bagItems);
         }
         return true;
     }

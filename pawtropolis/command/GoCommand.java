@@ -10,7 +10,7 @@ public class GoCommand extends Command{
 
     @Override
     protected boolean execute(GameController gameController, String commandArgument) {
-        Map<String, Room> currentAdjacentRooms = gameController.getMapController().getCurrentRoom().getAdjacentRooms();
+        Map<String, Room> currentAdjacentRooms = gameController.getMapController().getCurrentRoomAdjacentRooms();
         String directionNotAvailable = "There isn't a room in the required direction!";
         switch(commandArgument) {
             case "north":
