@@ -1,10 +1,14 @@
 package pawtropolis.map;
 import pawtropolis.game.GameController;
 import pawtropolis.player.Item;
+import pawtropolis.zoo.Animal;
 import pawtropolis.zoo.Eagle;
 import pawtropolis.zoo.Lion;
 import pawtropolis.zoo.Tiger;
 import java.time.LocalDate;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class MapController {
 
@@ -38,10 +42,6 @@ public class MapController {
         return entrance;
     }
 
-    public Room getCurrentRoom() {
-        return currentRoom;
-    }
-
     public void setCurrentRoom(Room playerRoom) {
         this.currentRoom = playerRoom;
     }
@@ -54,5 +54,50 @@ public class MapController {
         this.gameController = gameController;
     }
 
+    public boolean currentRoomContainsItem(String itemName) {
+        return currentRoom.getItems().stream().anyMatch(item -> item.getName().equals(itemName));
+    }
 
+    public Item getCurrentRoomItem (String itemName) {
+        return currentRoom.getItems().stream().filter(item -> item.getName().equals(itemName)).findFirst().orElse(null);
+    }
+
+    public List<Item> getCurrentRoomItems() {
+        return currentRoom.getItems();
+    }
+
+    public void addItemToCurrentRoom (String itemName) {
+        currentRoom.addItem(gameController.getPlayer().getItemFromBag(itemName));
+    }
+
+    public void removeItemFromCurrentRoom (Item item) {
+        currentRoom.removeItem(item);
+    }
+
+    public List<Animal> getCurrentRoomAnimals() {
+        return currentRoom.getAnimals();
+    }
+
+    public String getCurrentRoomDescription() {
+        String roomItems = "";
+        String roomNPCs = "";
+        if(!currentRoom.getItems().isEmpty()) {
+            roomItems = gameController.getMapController().getCurrentRoomItems().stream()
+                    .map(Item::getName).collect(Collectors.joining(", "));
+        }
+        if(!currentRoom.getAnimals().isEmpty()) {
+            roomNPCs = gameController.getMapController().getCurrentRoomAnimals().stream()
+                    .map(animal -> animal.getName() + " (" + animal.getClass().getSimpleName() + ")")
+                    .collect(Collectors.joining(", "));
+        }
+        return  "Items: " + roomItems + "\n" + "NPCs: " + roomNPCs;
+    }
+
+    public String getCurrentRoomName() {
+        return currentRoom.getName();
+    }
+
+    public Map<String, Room> getCurrentRoomAdjacentRooms() {
+        return currentRoom.getAdjacentRooms();
+    }
 }
