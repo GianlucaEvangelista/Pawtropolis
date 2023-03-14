@@ -1,4 +1,7 @@
-package pawtropolis.zoo;
+package pawtropolis;
+import pawtropolis.zoo.ZooController;
+import pawtropolis.zoo.model.*;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.logging.Logger;

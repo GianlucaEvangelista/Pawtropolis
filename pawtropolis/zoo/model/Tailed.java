@@ -1,4 +1,6 @@
-package pawtropolis.zoo;
+package pawtropolis.zoo.model;
+import pawtropolis.zoo.model.Animal;
+
 import java.time.LocalDate;
 
 public class Tailed extends Animal {

@@ -1,10 +1,11 @@
 package pawtropolis.map;
 import pawtropolis.game.GameController;
+import pawtropolis.map.model.Room;
 import pawtropolis.player.Item;
-import pawtropolis.zoo.Animal;
-import pawtropolis.zoo.Eagle;
-import pawtropolis.zoo.Lion;
-import pawtropolis.zoo.Tiger;
+import pawtropolis.zoo.model.Animal;
+import pawtropolis.zoo.model.Eagle;
+import pawtropolis.zoo.model.Lion;
+import pawtropolis.zoo.model.Tiger;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;

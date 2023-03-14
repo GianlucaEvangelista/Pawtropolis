@@ -1,13 +1,14 @@
-package pawtropolis.command;
+package pawtropolis.command.model;
+import pawtropolis.command.model.Command;
 import pawtropolis.game.GameController;
 
 public class DropCommand extends Command {
-    protected DropCommand(GameController gameController) {
+    public DropCommand(GameController gameController) {
         super(gameController);
     }
 
     @Override
-    protected boolean execute(GameController gameController, String commandArgument) {
+    public boolean execute(GameController gameController, String commandArgument) {
             if(gameController.getPlayer().itemIsInBag(commandArgument)) {
                 gameController.getPlayer().removeItemFromBag(commandArgument);
                 gameController.getMapController().addItemToCurrentRoom(commandArgument);

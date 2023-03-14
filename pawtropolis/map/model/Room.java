@@ -1,6 +1,6 @@
-package pawtropolis.map;
+package pawtropolis.map.model;
 import pawtropolis.player.Item;
-import pawtropolis.zoo.Animal;
+import pawtropolis.zoo.model.Animal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

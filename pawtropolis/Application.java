@@ -1,6 +1,10 @@
 package pawtropolis;
 import pawtropolis.game.GameController;
 import pawtropolis.zoo.*;
+import pawtropolis.zoo.model.Eagle;
+import pawtropolis.zoo.model.Lion;
+import pawtropolis.zoo.model.Tiger;
+
 import java.time.LocalDate;
 import java.util.logging.Logger;
 

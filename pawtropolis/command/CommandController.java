@@ -1,4 +1,5 @@
 package pawtropolis.command;
+import pawtropolis.command.model.*;
 import pawtropolis.game.GameController;
 import pawtropolis.game.InputController;
 

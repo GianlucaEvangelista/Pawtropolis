@@ -1,15 +1,15 @@
-package pawtropolis.command;
+package pawtropolis.command.model;
 import pawtropolis.game.GameController;
-import pawtropolis.map.Room;
+import pawtropolis.map.model.Room;
 import java.util.Map;
 
-public class GoCommand extends Command{
-    protected GoCommand(GameController gameController) {
+public class GoCommand extends Command {
+    public GoCommand(GameController gameController) {
         super(gameController);
     }
 
     @Override
-    protected boolean execute(GameController gameController, String commandArgument) {
+    public boolean execute(GameController gameController, String commandArgument) {
         Map<String, Room> currentAdjacentRooms = gameController.getMapController().getCurrentRoomAdjacentRooms();
         String directionNotAvailable = "There isn't a room in the required direction!";
         switch(commandArgument) {

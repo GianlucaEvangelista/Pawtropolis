@@ -1,4 +1,6 @@
 package pawtropolis.zoo;
+import pawtropolis.zoo.model.*;
+
 import java.util.*;
 
 public class ZooController {

@@ -1,14 +1,15 @@
-package pawtropolis.command;
+package pawtropolis.command.model;
+import pawtropolis.command.model.Command;
 import pawtropolis.game.GameController;
 
 public class BagCommand extends Command {
 
-    protected BagCommand(GameController gameController) {
+    public BagCommand(GameController gameController) {
         super(gameController);
     }
 
     @Override
-    protected boolean execute(GameController gameController, String commandArgument) {
+    public boolean execute(GameController gameController, String commandArgument) {
         if(gameController.getPlayer().getItemsInBag().isEmpty()) {
             System.out.println("Bag is empty");
         } else {

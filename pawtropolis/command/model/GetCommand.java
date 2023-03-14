@@ -1,13 +1,14 @@
-package pawtropolis.command;
+package pawtropolis.command.model;
+import pawtropolis.command.model.Command;
 import pawtropolis.game.GameController;
 
 public class GetCommand extends Command {
-    protected GetCommand(GameController gameController) {
+    public GetCommand(GameController gameController) {
         super(gameController);
     }
 
     @Override
-    protected boolean execute(GameController gameController, String commandArgument) {
+    public boolean execute(GameController gameController, String commandArgument) {
         if(gameController.getMapController().currentRoomContainsItem(commandArgument)) {
             if(gameController.getPlayer().isThereEnoughSpace(gameController.getMapController().getCurrentRoomItem(commandArgument))) {
                 gameController.getPlayer().addItemToBag(gameController.getMapController().getCurrentRoomItem(commandArgument));

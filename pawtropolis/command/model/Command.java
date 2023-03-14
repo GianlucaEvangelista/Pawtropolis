@@ -1,13 +1,13 @@
-package pawtropolis.command;
+package pawtropolis.command.model;
 import pawtropolis.game.GameController;
 
 public abstract class Command {
 
     protected final GameController gameController;
 
-    protected Command(GameController gameController) {
+    public Command(GameController gameController) {
         this.gameController = gameController;
     }
 
-    protected abstract boolean execute(GameController gameController, String commandArgument);
+    public abstract boolean execute(GameController gameController, String commandArgument);
 }
