@@ -13,6 +13,12 @@ public class Player {
         this.bag = new Bag();
     }
 
+    public Player(String name, int lifePoints) {
+        this.name = name;
+        this.lifePoints = lifePoints;
+        this.bag = new Bag();
+    }
+
     public int getLifePoints() {
         return lifePoints;
     }
