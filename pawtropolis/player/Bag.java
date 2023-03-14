@@ -44,4 +44,8 @@ public class Bag {
                     availableSlots += i.getRequiredSlots();
                 });
     }
+
+    public Item getItem(String itemName) {
+        return items.stream().filter(i -> i.getName().equals(itemName)).findAny().orElse(null);
+    }
 }
