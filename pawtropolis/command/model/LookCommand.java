@@ -1,5 +1,4 @@
 package pawtropolis.command.model;
-import pawtropolis.command.model.Command;
 import pawtropolis.game.GameController;
 
 public class LookCommand extends Command {
@@ -9,7 +8,10 @@ public class LookCommand extends Command {
     }
 
     @Override
-    public boolean execute(GameController gameController, String commandArgument) {
+    public boolean execute(GameController gameController, String[] chosenCommand) {
+        if(chosenCommand.length != 1) {
+            return false;
+        }
         System.out.println("You are in room " + gameController.getMapController().getCurrentRoomName() + "\n" +
                 gameController.getMapController().getCurrentRoomDescription());
         return true;

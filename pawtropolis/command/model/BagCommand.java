@@ -1,5 +1,4 @@
 package pawtropolis.command.model;
-import pawtropolis.command.model.Command;
 import pawtropolis.game.GameController;
 
 public class BagCommand extends Command {
@@ -9,7 +8,10 @@ public class BagCommand extends Command {
     }
 
     @Override
-    public boolean execute(GameController gameController, String commandArgument) {
+    public boolean execute(GameController gameController, String[] chosenCommand) {
+        if(chosenCommand.length != 1) {
+            return false;
+        }
         if(gameController.getPlayer().getItemsInBag().isEmpty()) {
             System.out.println("Bag is empty");
         } else {

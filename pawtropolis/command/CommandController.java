@@ -41,78 +41,20 @@ public class CommandController {
 
     public boolean executeCommand(GameController gameController) {
         boolean commandIsValid = false;
-        boolean wantToExitGame = false;
         do {
             String[] chosenCommand = inputController.getCommand();
-            switch (chosenCommand[0]) {
-                case "go":
-                    commandIsValid = executeGoCommand(gameController, chosenCommand);
-                    break;
-                case "look":
-                    commandIsValid = executeLookCommand(gameController, chosenCommand);
-                    break;
-                case "bag":
-                    commandIsValid = executeBagCommand(gameController, chosenCommand);
-                    break;
-                case "get":
-                    commandIsValid = executeGetCommand(gameController, chosenCommand);
-                    break;
-                case "drop":
-                    commandIsValid = executeDropCommand(gameController, chosenCommand);
-                    break;
-                case "exit":
-                    commandIsValid = true;
-                    wantToExitGame = true;
-                    System.out.println("Goodbye " + gameController.getPlayer().getName() + "!");
-                    break;
-                default:
-                    System.out.println("Command not valid!");
-                    break;
+            if(chosenCommand[0].equals("exit")) {
+                System.out.println("Goodbye " + gameController.getPlayer().getName() + "!");
+                return true;
+            }
+            Command command = commandFactory.createCommand(gameController, chosenCommand[0]);
+            if(command != null) {
+                commandIsValid = command.execute(gameController, chosenCommand);
+            } else {
+                System.out.println("Command not valid!");
             }
         } while(!commandIsValid);
-        return wantToExitGame;
+        return false;
     }
 
-    public static boolean executeGoCommand(GameController gameController, String[] chosenCommand) {
-        boolean executionIsDone = false;
-        if(chosenCommand.length > 1) {
-            executionIsDone = new GoCommand(gameController).execute(gameController, chosenCommand[1]);
-            if(executionIsDone) {
-                executionIsDone = new LookCommand(gameController).execute(gameController, "");
-            }
-        }
-        return executionIsDone;
-    }
-
-    public static boolean executeLookCommand(GameController gameController, String[] chosenCommand) {
-        boolean executionIsDone = false;
-        if(chosenCommand.length == 1) {
-            executionIsDone = new LookCommand(gameController).execute(gameController, "");
-        }
-        return executionIsDone;
-    }
-
-    public static boolean executeBagCommand(GameController gameController, String[] chosenCommand) {
-        boolean executionIsDone = false;
-        if(chosenCommand.length == 1) {
-            executionIsDone = new BagCommand(gameController).execute(gameController, "");
-        }
-        return executionIsDone;
-    }
-
-    public static boolean executeGetCommand(GameController gameController, String[] chosenCommand) {
-        boolean executionIsDone = false;
-        if(chosenCommand.length > 1) {
-            executionIsDone = new GetCommand(gameController).execute(gameController, chosenCommand[1]);
-        }
-        return executionIsDone;
-    }
-
-    public static boolean executeDropCommand(GameController gameController, String[] chosenCommand) {
-        boolean executionIsDone = false;
-        if(chosenCommand.length > 1) {
-            executionIsDone = new DropCommand(gameController).execute(gameController, chosenCommand[1]);
-        }
-        return executionIsDone;
-    }
 }

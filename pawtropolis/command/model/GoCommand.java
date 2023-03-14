@@ -9,10 +9,10 @@ public class GoCommand extends Command {
     }
 
     @Override
-    public boolean execute(GameController gameController, String commandArgument) {
+    public boolean execute(GameController gameController, String[] chosenCommand) {
         Map<String, Room> currentAdjacentRooms = gameController.getMapController().getCurrentRoomAdjacentRooms();
         String directionNotAvailable = "There isn't a room in the required direction!";
-        switch(commandArgument) {
+        switch(chosenCommand[1]) {
             case "north":
                 return goNorth(gameController, currentAdjacentRooms, directionNotAvailable);
             case "east":

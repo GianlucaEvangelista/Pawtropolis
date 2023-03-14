@@ -5,9 +5,9 @@ public abstract class Command {
 
     protected final GameController gameController;
 
-    public Command(GameController gameController) {
+    protected Command(GameController gameController) {
         this.gameController = gameController;
     }
 
-    public abstract boolean execute(GameController gameController, String commandArgument);
+    public abstract boolean execute(GameController gameController, String[] chosenCommand);
 }
