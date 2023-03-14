@@ -7,10 +7,12 @@ public class CommandController {
 
     private InputController inputController;
     private GameController gameController;
+    private CommandFactory commandFactory;
 
     public CommandController(GameController gameController) {
         this.inputController = new InputController();
         this.gameController = gameController;
+        this.commandFactory = new CommandFactory();
     }
 
     public InputController getInputController() {
@@ -27,6 +29,14 @@ public class CommandController {
 
     public void setGameController(GameController gameController) {
         this.gameController = gameController;
+    }
+
+    public CommandFactory getCommandFactory() {
+        return commandFactory;
+    }
+
+    public void setCommandFactory(CommandFactory commandFactory) {
+        this.commandFactory = commandFactory;
     }
 
     public boolean executeCommand(GameController gameController) {
