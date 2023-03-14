@@ -6,8 +6,17 @@ public class InputController {
     Scanner input = new Scanner(System.in);
 
     public String getPlayerName() {
-        System.out.println("Welcome to Pawtropolis! Insert Player's name:");
-        return input.nextLine();
+        boolean nameIsEmpty = true;
+        String playerName;
+        do {
+            System.out.println("Welcome to Pawtropolis! Insert Player's name:");
+            playerName = input.nextLine();
+            if(!playerName.isEmpty()) {
+                nameIsEmpty = false;
+            }
+        } while(nameIsEmpty);
+
+        return playerName;
     }
 
     public String[] getCommand() {
