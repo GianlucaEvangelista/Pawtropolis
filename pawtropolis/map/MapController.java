@@ -1,4 +1,5 @@
 package pawtropolis.map;
+import pawtropolis.game.GameController;
 import pawtropolis.player.Item;
 import pawtropolis.zoo.Eagle;
 import pawtropolis.zoo.Lion;
@@ -9,7 +10,10 @@ public class MapController {
 
     private Room currentRoom;
 
-    public MapController() {
+    private GameController gameController;
+
+    public MapController(GameController gameController) {
+        this.gameController = gameController;
         this.currentRoom = createMap();
     }
 
@@ -41,4 +45,14 @@ public class MapController {
     public void setCurrentRoom(Room playerRoom) {
         this.currentRoom = playerRoom;
     }
+
+    public GameController getGameController() {
+        return gameController;
+    }
+
+    public void setGameController(GameController gameController) {
+        this.gameController = gameController;
+    }
+
+
 }

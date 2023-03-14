@@ -10,7 +10,7 @@ public class GameController {
     private CommandController commandController;
 
     public GameController() {
-        this.mapController = new MapController();
+        this.mapController = new MapController(this);
         this.inputController = new InputController();
         this.commandController = new CommandController(this);
     }
