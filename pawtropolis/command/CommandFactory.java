@@ -4,10 +4,15 @@ import pawtropolis.game.GameController;
 
 public class CommandFactory {
 
-    public Command createCommand(GameController gameController, String commandName) {
-        switch (commandName.toLowerCase()) {
+    public Command createCommand(GameController gameController, String[] chosenCommand) {
+        switch (chosenCommand[0]) {
             case "go":
-                return new GoCommand(gameController);
+                if(chosenCommand.length > 1 && (chosenCommand[1].equals("north") || chosenCommand[1].equals("east") ||
+                        chosenCommand[1].equals("south") || chosenCommand[1].equals("west"))) {
+                    return new GoCommand(gameController, chosenCommand[1]);
+                } else {
+                    return null;
+                }
             case "look":
                 return new LookCommand(gameController);
             case "bag":

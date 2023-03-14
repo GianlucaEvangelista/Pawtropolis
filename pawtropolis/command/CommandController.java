@@ -47,7 +47,7 @@ public class CommandController {
                 System.out.println("Goodbye " + gameController.getPlayer().getName() + "!");
                 return true;
             }
-            Command command = commandFactory.createCommand(gameController, chosenCommand[0]);
+            Command command = commandFactory.createCommand(gameController, chosenCommand);
             if(command != null) {
                 commandIsValid = command.execute(gameController, chosenCommand);
             } else {
