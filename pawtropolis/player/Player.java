@@ -1,4 +1,6 @@
 package pawtropolis.player;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Player {
 
@@ -35,7 +37,31 @@ public class Player {
         this.name = name;
     }
 
-    public Bag getBag() {
-        return bag;
+    public void addItemToBag(Item item) {
+        bag.addItem(item);
+    }
+
+    public void removeItemFromBag(Item item) {
+        bag.removeItem(item);
+    }
+
+    public void removeItemFromBag(String itemName) {
+        bag.removeItem(itemName);
+    }
+
+    public List<String> getItemsInBag() {
+        return bag.getItems().stream().map(Item::getName).collect(Collectors.toList());
+    }
+
+    public Item getItemFromBag(String itemName) {
+        return bag.getItem(itemName);
+    }
+
+    public boolean isThereEnoughSpace(Item itemToAdd) {
+        return bag.getAvailableSlots() >= itemToAdd.getRequiredSlots();
+    }
+
+    public boolean itemIsInBag(String itemName) {
+        return bag.getItems().stream().anyMatch(item -> item.getName().equals(itemName));
     }
 }
