@@ -40,15 +40,11 @@ public class CommandController {
     }
 
     public void executeCommand(GameController gameController) {
-        boolean commandIsValid = false;
+        boolean commandIsValid;
         do {
             String[] chosenCommand = inputController.getCommand();
             Command command = commandFactory.createCommand(gameController, chosenCommand);
-            if(command != null) {
-                commandIsValid = command.execute(gameController, chosenCommand);
-            } else {
-                System.out.println("Command not valid!");
-            }
+            commandIsValid = command.execute(gameController, chosenCommand);
         } while(!commandIsValid);
     }
 

@@ -24,7 +24,7 @@ public class CommandFactory {
             case "exit":
                 return new ExitCommand(gameController);
             default:
-                return null;
+                return new UnknownCommand(gameController);
         }
     }
 }
