@@ -53,7 +53,7 @@ public class Player {
         return bag.getItems().stream().map(Item::getName).collect(Collectors.toList());
     }
 
-    public Item getItemFromBag(String itemName) {
+    public Item getItemInBag(String itemName) {
         return bag.getItem(itemName);
     }
 
