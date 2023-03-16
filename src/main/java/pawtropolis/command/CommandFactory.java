@@ -12,12 +12,7 @@ public final class CommandFactory {
         }
         switch (chosenCommand[0]) {
             case "go":
-                if(chosenCommand.length > 1 && (chosenCommand[1].equals("north") || chosenCommand[1].equals("east") ||
-                        chosenCommand[1].equals("south") || chosenCommand[1].equals("west"))) {
-                    return new GoCommand(gameController, chosenCommand[1]);
-                } else {
-                    return null;
-                }
+                return new GoCommand(gameController);
             case "look":
                 return new LookCommand(gameController);
             case "bag":
