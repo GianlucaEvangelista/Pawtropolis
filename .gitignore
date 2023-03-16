@@ -25,4 +25,6 @@ replay_pid*
 
 out/
 .idea/
-Lezione1.iml
+.gradle/
+build/
+*.iml
