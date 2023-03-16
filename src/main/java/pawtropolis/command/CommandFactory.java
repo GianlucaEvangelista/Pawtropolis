@@ -2,9 +2,14 @@ package pawtropolis.command;
 import pawtropolis.command.model.*;
 import pawtropolis.game.GameController;
 
-public class CommandFactory {
+public final class CommandFactory {
 
-    public Command createCommand(GameController gameController, String[] chosenCommand) {
+    private CommandFactory() {}
+
+    public static Command createCommand(GameController gameController, String[] chosenCommand) {
+        if(chosenCommand[0] == null) {
+            return null;
+        }
         switch (chosenCommand[0]) {
             case "go":
                 if(chosenCommand.length > 1 && (chosenCommand[1].equals("north") || chosenCommand[1].equals("east") ||
