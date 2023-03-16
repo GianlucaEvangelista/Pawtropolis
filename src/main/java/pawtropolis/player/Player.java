@@ -61,7 +61,7 @@ public class Player {
         return bag.getAvailableSlots() >= itemToAdd.getRequiredSlots();
     }
 
-    public boolean itemIsInBag(String itemName) {
+    public boolean isItemInBag(String itemName) {
         return bag.getItems().stream().anyMatch(item -> item.getName().equals(itemName));
     }
 }

@@ -12,7 +12,7 @@ public class DropCommand extends Command {
         if(chosenCommand.size() <= 1) {
             return false;
         }
-        if(gameController.getPlayer().itemIsInBag(chosenCommand.get(1))) {
+        if(gameController.getPlayer().isItemInBag(chosenCommand.get(1))) {
             gameController.getMapController().addItemToCurrentRoom(chosenCommand.get(1));
             gameController.getPlayer().removeItemFromBag(chosenCommand.get(1));
             return true;
