@@ -1,4 +1,7 @@
 package pawtropolis.game;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class InputController {
@@ -19,9 +22,9 @@ public class InputController {
         return playerName;
     }
 
-    public String[] getCommand() {
+    public List<String> getCommand() {
         boolean commandIsEmpty = true;
-        String[] chosenCommand;
+        List<String> chosenCommand = new ArrayList<>();
         do {
             System.out.println("Write one of the following commands:\n" +
                     "- go north/go east/go south/go west : change room\n" +
@@ -31,8 +34,8 @@ public class InputController {
                     "- drop + item's name: drop the item\n" +
                     "- exit: end the game");
             String commandInput = input.nextLine().toLowerCase();
-            chosenCommand = commandInput.trim().split(" ");
-            if (chosenCommand.length > 0) {
+            if (!commandInput.isEmpty()) {
+                chosenCommand = Arrays.asList(commandInput.split(" ", 2));
                 commandIsEmpty = false;
             }
         } while(commandIsEmpty);

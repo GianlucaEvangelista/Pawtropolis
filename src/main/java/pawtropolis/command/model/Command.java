@@ -1,5 +1,6 @@
 package pawtropolis.command.model;
 import pawtropolis.game.GameController;
+import java.util.List;
 
 public abstract class Command {
 
@@ -9,5 +10,5 @@ public abstract class Command {
         this.gameController = gameController;
     }
 
-    public abstract boolean execute(GameController gameController, String[] chosenCommand);
+    public abstract boolean execute(GameController gameController, List<String> chosenCommand);
 }

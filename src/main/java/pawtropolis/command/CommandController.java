@@ -2,6 +2,7 @@ package pawtropolis.command;
 import pawtropolis.command.model.*;
 import pawtropolis.game.GameController;
 import pawtropolis.game.InputController;
+import java.util.List;
 
 public class CommandController {
 
@@ -33,7 +34,7 @@ public class CommandController {
     public void executeCommand(GameController gameController) {
         boolean commandIsValid = false;
         do {
-            String[] chosenCommand = inputController.getCommand();
+            List<String> chosenCommand = inputController.getCommand();
             Command command = CommandFactory.createCommand(gameController, chosenCommand);
             if(command != null) {
                 commandIsValid = command.execute(gameController, chosenCommand);

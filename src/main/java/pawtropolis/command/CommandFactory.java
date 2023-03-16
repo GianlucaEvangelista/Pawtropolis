@@ -1,16 +1,17 @@
 package pawtropolis.command;
 import pawtropolis.command.model.*;
 import pawtropolis.game.GameController;
+import java.util.List;
 
 public final class CommandFactory {
 
     private CommandFactory() {}
 
-    public static Command createCommand(GameController gameController, String[] chosenCommand) {
-        if(chosenCommand[0] == null) {
+    public static Command createCommand(GameController gameController, List<String> chosenCommand) {
+        if(chosenCommand.get(0) == null) {
             return null;
         }
-        switch (chosenCommand[0]) {
+        switch (chosenCommand.get(0)) {
             case "go":
                 return new GoCommand(gameController);
             case "look":

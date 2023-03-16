@@ -1,6 +1,6 @@
 package pawtropolis.command.model;
-
 import pawtropolis.game.GameController;
+import java.util.List;
 
 public class UnknownCommand extends Command {
     public UnknownCommand(GameController gameController) {
@@ -8,7 +8,7 @@ public class UnknownCommand extends Command {
     }
 
     @Override
-    public boolean execute(GameController gameController, String[] chosenCommand) {
+    public boolean execute(GameController gameController, List<String> chosenCommand) {
         System.out.println("Command not valid!");
         return false;
     }
