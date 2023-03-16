@@ -1,6 +1,4 @@
 package pawtropolis.zoo.model;
-import pawtropolis.zoo.model.Animal;
-
 import java.time.LocalDate;
 
 public class Winged extends Animal {

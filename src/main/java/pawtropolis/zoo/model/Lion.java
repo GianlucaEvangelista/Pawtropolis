@@ -1,5 +1,4 @@
 package pawtropolis.zoo.model;
-
 import java.time.LocalDate;
 
 public class Lion extends Tailed {

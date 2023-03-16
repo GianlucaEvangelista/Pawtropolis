@@ -1,7 +1,4 @@
 package pawtropolis.zoo.model;
-
-import pawtropolis.zoo.model.Tailed;
-
 import java.time.LocalDate;
 
 public class Tiger extends Tailed {
