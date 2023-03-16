@@ -8,11 +8,13 @@ public class GameController {
     private MapController mapController;
     private InputController inputController;
     private CommandController commandController;
+    private boolean wantToEndGame;
 
     public GameController() {
         this.mapController = new MapController(this);
         this.inputController = new InputController();
         this.commandController = new CommandController(this);
+        this.wantToEndGame = false;
     }
 
     public Player getPlayer() {
@@ -43,15 +45,26 @@ public class GameController {
         return commandController;
     }
 
+    public boolean isWantToEndGame() {
+        return wantToEndGame;
+    }
+
+    public void setWantToEndGame(boolean wantToEndGame) {
+        this.wantToEndGame = wantToEndGame;
+    }
+
     public void setCommandController(CommandController commandController) {
         this.commandController = commandController;
     }
 
+    public void endGame() {
+        wantToEndGame = true;
+    }
+
     public void runGame() {
         player = new Player(inputController.getPlayerName());
-        boolean wantToEndGame = false;
         do {
-            wantToEndGame = commandController.executeCommand(this);
+            commandController.executeCommand(this);
         } while(!wantToEndGame);
         System.exit(0);
     }

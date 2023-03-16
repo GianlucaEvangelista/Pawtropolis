@@ -21,6 +21,8 @@ public class CommandFactory {
                 return new GetCommand(gameController);
             case "drop":
                 return new DropCommand(gameController);
+            case "exit":
+                return new ExitCommand(gameController);
             default:
                 return null;
         }

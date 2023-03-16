@@ -39,14 +39,10 @@ public class CommandController {
         this.commandFactory = commandFactory;
     }
 
-    public boolean executeCommand(GameController gameController) {
+    public void executeCommand(GameController gameController) {
         boolean commandIsValid = false;
         do {
             String[] chosenCommand = inputController.getCommand();
-            if(chosenCommand[0].equals("exit")) {
-                System.out.println("Goodbye " + gameController.getPlayer().getName() + "!");
-                return true;
-            }
             Command command = commandFactory.createCommand(gameController, chosenCommand);
             if(command != null) {
                 commandIsValid = command.execute(gameController, chosenCommand);
@@ -54,7 +50,6 @@ public class CommandController {
                 System.out.println("Command not valid!");
             }
         } while(!commandIsValid);
-        return false;
     }
 
 }
