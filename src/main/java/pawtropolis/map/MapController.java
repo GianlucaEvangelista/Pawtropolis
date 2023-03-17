@@ -1,5 +1,6 @@
 package pawtropolis.map;
 import pawtropolis.game.GameController;
+import pawtropolis.map.model.Direction;
 import pawtropolis.map.model.Room;
 import pawtropolis.player.Item;
 import pawtropolis.zoo.model.Animal;
@@ -28,18 +29,18 @@ public class MapController {
         Room bedroom = new Room("Bedroom");
         bedroom.addItem(new Item("mushrooms", "Argo's favourite food", 3));
         bedroom.addAnimal(new Tiger("Arya", "salad", 10, LocalDate.of(2020,7,11), 260.00, 94.00, 86.50));
-        bedroom.addAdjacentRoom(entrance, "west");
+        bedroom.addAdjacentRoom(entrance, Direction.WEST);
         Room kitchen = new Room("Kitchen");
         kitchen.addItem(new Item("chips", "Sky's favourite food", 1));
         kitchen.addAnimal(new Lion("Argo", "mushrooms", 9, LocalDate.of(2020,6,23), 192.10, 116.80, 92.10));
-        kitchen.addAdjacentRoom(entrance,"south");
+        kitchen.addAdjacentRoom(entrance,Direction.SOUTH);
         Room livingRoom = new Room("Living room");
         livingRoom.addItem(new Item("gun", "gun to kill big animals", 7));
         livingRoom.addAnimal(new Eagle("Sky", "chips", 3, LocalDate.of(2021,4,20), 4.50, 81.20, 210.10));
-        livingRoom.addAdjacentRoom(entrance, "east");
+        livingRoom.addAdjacentRoom(entrance, Direction.EAST);
         Room bathroom = new Room("Bathroom");
         bathroom.addItem(new Item("salad", "Arya's favourite food", 2));
-        bathroom.addAdjacentRoom(livingRoom, "north");
+        bathroom.addAdjacentRoom(livingRoom, Direction.NORTH);
         return entrance;
     }
 
@@ -98,7 +99,7 @@ public class MapController {
         return currentRoom.getName();
     }
 
-    public Map<String, Room> getCurrentRoomAdjacentRooms() {
+    public Map<Direction, Room> getCurrentRoomAdjacentRooms() {
         return currentRoom.getAdjacentRooms();
     }
 }

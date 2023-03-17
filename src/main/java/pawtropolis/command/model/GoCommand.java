@@ -1,5 +1,6 @@
 package pawtropolis.command.model;
 import pawtropolis.game.GameController;
+import pawtropolis.map.model.Direction;
 import pawtropolis.map.model.Room;
 import java.util.List;
 import java.util.Map;
@@ -15,12 +16,18 @@ public class GoCommand extends Command {
 
     @Override
     public boolean execute(GameController gameController, List<String> chosenCommand) {
-        if(chosenCommand.size() != 2 || !(chosenCommand.get(1).equals("north") || chosenCommand.get(1).equals("south") || chosenCommand.get(1).equals("east") || chosenCommand.get(1).equals("west"))) {
+        if(chosenCommand.size() != 2) {
             return false;
         }
-        Map<String, Room> currentAdjacentRooms = gameController.getMapController().getCurrentRoomAdjacentRooms();
-        if(currentAdjacentRooms.containsKey(chosenCommand.get(1))) {
-            gameController.getMapController().setCurrentRoom(currentAdjacentRooms.get(chosenCommand.get(1)));
+        Direction direction;
+        try {
+            direction = Direction.valueOf(chosenCommand.get(1).toUpperCase());
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
+        Map<Direction, Room> currentAdjacentRooms = gameController.getMapController().getCurrentRoomAdjacentRooms();
+        if(currentAdjacentRooms.containsKey(direction)) {
+            gameController.getMapController().setCurrentRoom(currentAdjacentRooms.get(direction));
             System.out.println("You are in room " + gameController.getMapController().getCurrentRoomName() + "\n" +
                     gameController.getMapController().getCurrentRoomDescription());
             return true;
