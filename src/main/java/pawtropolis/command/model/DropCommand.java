@@ -15,6 +15,7 @@ public class DropCommand extends Command {
         if(gameController.getPlayer().isItemInBag(chosenCommand.get(1))) {
             gameController.getMapController().addItemToCurrentRoom(chosenCommand.get(1));
             gameController.getPlayer().removeItemFromBag(chosenCommand.get(1));
+            System.out.println("You dropped " + chosenCommand.get(1) + " out of the bag");
             return true;
         }
         System.out.println("Required item is not in the bag!");
