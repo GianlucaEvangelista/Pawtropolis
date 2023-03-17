@@ -75,10 +75,7 @@ public class Room {
     }
 
     public boolean linkAdjacentRoom(Room room, Direction reverseDirection) {
-        if (!adjacentRooms.containsKey(reverseDirection)) {
-            adjacentRooms.put(reverseDirection, room);
-            return true;
-        }
-        return false;
+        Room roomInReverseDirection = adjacentRooms.computeIfAbsent(reverseDirection, key -> room);
+        return roomInReverseDirection == room;
     }
 }
