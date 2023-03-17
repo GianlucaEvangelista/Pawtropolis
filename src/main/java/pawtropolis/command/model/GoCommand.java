@@ -17,12 +17,14 @@ public class GoCommand extends Command {
     @Override
     public boolean execute(GameController gameController, List<String> chosenCommand) {
         if(chosenCommand.size() != 2) {
+            System.out.println(NOT_VALID_COMMAND);
             return false;
         }
         Direction direction;
         try {
             direction = Direction.valueOf(chosenCommand.get(1).toUpperCase());
         } catch (IllegalArgumentException e) {
+            System.out.println(NOT_VALID_COMMAND);
             return false;
         }
         Map<Direction, Room> currentAdjacentRooms = gameController.getMapController().getCurrentRoomAdjacentRooms();

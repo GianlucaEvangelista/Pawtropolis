@@ -10,6 +10,7 @@ public class DropCommand extends Command {
     @Override
     public boolean execute(GameController gameController, List<String> chosenCommand) {
         if(chosenCommand.size() <= 1) {
+            System.out.println(NOT_VALID_COMMAND);
             return false;
         }
         if(gameController.getPlayer().isItemInBag(chosenCommand.get(1))) {
