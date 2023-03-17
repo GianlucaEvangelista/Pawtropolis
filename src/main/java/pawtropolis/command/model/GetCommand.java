@@ -16,6 +16,7 @@ public class GetCommand extends Command {
             if(gameController.getPlayer().isThereEnoughSpace(gameController.getMapController().getCurrentRoomItem(chosenCommand.get(1)))) {
                 gameController.getPlayer().addItemToBag(gameController.getMapController().getCurrentRoomItem(chosenCommand.get(1)));
                 gameController.getMapController().removeItemFromCurrentRoom(gameController.getMapController().getCurrentRoomItem(chosenCommand.get(1)));
+                System.out.println("You put " + chosenCommand.get(1) + " in the bag");
                 return true;
             }
             System.out.println("Not enough slots in the bag!");
