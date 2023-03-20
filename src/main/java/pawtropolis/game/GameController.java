@@ -1,7 +1,12 @@
 package pawtropolis.game;
+import lombok.Getter;
+import lombok.Setter;
 import pawtropolis.command.CommandController;
 import pawtropolis.map.MapController;
 import pawtropolis.player.Player;
+
+@Getter
+@Setter
 public class GameController {
 
     private Player player;
@@ -13,46 +18,6 @@ public class GameController {
         this.mapController = new MapController(this);
         this.commandController = new CommandController(this);
         this.wantToEndGame = false;
-    }
-
-    public Player getPlayer() {
-        return player;
-    }
-
-    public void setPlayer(Player player) {
-        this.player = player;
-    }
-
-    public MapController getMapController() {
-        return mapController;
-    }
-
-    public void setMapController(MapController mapController) {
-        this.mapController = mapController;
-    }
-
-    public InputController getInputController() {
-        return inputController;
-    }
-
-    public void setInputController(InputController inputController) {
-        this.inputController = inputController;
-    }
-
-    public CommandController getCommandController() {
-        return commandController;
-    }
-
-    public boolean isWantToEndGame() {
-        return wantToEndGame;
-    }
-
-    public void setWantToEndGame(boolean wantToEndGame) {
-        this.wantToEndGame = wantToEndGame;
-    }
-
-    public void setCommandController(CommandController commandController) {
-        this.commandController = commandController;
     }
 
     public void endGame() {
