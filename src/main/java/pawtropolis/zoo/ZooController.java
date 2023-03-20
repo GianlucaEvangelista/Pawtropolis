@@ -6,11 +6,11 @@ import java.util.*;
 public class ZooController {
 
 
-    private List<Tiger> tigers;
-    private List<Lion> lions;
-    private List<Eagle> eagles;
-    private List<Tailed> tailedAnimals;
-    private List<Winged> wingedAnimals;
+    private final List<Tiger> tigers;
+    private final List<Lion> lions;
+    private final List<Eagle> eagles;
+    private final List<Tailed> tailedAnimals;
+    private final List<Winged> wingedAnimals;
 
     public ZooController() {
         this.tigers = new ArrayList<>();
