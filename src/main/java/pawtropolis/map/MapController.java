@@ -1,4 +1,7 @@
 package pawtropolis.map;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.Setter;
 import pawtropolis.game.GameController;
 import pawtropolis.map.model.Direction;
 import pawtropolis.map.model.Room;
@@ -12,8 +15,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+@Getter
+@Setter
 public class MapController {
 
+    @Getter(AccessLevel.NONE)
     private Room currentRoom;
 
     private GameController gameController;
@@ -42,18 +48,6 @@ public class MapController {
         bathroom.addItem(new Item("salad", "Arya's favourite food", 2));
         bathroom.addAdjacentRoom(livingRoom, Direction.NORTH);
         return entrance;
-    }
-
-    public void setCurrentRoom(Room playerRoom) {
-        this.currentRoom = playerRoom;
-    }
-
-    public GameController getGameController() {
-        return gameController;
-    }
-
-    public void setGameController(GameController gameController) {
-        this.gameController = gameController;
     }
 
     public boolean currentRoomContainsItem(String itemName) {
