@@ -1,11 +1,12 @@
 package pawtropolis.map.model;
+import lombok.*;
 import pawtropolis.player.Item;
 import pawtropolis.zoo.model.Animal;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
+@Getter
+@Setter
+@AllArgsConstructor
 public class Room {
 
     private String name;
@@ -17,39 +18,7 @@ public class Room {
         this.name = name;
         this.items = new ArrayList<>();
         this.animals = new ArrayList<>();
-        this.adjacentRooms = new HashMap<>();
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public List<Item> getItems() {
-        return items;
-    }
-
-    public void setItems(List<Item> items) {
-        this.items = items;
-    }
-
-    public List<Animal> getAnimals() {
-        return animals;
-    }
-
-    public void setAnimals(List<Animal> animals) {
-        this.animals = animals;
-    }
-
-    public Map<Direction, Room> getAdjacentRooms() {
-        return adjacentRooms;
-    }
-
-    public void setAdjacentRooms(Map<Direction, Room> adjacentRooms) {
-        this.adjacentRooms = adjacentRooms;
+        this.adjacentRooms = new EnumMap<>(Direction.class);
     }
 
     public void addAnimal(Animal animal) {
