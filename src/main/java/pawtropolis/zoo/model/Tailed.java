@@ -1,6 +1,10 @@
 package pawtropolis.zoo.model;
+import lombok.Getter;
+import lombok.Setter;
 import java.time.LocalDate;
 
+@Getter
+@Setter
 public class Tailed extends Animal {
     private double tailLength;
 
@@ -9,11 +13,4 @@ public class Tailed extends Animal {
         this.tailLength = tailLength;
     }
 
-    public double getTailLength() {
-        return tailLength;
-    }
-
-    public void setTailLength(double tailLength) {
-        this.tailLength = tailLength;
-    }
 }
