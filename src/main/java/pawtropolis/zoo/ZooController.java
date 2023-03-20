@@ -1,8 +1,10 @@
 package pawtropolis.zoo;
+import lombok.Getter;
 import pawtropolis.zoo.model.*;
 
 import java.util.*;
 
+@Getter
 public class ZooController {
 
 
@@ -31,26 +33,6 @@ public class ZooController {
             eagles.add((Eagle) animal);
             wingedAnimals.add((Winged) animal);
         }
-    }
-
-    public List<Tiger> getTigers() {
-        return tigers;
-    }
-
-    public List<Lion> getLions() {
-        return lions;
-    }
-
-    public List<Eagle> getEagles() {
-        return eagles;
-    }
-
-    public List<Tailed> getTailedAnimals() {
-        return tailedAnimals;
-    }
-
-    public List<Winged> getWingedAnimals() {
-        return wingedAnimals;
     }
 
     public <T extends Animal> T getTallestAnimal(List<T> animals) {
