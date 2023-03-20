@@ -4,11 +4,13 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-public class InputController {
+public final class InputController {
 
-    Scanner input = new Scanner(System.in);
+    private InputController() {}
 
-    public String getPlayerName() {
+    static Scanner input = new Scanner(System.in);
+
+    public static String getPlayerName() {
         boolean nameIsEmpty = true;
         String playerName;
         do {
@@ -22,7 +24,7 @@ public class InputController {
         return playerName;
     }
 
-    public List<String> getCommand() {
+    public static List<String> getCommand() {
         boolean commandIsEmpty = true;
         List<String> chosenCommand = new ArrayList<>();
         do {

@@ -6,13 +6,11 @@ public class GameController {
 
     private Player player;
     private MapController mapController;
-    private InputController inputController;
     private CommandController commandController;
     private boolean wantToEndGame;
 
     public GameController() {
         this.mapController = new MapController(this);
-        this.inputController = new InputController();
         this.commandController = new CommandController(this);
         this.wantToEndGame = false;
     }
@@ -62,7 +60,7 @@ public class GameController {
     }
 
     public void runGame() {
-        player = new Player(inputController.getPlayerName());
+        player = new Player(InputController.getPlayerName());
         do {
             commandController.executeCommand(this);
         } while(!wantToEndGame);
