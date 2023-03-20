@@ -1,5 +1,9 @@
 package pawtropolis.map.model;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
+@Getter
+@AllArgsConstructor
 public enum Direction {
 
     NORTH("south"),
@@ -8,14 +12,6 @@ public enum Direction {
     WEST("east");
 
     private final String oppositeDirection;
-
-    public String getOppositeDirection() {
-        return oppositeDirection;
-    }
-
-    private Direction(String oppositeDirection) {
-        this.oppositeDirection = oppositeDirection;
-    }
 
     public Direction reverseDirection() {
         return valueOf(oppositeDirection.toUpperCase());
