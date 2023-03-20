@@ -1,7 +1,11 @@
 package pawtropolis.player;
+import lombok.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
+@Setter
+@AllArgsConstructor
 public class Bag {
 
     private final List<Item> items;
@@ -10,19 +14,7 @@ public class Bag {
 
     public Bag() {
         this.availableSlots = MAX_SLOTS;
-        this.items = new ArrayList<>(MAX_SLOTS);
-    }
-
-    public List<Item> getItems() {
-        return items;
-    }
-
-    public int getAvailableSlots() {
-        return availableSlots;
-    }
-
-    public void setAvailableSlots(int availableSlots) {
-        this.availableSlots = availableSlots;
+        this.items = new ArrayList<>();
     }
 
     public void addItem(Item item) {
