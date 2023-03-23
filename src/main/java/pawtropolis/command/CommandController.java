@@ -16,7 +16,8 @@ public class CommandController {
         boolean commandIsValid = false;
         do {
             List<String> chosenCommand = InputController.getCommand();
-            Command command = CommandFactory.createCommand(gameController, chosenCommand);
+            String commandNameInput = chosenCommand.get(0);
+            Command command = CommandFactory.createCommand(gameController, commandNameInput);
             if(command != null) {
                 commandIsValid = command.execute(chosenCommand);
             }
