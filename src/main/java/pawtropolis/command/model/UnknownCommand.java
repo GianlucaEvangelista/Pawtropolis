@@ -8,7 +8,7 @@ public class UnknownCommand extends Command {
     }
 
     @Override
-    public boolean execute(List<String> chosenCommand) {
+    public boolean execute(String commandArgInput) {
         System.out.println(NOT_VALID_COMMAND);
         return false;
     }

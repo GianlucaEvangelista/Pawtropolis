@@ -9,8 +9,8 @@ public class LookCommand extends Command {
     }
 
     @Override
-    public boolean execute(List<String> chosenCommand) {
-        if(chosenCommand.size() != 1) {
+    public boolean execute(String commandArgInput) {
+        if(commandArgInput != null) {
             System.out.println(NOT_VALID_COMMAND);
             return false;
         }

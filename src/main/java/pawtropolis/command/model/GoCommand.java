@@ -16,12 +16,12 @@ public class GoCommand extends Command {
 
 
     @Override
-    public boolean execute(List<String> chosenCommand) {
-        if(chosenCommand.size() != 2) {
+    public boolean execute(String commandArgInput) {
+        if(commandArgInput == null) {
             System.out.println(NOT_VALID_COMMAND);
             return false;
         }
-        Direction direction = Direction.fromString(chosenCommand.get(1));
+        Direction direction = Direction.fromString(commandArgInput);
         if(direction.equals(Direction.UNKNOWN)) {
             System.out.println(INVALID_DIRECTION);
             return false;

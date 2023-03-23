@@ -17,9 +17,13 @@ public class CommandController {
         do {
             List<String> chosenCommand = InputController.getCommand();
             String commandNameInput = chosenCommand.get(0);
+            String commandArgInput = null;
+            if(chosenCommand.size() > 1) {
+                commandArgInput = chosenCommand.get(1);
+            }
             Command command = CommandFactory.createCommand(gameController, commandNameInput);
             if(command != null) {
-                commandIsValid = command.execute(chosenCommand);
+                commandIsValid = command.execute(commandArgInput);
             }
         } while(!commandIsValid);
     }

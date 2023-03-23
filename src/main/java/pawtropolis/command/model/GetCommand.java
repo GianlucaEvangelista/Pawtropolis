@@ -8,16 +8,16 @@ public class GetCommand extends Command {
     }
 
     @Override
-    public boolean execute(List<String> chosenCommand) {
-        if(chosenCommand.size() <= 1) {
+    public boolean execute(String commandArgInput) {
+        if(commandArgInput == null) {
             System.out.println(NOT_VALID_COMMAND);
             return false;
         }
-        if(gameController.getMapController().currentRoomContainsItem(chosenCommand.get(1))) {
-            if(gameController.getPlayer().isThereEnoughSpace(gameController.getMapController().getCurrentRoomItem(chosenCommand.get(1)))) {
-                gameController.getPlayer().addItemToBag(gameController.getMapController().getCurrentRoomItem(chosenCommand.get(1)));
-                gameController.getMapController().removeItemFromCurrentRoom(gameController.getMapController().getCurrentRoomItem(chosenCommand.get(1)));
-                System.out.println("You put " + chosenCommand.get(1) + " in the bag");
+        if(gameController.getMapController().currentRoomContainsItem(commandArgInput)) {
+            if(gameController.getPlayer().isThereEnoughSpace(gameController.getMapController().getCurrentRoomItem(commandArgInput))) {
+                gameController.getPlayer().addItemToBag(gameController.getMapController().getCurrentRoomItem(commandArgInput));
+                gameController.getMapController().removeItemFromCurrentRoom(gameController.getMapController().getCurrentRoomItem(commandArgInput));
+                System.out.println("You put " + commandArgInput + " in the bag");
                 return true;
             }
             System.out.println("Not enough slots in the bag!");
