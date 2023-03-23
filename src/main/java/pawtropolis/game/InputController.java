@@ -26,7 +26,7 @@ public final class InputController {
 
     public static List<String> getCommand() {
         boolean commandIsEmpty = true;
-        List<String> chosenCommand = new ArrayList<>();
+        List<String> commandInput = new ArrayList<>();
         do {
             System.out.println("Write one of the following commands:\n" +
                     "- go north/go east/go south/go west : change room\n" +
@@ -35,12 +35,12 @@ public final class InputController {
                     "- get + item's name: put the item inside the bag\n" +
                     "- drop + item's name: drop the item\n" +
                     "- exit: end the game");
-            String commandInput = input.nextLine().toLowerCase();
-            if (!commandInput.isEmpty()) {
-                chosenCommand = Arrays.asList(commandInput.split(" ", 2));
+            String commandInputString = input.nextLine().toLowerCase();
+            if (!commandInputString.isEmpty()) {
+                commandInput = Arrays.asList(commandInputString.split(" ", 2));
                 commandIsEmpty = false;
             }
         } while(commandIsEmpty);
-        return chosenCommand;
+        return commandInput;
     }
 }
