@@ -2,6 +2,7 @@ package pawtropolis.command.model;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import pawtropolis.game.GameController;
+import java.util.Arrays;
 import java.util.function.Function;
 
 @Getter
@@ -23,12 +24,9 @@ public enum CommandType {
         return commandConstructor.apply(gameController);
     }
 
-    public static CommandType convertStringToCommand(String commandString) {
-        for (CommandType commandType : values()) {
-            if (commandType.commandString.equals(commandString)) {
-                return commandType;
-            }
-        }
-        return UNKNOWN;
+    public static CommandType fromString(String commandNameInput) {
+        return Arrays.stream(CommandType.values())
+                .filter(commandType -> commandType.commandString.equals(commandNameInput)).findFirst()
+                .orElse(UNKNOWN);
     }
 }

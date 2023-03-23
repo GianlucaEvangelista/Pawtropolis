@@ -10,7 +10,7 @@ public final class CommandFactory {
         if(commandNameInput == null) {
             return null;
         }
-        CommandType commandType = CommandType.convertStringToCommand(commandNameInput);
+        CommandType commandType = CommandType.fromString(commandNameInput);
         return commandType.createCommand(gameController);
     }
 }
