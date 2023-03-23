@@ -15,11 +15,11 @@ public class CommandController {
     public void executeCommand(GameController gameController) {
         boolean commandIsValid = false;
         do {
-            List<String> chosenCommand = InputController.getCommand();
-            String commandNameInput = chosenCommand.get(0);
+            List<String> commandInput = InputController.getCommand();
+            String commandNameInput = commandInput.get(0);
             String commandArgInput = null;
-            if(chosenCommand.size() > 1) {
-                commandArgInput = chosenCommand.get(1);
+            if(commandInput.size() > 1) {
+                commandArgInput = commandInput.get(1);
             }
             Command command = CommandFactory.createCommand(gameController, commandNameInput);
             if(command != null) {
