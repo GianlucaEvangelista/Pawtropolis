@@ -7,10 +7,14 @@ import pawtropolis.game.GameController;
 public final class CommandFactory {
 
     public static Command createCommand(GameController gameController, String commandNameInput) {
-        if(commandNameInput == null) {
-            return CommandType.UNKNOWN.createCommand(gameController);
+        try {
+            if (commandNameInput == null) {
+                return CommandType.UNKNOWN.getCommandClass().getConstructor(GameController.class).newInstance(gameController);
+            }
+            CommandType commandType = CommandType.fromString(commandNameInput);
+            return commandType.getCommandClass().getConstructor(GameController.class).newInstance(gameController);
+        } catch (ReflectiveOperationException e){
+            return null;
         }
-        CommandType commandType = CommandType.fromString(commandNameInput);
-        return commandType.createCommand(gameController);
     }
 }

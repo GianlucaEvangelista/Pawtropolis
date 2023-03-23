@@ -1,28 +1,22 @@
 package pawtropolis.command.model;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import pawtropolis.game.GameController;
 import java.util.Arrays;
-import java.util.function.Function;
 
 @Getter
 @AllArgsConstructor
 public enum CommandType {
 
-    GO("go", GoCommand::new),
-    LOOK("look", LookCommand::new),
-    BAG("bag", BagCommand::new),
-    GET("get", GetCommand::new),
-    DROP("drop", DropCommand::new),
-    EXIT("exit", ExitCommand::new),
-    UNKNOWN("", UnknownCommand::new);
+    GO("go", GoCommand.class),
+    LOOK("look", LookCommand.class),
+    BAG("bag", BagCommand.class),
+    GET("get", GetCommand.class),
+    DROP("drop", DropCommand.class),
+    EXIT("exit", ExitCommand.class),
+    UNKNOWN("", UnknownCommand.class);
 
     private final String commandString;
-    private final Function<GameController, Command> commandConstructor;
-
-    public Command createCommand(GameController gameController) {
-        return commandConstructor.apply(gameController);
-    }
+    private final Class<? extends Command> commandClass;
 
     public static CommandType fromString(String commandNameInput) {
         return Arrays.stream(CommandType.values())
