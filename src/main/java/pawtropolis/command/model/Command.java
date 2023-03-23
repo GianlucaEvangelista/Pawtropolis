@@ -10,5 +10,5 @@ public abstract class Command {
 
     protected static final String NOT_VALID_COMMAND = "Command isn't valid!";
 
-    public abstract boolean execute(GameController gameController, List<String> chosenCommand);
+    public abstract boolean execute(List<String> chosenCommand);
 }
