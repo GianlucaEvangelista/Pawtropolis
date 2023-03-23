@@ -1,6 +1,5 @@
 package pawtropolis.command.model;
 import pawtropolis.game.GameController;
-import java.util.List;
 
 public class GetCommand extends Command {
     public GetCommand(GameController gameController) {

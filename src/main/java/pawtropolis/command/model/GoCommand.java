@@ -2,7 +2,6 @@ package pawtropolis.command.model;
 import pawtropolis.game.GameController;
 import pawtropolis.map.model.Direction;
 import pawtropolis.map.model.Room;
-import java.util.List;
 import java.util.Map;
 
 public class GoCommand extends Command {

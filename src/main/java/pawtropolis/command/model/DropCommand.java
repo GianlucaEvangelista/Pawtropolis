@@ -1,6 +1,5 @@
 package pawtropolis.command.model;
 import pawtropolis.game.GameController;
-import java.util.List;
 
 public class DropCommand extends Command {
     public DropCommand(GameController gameController) {

@@ -1,7 +1,6 @@
 package pawtropolis.zoo;
 import lombok.Getter;
 import pawtropolis.zoo.model.*;
-
 import java.util.*;
 
 @Getter
