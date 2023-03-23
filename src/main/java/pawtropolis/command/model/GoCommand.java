@@ -8,6 +8,7 @@ import java.util.Map;
 public class GoCommand extends Command {
 
     private static final String DIRECTION_NOT_AVAILABLE = "There isn't a room in the required direction!";
+    private static final String INVALID_DIRECTION = "Invalid direction!";
 
     public GoCommand(GameController gameController) {
         super(gameController);
@@ -20,11 +21,9 @@ public class GoCommand extends Command {
             System.out.println(NOT_VALID_COMMAND);
             return false;
         }
-        Direction direction;
-        try {
-            direction = Direction.valueOf(chosenCommand.get(1).toUpperCase());
-        } catch (IllegalArgumentException e) {
-            System.out.println(NOT_VALID_COMMAND);
+        Direction direction = Direction.fromString(chosenCommand.get(1));
+        if(direction.equals(Direction.UNKNOWN)) {
+            System.out.println(INVALID_DIRECTION);
             return false;
         }
         Map<Direction, Room> currentAdjacentRooms = gameController.getMapController().getCurrentRoomAdjacentRooms();
