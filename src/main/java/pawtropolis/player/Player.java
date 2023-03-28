@@ -1,5 +1,6 @@
 package pawtropolis.player;
 import lombok.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,9 +16,10 @@ public class Player {
     @Getter(AccessLevel.NONE)
     private final Bag bag;
 
-    private Player() {
+    @Autowired
+    private Player(Bag bag) {
         this.lifePoints = MAX_LIFE_POINTS;
-        this.bag = new Bag();
+        this.bag = bag;
     }
 
     public void addItemToBag(Item item) {
