@@ -1,18 +1,19 @@
 package pawtropolis.player;
 import lombok.*;
+import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 
 @Getter
 @Setter
-@AllArgsConstructor
+@Component
 public class Bag {
 
     private final List<Item> items;
     private int availableSlots;
     private static final int MAX_SLOTS = 10;
 
-    public Bag() {
+    private Bag() {
         this.availableSlots = MAX_SLOTS;
         this.items = new ArrayList<>();
     }
