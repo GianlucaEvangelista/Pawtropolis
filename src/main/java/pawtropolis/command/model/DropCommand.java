@@ -13,7 +13,7 @@ public class DropCommand extends Command {
             return false;
         }
         if(gameController.getPlayer().isItemInBag(commandArgInput)) {
-            gameController.getMapController().addItemToCurrentRoom(commandArgInput);
+            gameController.getMapController().addItemToCurrentRoom(commandArgInput, gameController);
             gameController.getPlayer().removeItemFromBag(commandArgInput);
             System.out.println("You dropped " + commandArgInput + " out of the bag");
             return true;

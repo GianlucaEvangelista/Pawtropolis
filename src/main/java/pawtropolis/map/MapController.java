@@ -22,10 +22,7 @@ public class MapController {
     @Getter(AccessLevel.NONE)
     private Room currentRoom;
 
-    private GameController gameController;
-
-    public MapController(GameController gameController) {
-        this.gameController = gameController;
+    public MapController() {
         this.currentRoom = createMap();
     }
 
@@ -62,7 +59,7 @@ public class MapController {
         return currentRoom.getItems();
     }
 
-    public void addItemToCurrentRoom (String itemName) {
+    public void addItemToCurrentRoom (String itemName, GameController gameController) {
         currentRoom.addItem(gameController.getPlayer().getItemInBag(itemName));
     }
 
@@ -74,7 +71,7 @@ public class MapController {
         return currentRoom.getAnimals();
     }
 
-    public String getCurrentRoomDescription() {
+    public String getCurrentRoomDescription(GameController gameController) {
         String roomItems = "";
         String roomNPCs = "";
         if(!currentRoom.getItems().isEmpty()) {
