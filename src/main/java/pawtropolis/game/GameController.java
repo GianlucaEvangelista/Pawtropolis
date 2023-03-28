@@ -11,12 +11,10 @@ public class GameController {
 
     private Player player;
     private MapController mapController;
-    private CommandController commandController;
     private boolean wantToEndGame;
 
     public GameController() {
-        this.mapController = new MapController(this);
-        this.commandController = new CommandController(this);
+        this.mapController = new MapController();
         this.wantToEndGame = false;
     }
 
@@ -27,7 +25,7 @@ public class GameController {
     public void runGame() {
         player = new Player(InputController.getPlayerName());
         do {
-            commandController.executeCommand(this);
+            CommandController.executeCommand(this);
         } while(!wantToEndGame);
         System.exit(0);
     }
