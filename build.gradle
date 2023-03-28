@@ -23,6 +23,9 @@ dependencies {
 
     testCompileOnly 'org.projectlombok:lombok:1.18.26'
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.26'
+
+    implementation 'org.springframework:spring-context:5.3.13'
+    implementation 'org.springframework:spring-web:5.3.13'
 }
 
 buildScan {
