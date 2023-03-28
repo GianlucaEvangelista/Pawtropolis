@@ -1,7 +1,6 @@
 package pawtropolis.command;
 import lombok.*;
 import pawtropolis.command.model.*;
-import pawtropolis.game.GameController;
 import pawtropolis.game.InputController;
 import java.util.List;
 
@@ -11,7 +10,7 @@ public final class CommandController {
 
     private CommandController() {}
 
-    public static void executeCommand(GameController gameController) {
+    public static void executeCommand() {
         boolean commandIsValid = false;
         do {
             List<String> commandInput = InputController.getCommand();

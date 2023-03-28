@@ -28,7 +28,7 @@ public class GameController {
     public void runGame() {
         player.setName(InputController.getPlayerName());
         do {
-            CommandController.executeCommand(this);
+            CommandController.executeCommand();
         } while(!wantToEndGame);
         System.exit(0);
     }
