@@ -7,12 +7,11 @@ import java.util.List;
 
 @Getter
 @Setter
-@AllArgsConstructor
-public class CommandController {
+public final class CommandController {
 
-    private GameController gameController;
+    private CommandController() {}
 
-    public void executeCommand(GameController gameController) {
+    public static void executeCommand(GameController gameController) {
         boolean commandIsValid = false;
         do {
             List<String> commandInput = InputController.getCommand();
