@@ -2,6 +2,7 @@ package pawtropolis.map;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.stereotype.Component;
 import pawtropolis.game.GameController;
 import pawtropolis.map.model.Direction;
 import pawtropolis.map.model.Room;
@@ -17,12 +18,13 @@ import java.util.stream.Collectors;
 
 @Getter
 @Setter
+@Component
 public class MapController {
 
     @Getter(AccessLevel.NONE)
     private Room currentRoom;
 
-    public MapController() {
+    private MapController() {
         this.currentRoom = createMap();
     }
 
