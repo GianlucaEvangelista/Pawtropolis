@@ -23,7 +23,7 @@ public class CommandFactory {
         });
     }
 
-    public static Command getCommandfromString(String commandNameInput) {
+    public static Command getCommandFromString(String commandNameInput) {
         CommandType commandType = commandNameInput == null ? CommandType.UNKNOWN : CommandType.fromString(commandNameInput);
         return commandMap.get(commandType);
     }
