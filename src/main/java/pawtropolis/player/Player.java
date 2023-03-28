@@ -2,6 +2,8 @@ package pawtropolis.player;
 import lombok.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import pawtropolis.game.InputController;
+import javax.annotation.PostConstruct;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,6 +22,11 @@ public class Player {
     private Player(Bag bag) {
         this.lifePoints = MAX_LIFE_POINTS;
         this.bag = bag;
+    }
+
+    @PostConstruct
+    private void setName() {
+        this.name = InputController.getPlayerName();
     }
 
     public void addItemToBag(Item item) {
