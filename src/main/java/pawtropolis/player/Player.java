@@ -1,11 +1,12 @@
 package pawtropolis.player;
 import lombok.*;
+import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Getter
 @Setter
-@AllArgsConstructor
+@Component
 public class Player {
 
     private String name;
@@ -14,8 +15,7 @@ public class Player {
     @Getter(AccessLevel.NONE)
     private final Bag bag;
 
-    public Player(String name) {
-        this.name = name;
+    private Player() {
         this.lifePoints = MAX_LIFE_POINTS;
         this.bag = new Bag();
     }
