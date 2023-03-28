@@ -25,7 +25,7 @@ public class CommandFactory {
         });
     }
 
-    public static Command createCommand(GameController gameController, String commandNameInput) {
+    public static Command createCommand(String commandNameInput) {
         CommandType commandType = commandNameInput == null ? CommandType.UNKNOWN : CommandType.fromString(commandNameInput);
         return commandMap.get(commandType);
     }
