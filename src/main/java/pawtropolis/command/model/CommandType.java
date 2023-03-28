@@ -23,4 +23,10 @@ public enum CommandType {
                 .filter(commandType -> commandType.commandString.equals(commandNameInput)).findFirst()
                 .orElse(UNKNOWN);
     }
+
+    public static CommandType fromCommandClass(Class<? extends Command> commandClass) {
+        return Arrays.stream(CommandType.values())
+                .filter(commandType -> commandType.getCommandClass().equals(commandClass)).findFirst()
+                .orElse(UNKNOWN);
+    }
 }
