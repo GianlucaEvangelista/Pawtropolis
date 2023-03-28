@@ -1,4 +1,6 @@
 package pawtropolis;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import pawtropolis.game.GameController;
 import pawtropolis.zoo.*;
 import pawtropolis.zoo.model.Eagle;
@@ -10,7 +12,8 @@ import java.util.logging.Logger;
 public class Application {
     public static void main(String[] args) {
 
-        GameController gameController = new GameController();
+        ApplicationContext context = new AnnotationConfigApplicationContext(AppConfiguration.class);
+        GameController gameController = context.getBean(GameController.class);
         gameController.runGame();
         // zooRequests();
 
