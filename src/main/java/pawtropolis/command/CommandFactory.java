@@ -4,8 +4,6 @@ import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pawtropolis.command.model.*;
-import pawtropolis.game.GameController;
-
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
