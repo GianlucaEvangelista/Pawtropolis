@@ -1,6 +1,7 @@
 package pawtropolis.game;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
 import pawtropolis.command.CommandController;
 import pawtropolis.map.MapController;
 import pawtropolis.player.Player;
@@ -13,8 +14,10 @@ public class GameController {
     private MapController mapController;
     private boolean wantToEndGame;
 
-    public GameController() {
-        this.mapController = new MapController();
+    @Autowired
+    public GameController(Player player, MapController mapController) {
+        this.player = player;
+        this.mapController = mapController;
         this.wantToEndGame = false;
     }
 
@@ -23,7 +26,7 @@ public class GameController {
     }
 
     public void runGame() {
-        player = new Player(InputController.getPlayerName());
+        player.setName(InputController.getPlayerName());
         do {
             CommandController.executeCommand(this);
         } while(!wantToEndGame);
