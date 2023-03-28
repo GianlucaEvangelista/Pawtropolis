@@ -1,15 +1,19 @@
 package pawtropolis.command.model;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import pawtropolis.game.GameController;
 import pawtropolis.map.model.Direction;
 import pawtropolis.map.model.Room;
 import java.util.Map;
 
+@Component
 public class GoCommand extends Command {
 
     private static final String DIRECTION_NOT_AVAILABLE = "There isn't a room in the required direction!";
     private static final String INVALID_DIRECTION = "Invalid direction!";
 
-    public GoCommand(GameController gameController) {
+    @Autowired
+    private GoCommand(GameController gameController) {
         super(gameController);
     }
 

@@ -1,8 +1,12 @@
 package pawtropolis.command.model;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import pawtropolis.game.GameController;
 
+@Component
 public class DropCommand extends Command {
-    public DropCommand(GameController gameController) {
+    @Autowired
+    private DropCommand(GameController gameController) {
         super(gameController);
     }
 

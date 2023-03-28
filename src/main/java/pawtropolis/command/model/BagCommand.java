@@ -1,9 +1,13 @@
 package pawtropolis.command.model;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import pawtropolis.game.GameController;
 
+@Component
 public class BagCommand extends Command {
 
-    public BagCommand(GameController gameController) {
+    @Autowired
+    private BagCommand(GameController gameController) {
         super(gameController);
     }
 

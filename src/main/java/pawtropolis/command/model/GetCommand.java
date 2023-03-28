@@ -1,8 +1,12 @@
 package pawtropolis.command.model;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import pawtropolis.game.GameController;
 
+@Component
 public class GetCommand extends Command {
-    public GetCommand(GameController gameController) {
+    @Autowired
+    private GetCommand(GameController gameController) {
         super(gameController);
     }
 

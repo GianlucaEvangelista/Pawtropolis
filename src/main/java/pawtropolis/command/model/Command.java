@@ -1,11 +1,17 @@
 package pawtropolis.command.model;
-import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import pawtropolis.game.GameController;
 
-@AllArgsConstructor
+@Component
 public abstract class Command {
 
     protected final GameController gameController;
+
+    @Autowired
+    protected Command(GameController gameController) {
+        this.gameController = gameController;
+    }
 
     protected static final String NOT_VALID_COMMAND = "Command isn't valid!";
 
