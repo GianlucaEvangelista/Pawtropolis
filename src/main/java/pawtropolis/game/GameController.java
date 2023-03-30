@@ -12,12 +12,14 @@ public class GameController {
 
     private Player player;
     private MapController mapController;
+    private CommandController commandController;
     private boolean wantToEndGame;
 
     @Autowired
-    public GameController(Player player, MapController mapController) {
+    public GameController(Player player, MapController mapController, CommandController commandController) {
         this.player = player;
         this.mapController = mapController;
+        this.commandController = commandController;
         this.wantToEndGame = false;
     }
 
@@ -27,7 +29,7 @@ public class GameController {
 
     public void runGame() {
         do {
-            CommandController.executeCommand();
+            this.commandController.executeCommand();
         } while(!wantToEndGame);
         System.exit(0);
     }
