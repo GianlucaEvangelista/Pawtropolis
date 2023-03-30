@@ -4,6 +4,7 @@ import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pawtropolis.command.model.*;
+import javax.annotation.PostConstruct;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
@@ -14,9 +15,15 @@ import java.util.Map;
 public class CommandFactory {
 
     private static final Map<CommandType, Command> commandMap = new EnumMap<>(CommandType.class);
+    private List<Command> commandList;
 
     @Autowired
     private CommandFactory(List<Command> commandList) {
+        this.commandList = commandList;
+    }
+
+    @PostConstruct
+    public void setCommandMap() {
         commandList.forEach(command -> {
             CommandType commandType = CommandType.fromCommandClass(command.getClass());
             commandMap.put(commandType, command);
