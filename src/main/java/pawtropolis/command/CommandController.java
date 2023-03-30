@@ -1,16 +1,26 @@
 package pawtropolis.command;
 import lombok.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import pawtropolis.command.model.*;
 import pawtropolis.game.InputController;
 import java.util.List;
 
 @Getter
 @Setter
-public final class CommandController {
+@Component
+public class CommandController {
+
+    private CommandFactory commandFactory;
 
     private CommandController() {}
 
-    public static void executeCommand() {
+    @Autowired
+    private void setCommandFactory(CommandFactory commandFactory) {
+        this.commandFactory = commandFactory;
+    }
+
+    public void executeCommand() {
         boolean commandIsValid = false;
         do {
             List<String> commandInput = InputController.getCommand();
