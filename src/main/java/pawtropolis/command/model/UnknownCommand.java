@@ -1,8 +1,13 @@
 package pawtropolis.command.model;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import pawtropolis.game.GameController;
 
+@Component
 public class UnknownCommand extends Command {
-    public UnknownCommand(GameController gameController) {
+
+    @Autowired
+    private UnknownCommand(GameController gameController) {
         super(gameController);
     }
 
