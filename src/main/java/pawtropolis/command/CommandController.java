@@ -29,7 +29,7 @@ public class CommandController {
             if(commandInput.size() > 1) {
                 commandArgInput = commandInput.get(1);
             }
-            Command command = CommandFactory.getCommandFromString(commandNameInput);
+            Command command = this.commandFactory.getCommandFromString(commandNameInput);
             if(command != null) {
                 commandIsValid = command.execute(commandArgInput);
             }
