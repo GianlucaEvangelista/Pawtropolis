@@ -20,7 +20,7 @@ public enum CommandType {
 
     public static CommandType fromString(String commandNameInput) {
         return Arrays.stream(CommandType.values())
-                .filter(commandType -> commandType.commandString.equals(commandNameInput)).findFirst()
+                .filter(commandType -> commandType.getCommandString().equals(commandNameInput)).findFirst()
                 .orElse(UNKNOWN);
     }
 
