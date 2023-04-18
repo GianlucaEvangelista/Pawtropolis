@@ -32,7 +32,7 @@ public enum Direction {
 
     public static Direction fromString(String directionString) {
         return Arrays.stream(Direction.values())
-                .filter(direction -> direction.directionString.equals(directionString)).findFirst()
+                .filter(direction -> direction.getDirectionString().equals(directionString)).findFirst()
                 .orElse(UNKNOWN);
     }
 }
