@@ -1,14 +1,10 @@
 package pawtropolis.command.model;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import pawtropolis.game.GameController;
 
-@Component
 public abstract class Command {
 
     protected final GameController gameController;
 
-    @Autowired
     protected Command(GameController gameController) {
         this.gameController = gameController;
     }
