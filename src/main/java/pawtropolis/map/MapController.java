@@ -73,6 +73,25 @@ public class MapController {
         return currentRoom.getAnimals();
     }
 
+    public String getCurrentRoomItemsNames(GameController gameController) {
+        String roomItems = "";
+        if(!currentRoom.getItems().isEmpty()) {
+            roomItems = gameController.getMapController().getCurrentRoomItems().stream()
+                    .map(Item::getName).collect(Collectors.joining(", "));
+        }
+        return roomItems;
+    }
+
+    public String getCurrentRoomAnimalsNames(GameController gameController) {
+        String roomAnimals = "";
+        if(!currentRoom.getAnimals().isEmpty()) {
+            roomAnimals = gameController.getMapController().getCurrentRoomAnimals().stream()
+                    .map(animal -> animal.getName() + " (" + animal.getClass().getSimpleName() + ")")
+                    .collect(Collectors.joining(", "));
+        }
+        return roomAnimals;
+    }
+
     public String getCurrentRoomDescription(GameController gameController) {
         String roomItems = "";
         String roomNPCs = "";
