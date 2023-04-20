@@ -93,18 +93,9 @@ public class MapController {
     }
 
     public String getCurrentRoomDescription(GameController gameController) {
-        String roomItems = "";
-        String roomNPCs = "";
-        if(!currentRoom.getItems().isEmpty()) {
-            roomItems = gameController.getMapController().getCurrentRoomItems().stream()
-                    .map(Item::getName).collect(Collectors.joining(", "));
-        }
-        if(!currentRoom.getAnimals().isEmpty()) {
-            roomNPCs = gameController.getMapController().getCurrentRoomAnimals().stream()
-                    .map(animal -> animal.getName() + " (" + animal.getClass().getSimpleName() + ")")
-                    .collect(Collectors.joining(", "));
-        }
-        return  "Items: " + roomItems + "\n" + "NPCs: " + roomNPCs;
+        return  "You are in room " + this.getCurrentRoomName() + "\n" +
+                "Items: " + this.getCurrentRoomItemsNames(gameController) + "\n" +
+                "NPCs: " + this.getCurrentRoomAnimalsNames(gameController);
     }
 
     public String getCurrentRoomName() {

@@ -17,8 +17,7 @@ public class LookCommand extends Command {
             System.out.println(NOT_VALID_COMMAND);
             return false;
         }
-        System.out.println("You are in room " + gameController.getMapController().getCurrentRoomName() + "\n" +
-                gameController.getMapController().getCurrentRoomDescription(gameController));
+        System.out.println(gameController.getMapController().getCurrentRoomDescription(gameController));
         return true;
     }
 }
