@@ -21,12 +21,12 @@ public class GoCommand extends Command implements CommandWithArg {
 
 
     @Override
-    public void execute(String commandArgInput) {
-        if(commandArgInput == null) {
-            System.out.println(NOT_VALID_COMMAND);
+    public void execute() {
+        if(commandArg == null) {
+            this.notValidCommand();
             return;
         }
-        Direction direction = Direction.fromString(commandArgInput);
+        Direction direction = Direction.fromString(commandArg);
         if(direction.equals(Direction.UNKNOWN)) {
             System.out.println(INVALID_DIRECTION);
             return;

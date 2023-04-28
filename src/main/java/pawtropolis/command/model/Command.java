@@ -9,7 +9,9 @@ public abstract class Command {
         this.gameController = gameController;
     }
 
-    protected static final String NOT_VALID_COMMAND = "Command isn't valid!";
+    public void notValidCommand() {
+        System.out.println("Command isn't valid!");
+    }
 
-    public abstract void execute(String commandArgInput);
+    public abstract void execute();
 }

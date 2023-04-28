@@ -14,15 +14,15 @@ public class DropCommand extends Command implements CommandWithArg {
     }
 
     @Override
-    public void execute(String commandArgInput) {
-        if(commandArgInput == null) {
-            System.out.println(NOT_VALID_COMMAND);
+    public void execute() {
+        if(commandArg == null) {
+            this.notValidCommand();
             return;
         }
-        if(gameController.getPlayer().isItemInBag(commandArgInput)) {
-            gameController.getMapController().addItemToCurrentRoom(commandArgInput, gameController);
-            gameController.getPlayer().removeItemFromBag(commandArgInput);
-            System.out.println("You dropped " + commandArgInput + " out of the bag");
+        if(gameController.getPlayer().isItemInBag(commandArg)) {
+            gameController.getMapController().addItemToCurrentRoom(commandArg, gameController);
+            gameController.getPlayer().removeItemFromBag(commandArg);
+            System.out.println("You dropped " + commandArg + " out of the bag");
             return;
         }
         System.out.println("Required item is not in the bag!");

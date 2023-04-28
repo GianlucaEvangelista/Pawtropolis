@@ -14,16 +14,16 @@ public class GetCommand extends Command implements CommandWithArg {
     }
 
     @Override
-    public void execute(String commandArgInput) {
-        if(commandArgInput == null) {
-            System.out.println(NOT_VALID_COMMAND);
+    public void execute() {
+        if(commandArg == null) {
+            this.notValidCommand();
             return;
         }
-        if(gameController.getMapController().currentRoomContainsItem(commandArgInput)) {
-            if(gameController.getPlayer().isThereEnoughSpace(gameController.getMapController().getCurrentRoomItem(commandArgInput))) {
-                gameController.getPlayer().addItemToBag(gameController.getMapController().getCurrentRoomItem(commandArgInput));
-                gameController.getMapController().removeItemFromCurrentRoom(gameController.getMapController().getCurrentRoomItem(commandArgInput));
-                System.out.println("You put " + commandArgInput + " in the bag");
+        if(gameController.getMapController().currentRoomContainsItem(commandArg)) {
+            if(gameController.getPlayer().isThereEnoughSpace(gameController.getMapController().getCurrentRoomItem(commandArg))) {
+                gameController.getPlayer().addItemToBag(gameController.getMapController().getCurrentRoomItem(commandArg));
+                gameController.getMapController().removeItemFromCurrentRoom(gameController.getMapController().getCurrentRoomItem(commandArg));
+                System.out.println("You put " + commandArg + " in the bag");
                 return;
             }
             System.out.println("Not enough slots in the bag!");

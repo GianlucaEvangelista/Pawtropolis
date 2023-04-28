@@ -12,7 +12,7 @@ public class UnknownCommand extends Command {
     }
 
     @Override
-    public void execute(String commandArgInput) {
-        System.out.println(NOT_VALID_COMMAND);
+    public void execute() {
+        this.notValidCommand();
     }
 }
