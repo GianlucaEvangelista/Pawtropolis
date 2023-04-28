@@ -1,6 +1,7 @@
 package pawtropolis;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import pawtropolis.config.AppConfiguration;
 import pawtropolis.game.GameController;
 import pawtropolis.zoo.*;
 import pawtropolis.zoo.model.Eagle;
