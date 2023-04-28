@@ -12,10 +12,10 @@ public class BagCommand extends Command {
     }
 
     @Override
-    public boolean execute(String commandArgInput) {
+    public void execute(String commandArgInput) {
         if(commandArgInput != null) {
             System.out.println(NOT_VALID_COMMAND);
-            return false;
+            return;
         }
         if(gameController.getPlayer().getItemsInBag().isEmpty()) {
             System.out.println("Bag is empty");
@@ -23,6 +23,5 @@ public class BagCommand extends Command {
             String bagItems = String.join(", ", gameController.getPlayer().getItemsInBag());
             System.out.println("In bag: " + bagItems);
         }
-        return true;
     }
 }

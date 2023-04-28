@@ -11,13 +11,12 @@ public class ExitCommand extends Command {
     }
 
     @Override
-    public boolean execute(String commandArgInput) {
+    public void execute(String commandArgInput) {
         if(commandArgInput != null) {
             System.out.println(NOT_VALID_COMMAND);
-            return false;
+            return;
         }
         gameController.endGame();
         System.out.println("Goodbye " + gameController.getPlayer().getName() + "!");
-        return true;
     }
 }

@@ -21,16 +21,13 @@ public class CommandController {
     }
 
     public void executeCommand() {
-        boolean commandIsValid = false;
-        do {
-            List<String> commandInput = InputController.getCommand();
-            String commandNameInput = commandInput.get(0);
-            String commandArgInput = commandInput.size() > 1 ? commandInput.get(1) : null;
-            Command command = this.commandFactory.getCommandFromString(commandNameInput);
-            if(command != null) {
-                commandIsValid = command.execute(commandArgInput);
-            }
-        } while(!commandIsValid);
+        List<String> commandInput = InputController.getCommand();
+        String commandNameInput = commandInput.get(0);
+        String commandArgInput = commandInput.size() > 1 ? commandInput.get(1) : null;
+        Command command = this.commandFactory.getCommandFromString(commandNameInput);
+        if(command != null) {
+            command.execute(commandArgInput);
+        }
     }
 
 }

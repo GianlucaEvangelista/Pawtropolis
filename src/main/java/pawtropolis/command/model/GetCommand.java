@@ -11,22 +11,21 @@ public class GetCommand extends Command {
     }
 
     @Override
-    public boolean execute(String commandArgInput) {
+    public void execute(String commandArgInput) {
         if(commandArgInput == null) {
             System.out.println(NOT_VALID_COMMAND);
-            return false;
+            return;
         }
         if(gameController.getMapController().currentRoomContainsItem(commandArgInput)) {
             if(gameController.getPlayer().isThereEnoughSpace(gameController.getMapController().getCurrentRoomItem(commandArgInput))) {
                 gameController.getPlayer().addItemToBag(gameController.getMapController().getCurrentRoomItem(commandArgInput));
                 gameController.getMapController().removeItemFromCurrentRoom(gameController.getMapController().getCurrentRoomItem(commandArgInput));
                 System.out.println("You put " + commandArgInput + " in the bag");
-                return true;
+                return;
             }
             System.out.println("Not enough slots in the bag!");
-            return false;
+            return;
         }
         System.out.println("Required item is not in the room!");
-        return false;
     }
 }

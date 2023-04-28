@@ -11,18 +11,17 @@ public class DropCommand extends Command {
     }
 
     @Override
-    public boolean execute(String commandArgInput) {
+    public void execute(String commandArgInput) {
         if(commandArgInput == null) {
             System.out.println(NOT_VALID_COMMAND);
-            return false;
+            return;
         }
         if(gameController.getPlayer().isItemInBag(commandArgInput)) {
             gameController.getMapController().addItemToCurrentRoom(commandArgInput, gameController);
             gameController.getPlayer().removeItemFromBag(commandArgInput);
             System.out.println("You dropped " + commandArgInput + " out of the bag");
-            return true;
+            return;
         }
         System.out.println("Required item is not in the bag!");
-        return false;
     }
 }

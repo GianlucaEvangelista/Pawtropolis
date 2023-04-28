@@ -19,24 +19,22 @@ public class GoCommand extends Command {
 
 
     @Override
-    public boolean execute(String commandArgInput) {
+    public void execute(String commandArgInput) {
         if(commandArgInput == null) {
             System.out.println(NOT_VALID_COMMAND);
-            return false;
+            return;
         }
         Direction direction = Direction.fromString(commandArgInput);
         if(direction.equals(Direction.UNKNOWN)) {
             System.out.println(INVALID_DIRECTION);
-            return false;
+            return;
         }
         Map<Direction, Room> currentAdjacentRooms = gameController.getMapController().getCurrentRoomAdjacentRooms();
         if(currentAdjacentRooms.containsKey(direction)) {
             gameController.getMapController().setCurrentRoom(currentAdjacentRooms.get(direction));
             System.out.println(gameController.getMapController().getCurrentRoomDescription(gameController));
-            return true;
         } else {
             System.out.println(DIRECTION_NOT_AVAILABLE);
-            return false;
         }
     }
 

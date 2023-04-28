@@ -11,5 +11,5 @@ public abstract class Command {
 
     protected static final String NOT_VALID_COMMAND = "Command isn't valid!";
 
-    public abstract boolean execute(String commandArgInput);
+    public abstract void execute(String commandArgInput);
 }

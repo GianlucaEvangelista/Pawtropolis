@@ -12,12 +12,11 @@ public class LookCommand extends Command {
     }
 
     @Override
-    public boolean execute(String commandArgInput) {
+    public void execute(String commandArgInput) {
         if(commandArgInput != null) {
             System.out.println(NOT_VALID_COMMAND);
-            return false;
+            return;
         }
         System.out.println(gameController.getMapController().getCurrentRoomDescription(gameController));
-        return true;
     }
 }
