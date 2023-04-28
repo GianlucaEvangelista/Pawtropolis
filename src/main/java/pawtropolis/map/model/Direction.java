@@ -2,7 +2,6 @@ package pawtropolis.map.model;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import java.util.Arrays;
-import java.util.EnumMap;
 import java.util.Map;
 
 @Getter
@@ -17,14 +16,7 @@ public enum Direction {
 
     private final String directionString;
 
-    private static final Map<Direction, Direction> OPPOSITE_DIRECTION = new EnumMap<>(Direction.class);
-
-    static {
-        OPPOSITE_DIRECTION.put(NORTH, SOUTH);
-        OPPOSITE_DIRECTION.put(SOUTH, NORTH);
-        OPPOSITE_DIRECTION.put(EAST, WEST);
-        OPPOSITE_DIRECTION.put(WEST, EAST);
-    }
+    private static final Map<Direction, Direction> OPPOSITE_DIRECTION = Map.of(NORTH, SOUTH, SOUTH, NORTH, EAST, WEST, WEST, EAST);
 
     public Direction reverseDirection() {
         return OPPOSITE_DIRECTION.get(this);
