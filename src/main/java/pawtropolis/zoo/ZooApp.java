@@ -9,6 +9,8 @@ import java.util.logging.Logger;
 
 public class ZooApp {
 
+    private ZooApp() {}
+
     public static void zooRequests() {
         Logger logger = Logger.getLogger(Application.class.getName());
         ZooController zooController = new ZooController();
