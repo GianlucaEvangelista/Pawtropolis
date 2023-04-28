@@ -6,6 +6,15 @@ import java.util.Scanner;
 
 public final class InputController {
 
+    private static final String MENU = """
+                Write one of the following commands:
+                - go north/go east/go south/go west: change room
+                - look: get a description of the current room
+                - bag: get the list of the items inside the bag
+                - get + item's name: put the item inside the bag
+                - drop + item's name: drop the item
+                - exit: end the game""";
+
     private InputController() {}
 
     static Scanner input = new Scanner(System.in);
@@ -28,13 +37,7 @@ public final class InputController {
         boolean commandIsEmpty = true;
         List<String> commandInput = new ArrayList<>();
         do {
-            System.out.println("Write one of the following commands:\n" +
-                    "- go north/go east/go south/go west : change room\n" +
-                    "- look: get a description of the current room\n" +
-                    "- bag: get the list of the items inside the bag\n" +
-                    "- get + item's name: put the item inside the bag\n" +
-                    "- drop + item's name: drop the item\n" +
-                    "- exit: end the game");
+            System.out.println(MENU);
             String commandInputString = input.nextLine().toLowerCase();
             if (!commandInputString.isEmpty()) {
                 commandInput = Arrays.asList(commandInputString.split(" ", 2));
