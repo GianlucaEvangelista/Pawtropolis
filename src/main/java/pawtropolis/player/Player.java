@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pawtropolis.game.InputController;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Getter
 @Setter
@@ -37,7 +36,7 @@ public class Player {
     }
 
     public List<String> getItemsInBag() {
-        return bag.getItems().stream().map(Item::getName).collect(Collectors.toList());
+        return bag.getItems().stream().map(Item::getName).toList();
     }
 
     public Item getItemInBag(String itemName) {
