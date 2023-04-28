@@ -25,8 +25,8 @@ public class CommandController {
         String commandNameInput = commandInput.get(0);
         String commandArgInput = commandInput.size() > 1 ? commandInput.get(1) : null;
         Command command = this.commandFactory.getCommandFromString(commandNameInput);
-        if(command instanceof CommandWithArg) {
-            ((CommandWithArg) command).setCommandArg(commandArgInput);
+        if(command instanceof CommandWithArg commandWithArg) {
+            commandWithArg.setCommandArg(commandArgInput);
             command.execute();
         } else if(commandArgInput == null) {
             command.execute();
