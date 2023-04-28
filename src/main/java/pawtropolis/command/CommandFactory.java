@@ -15,7 +15,7 @@ import java.util.Map;
 public class CommandFactory {
 
     private final Map<CommandType, Command> commandMap = new EnumMap<>(CommandType.class);
-    private List<Command> commandList;
+    private final List<Command> commandList;
 
     @Autowired
     private CommandFactory(List<Command> commandList) {
