@@ -22,14 +22,14 @@ public class ZooController {
     }
 
     public void addAnimal(Animal animal) {
-        if(animal instanceof Tiger) {
-            tigers.add((Tiger) animal);
-            tailedAnimals.add((Tailed) animal);
-        } else if(animal instanceof Lion) {
-            lions.add((Lion) animal);
-            tailedAnimals.add((Tailed) animal);
-        } else if(animal instanceof Eagle){
-            eagles.add((Eagle) animal);
+        if(animal instanceof Tiger tiger) {
+            tigers.add(tiger);
+            tailedAnimals.add(tiger);
+        } else if(animal instanceof Lion lion) {
+            lions.add(lion);
+            tailedAnimals.add(lion);
+        } else if(animal instanceof Eagle eagle){
+            eagles.add(eagle);
             wingedAnimals.add((Winged) animal);
         }
     }
