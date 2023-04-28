@@ -4,7 +4,10 @@ import org.springframework.stereotype.Component;
 import pawtropolis.game.GameController;
 
 @Component
-public class GetCommand extends Command {
+public class GetCommand extends Command implements CommandWithArg {
+
+    private String commandArg;
+
     @Autowired
     private GetCommand(GameController gameController) {
         super(gameController);
@@ -27,5 +30,10 @@ public class GetCommand extends Command {
             return;
         }
         System.out.println("Required item is not in the room!");
+    }
+
+    @Override
+    public void setCommandArg(String commandArgInput) {
+        this.commandArg = commandArgInput;
     }
 }

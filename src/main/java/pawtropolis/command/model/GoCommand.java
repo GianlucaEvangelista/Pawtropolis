@@ -7,10 +7,12 @@ import pawtropolis.map.model.Room;
 import java.util.Map;
 
 @Component
-public class GoCommand extends Command {
+public class GoCommand extends Command implements CommandWithArg {
 
     private static final String DIRECTION_NOT_AVAILABLE = "There isn't a room in the required direction!";
     private static final String INVALID_DIRECTION = "Invalid direction!";
+
+    private String commandArg;
 
     @Autowired
     private GoCommand(GameController gameController) {
@@ -38,4 +40,8 @@ public class GoCommand extends Command {
         }
     }
 
+    @Override
+    public void setCommandArg(String commandArgInput) {
+        this.commandArg = commandArgInput;
+    }
 }

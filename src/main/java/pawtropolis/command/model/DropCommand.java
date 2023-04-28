@@ -4,7 +4,10 @@ import org.springframework.stereotype.Component;
 import pawtropolis.game.GameController;
 
 @Component
-public class DropCommand extends Command {
+public class DropCommand extends Command implements CommandWithArg {
+
+    private String commandArg;
+
     @Autowired
     private DropCommand(GameController gameController) {
         super(gameController);
@@ -23,5 +26,10 @@ public class DropCommand extends Command {
             return;
         }
         System.out.println("Required item is not in the bag!");
+    }
+
+    @Override
+    public void setCommandArg(String commandArgInput) {
+        this.commandArg = commandArgInput;
     }
 }
