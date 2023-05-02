@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'application'
+    id 'org.springframework.boot' version '3.0.3'
 }
 
 repositories {
@@ -24,6 +25,9 @@ dependencies {
     testCompileOnly 'org.projectlombok:lombok:1.18.26'
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.26'
 
+    implementation 'org.springframework.boot:spring-boot:3.0.3'
+    implementation 'org.springframework.boot:spring-boot-starter:3.0.3'
+
     implementation 'org.springframework:spring-context:5.3.13'
     implementation 'org.springframework:spring-web:5.3.13'
 }
@@ -31,6 +35,10 @@ dependencies {
 buildScan {
     termsOfServiceUrl = 'https://gradle.com/terms-of-service'
     termsOfServiceAgree = 'yes'
+}
+
+bootRun {
+    standardInput = System.in
 }
 
 run {
