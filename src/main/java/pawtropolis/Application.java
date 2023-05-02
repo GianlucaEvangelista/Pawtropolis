@@ -1,15 +1,30 @@
 package pawtropolis;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.ApplicationArguments;
+import org.springframework.boot.ApplicationRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.stereotype.Component;
 import pawtropolis.config.AppConfiguration;
 import pawtropolis.game.GameController;
 import pawtropolis.zoo.*;
 
-public class Application {
+@Component
+public class Application implements ApplicationRunner {
+
+    private final GameController gameController;
+
+    @Autowired
+    public Application(GameController gameController) {
+        this.gameController = gameController;
+    }
     public static void main(String[] args) {
-        ApplicationContext context = new AnnotationConfigApplicationContext(AppConfiguration.class);
-        GameController gameController = context.getBean(GameController.class);
-        gameController.runGame();
+        SpringApplication app = new SpringApplication(AppConfiguration.class);
+        app.run(args);
         //ZooApp.zooRequests();
+    }
+
+    @Override
+    public void run(ApplicationArguments args) throws Exception {
+        gameController.runGame();
     }
 }
