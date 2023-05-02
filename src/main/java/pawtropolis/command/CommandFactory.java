@@ -13,7 +13,7 @@ import java.util.Map;
 @Component
 public class CommandFactory {
 
-    private final Map<CommandType, Command> commandMap = new EnumMap<>(CommandType.class);
+    private static final Map<CommandType, Command> commandMap = new EnumMap<>(CommandType.class);
     private final List<Command> commandList;
 
     @Autowired
@@ -29,7 +29,7 @@ public class CommandFactory {
         });
     }
 
-    public Command getCommandFromString(String commandNameInput) {
+    public static Command getCommandFromString(String commandNameInput) {
         CommandType commandType = commandNameInput == null ? CommandType.UNKNOWN : CommandType.fromString(commandNameInput);
         return commandMap.get(commandType);
     }
