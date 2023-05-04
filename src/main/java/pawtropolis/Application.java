@@ -17,6 +17,7 @@ public class Application implements ApplicationRunner {
     public Application(GameController gameController) {
         this.gameController = gameController;
     }
+
     public static void main(String[] args) {
         SpringApplication app = new SpringApplication(AppConfiguration.class);
         app.run(args);

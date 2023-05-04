@@ -1,6 +1,5 @@
 package pawtropolis.command;
 import lombok.*;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pawtropolis.command.model.*;
 import pawtropolis.game.InputController;
@@ -11,9 +10,7 @@ import java.util.List;
 @Component
 public class CommandController {
 
-
     private CommandController() {}
-
 
     public void executeCommand() {
         List<String> commandInput = InputController.getCommand();
@@ -29,5 +26,4 @@ public class CommandController {
             command.notValidCommand();
         }
     }
-
 }
