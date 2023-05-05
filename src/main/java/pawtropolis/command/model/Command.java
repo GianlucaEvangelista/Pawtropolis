@@ -9,8 +9,8 @@ public abstract class Command {
         this.gameController = gameController;
     }
 
-    public void notValidCommand() {
-        System.out.println("Command isn't valid!");
+    public static void notValidArg() {
+        System.out.println("Command parameter isn't valid!");
     }
 
     public abstract void execute();

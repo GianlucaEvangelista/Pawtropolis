@@ -16,7 +16,7 @@ public class DropCommand extends Command implements CommandWithArg {
     @Override
     public void execute() {
         if(commandArg == null) {
-            this.notValidCommand();
+            notValidArg();
             return;
         }
         if(gameController.getPlayer().isItemInBag(commandArg)) {

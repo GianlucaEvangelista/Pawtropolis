@@ -23,7 +23,7 @@ public class GoCommand extends Command implements CommandWithArg {
     @Override
     public void execute() {
         if(commandArg == null) {
-            this.notValidCommand();
+            notValidArg();
             return;
         }
         Direction direction = Direction.fromString(commandArg);

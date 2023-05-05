@@ -23,7 +23,7 @@ public class CommandController {
         } else if(commandArgInput == null) {
             command.execute();
         } else {
-            command.notValidCommand();
+            Command.notValidArg();
         }
     }
 }
