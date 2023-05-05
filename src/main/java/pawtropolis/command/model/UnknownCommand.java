@@ -13,6 +13,6 @@ public class UnknownCommand extends Command {
 
     @Override
     public void execute() {
-        this.notValidCommand();
+        System.out.println("Command isn't valid!");
     }
 }
