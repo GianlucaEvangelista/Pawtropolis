@@ -1,6 +1,5 @@
 package pawtropolis.zoo;
 import pawtropolis.Application;
-import pawtropolis.InputOutputController;
 import pawtropolis.zoo.model.Eagle;
 import pawtropolis.zoo.model.Lion;
 import pawtropolis.zoo.model.Tiger;
@@ -27,24 +26,24 @@ public class ZooApp {
         zooController.addAnimal(new Eagle("Jack", "chicken", 2, LocalDate.of(2022,7,20), 3.90, 77.20, 182.70));
 
 
-        InputOutputController inputOutputController = new InputOutputController();
-        inputOutputController.displayWelcomeMessage();
+        ZooInputOutputController zooInputOutputController = new ZooInputOutputController();
+        zooInputOutputController.displayWelcomeMessage();
         boolean closeProgram = false;
 
         do {
-            switch (inputOutputController.displayMenuOptions()) {
-                case 1 -> inputOutputController.tallestAnimalRequest(zooController);
-                case 2 -> inputOutputController.shortestAnimalRequest(zooController);
-                case 3 -> inputOutputController.heaviestAnimalRequest(zooController);
-                case 4 -> inputOutputController.lightestAnimalRequest(zooController);
-                case 5 -> inputOutputController.longestTailRequest(zooController);
-                case 6 -> inputOutputController.largestWingspanRequest(zooController);
+            switch (zooInputOutputController.displayMenuOptions()) {
+                case 1 -> zooInputOutputController.tallestAnimalRequest(zooController);
+                case 2 -> zooInputOutputController.shortestAnimalRequest(zooController);
+                case 3 -> zooInputOutputController.heaviestAnimalRequest(zooController);
+                case 4 -> zooInputOutputController.lightestAnimalRequest(zooController);
+                case 5 -> zooInputOutputController.longestTailRequest(zooController);
+                case 6 -> zooInputOutputController.largestWingspanRequest(zooController);
                 case 7 -> closeProgram = true;
-                default -> logger.info(InputOutputController.OPTION_NOT_VALID);
+                default -> logger.info(ZooInputOutputController.OPTION_NOT_VALID);
             }
         } while(!closeProgram);
 
-        inputOutputController.displayClosingMessage();
+        zooInputOutputController.displayClosingMessage();
         System.exit(0);
     }
 }

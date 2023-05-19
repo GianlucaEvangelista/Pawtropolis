@@ -1,13 +1,12 @@
-package pawtropolis;
-import pawtropolis.zoo.ZooController;
+package pawtropolis.zoo;
 import pawtropolis.zoo.model.*;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
-public class InputOutputController {
+public class ZooInputOutputController {
 
-    private static final Logger LOGGER = Logger.getLogger(InputOutputController.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(ZooInputOutputController.class.getName());
     public static final String OPTION_NOT_VALID = "Option not valid!";
 
     public int displayMenuOptions() {
