@@ -20,7 +20,12 @@ public class Player {
     private Player(Bag bag) {
         this.lifePoints = MAX_LIFE_POINTS;
         this.bag = bag;
-        this.name = InputController.getPlayerName();
+        askPlayerName();
+    }
+
+    public void askPlayerName() {
+        System.out.println("Insert Player's name:");
+        setName(InputController.getInputString());
     }
 
     public void addItemToBag(Item item) {

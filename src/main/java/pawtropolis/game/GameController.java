@@ -28,6 +28,7 @@ public class GameController {
     }
 
     public void runGame() {
+        System.out.println("Welcome to Pawtropolis!");
         do {
             this.commandController.executeCommand();
         } while(!wantToEndGame);
