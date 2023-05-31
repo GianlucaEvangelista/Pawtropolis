@@ -1,7 +1,7 @@
 package pawtropolis.map.model;
 import lombok.*;
 import pawtropolis.utils.Pair;
-import pawtropolis.player.Item;
+import pawtropolis.game.model.Item;
 import pawtropolis.zoo.model.Animal;
 import java.util.*;
 

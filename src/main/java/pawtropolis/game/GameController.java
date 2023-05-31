@@ -2,9 +2,9 @@ package pawtropolis.game;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
-import pawtropolis.command.CommandController;
+import pawtropolis.game.command.CommandController;
 import pawtropolis.map.MapController;
-import pawtropolis.player.Player;
+import pawtropolis.game.model.Player;
 
 @Getter
 @Setter

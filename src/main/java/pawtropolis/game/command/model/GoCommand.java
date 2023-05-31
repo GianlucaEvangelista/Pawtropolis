@@ -1,13 +1,12 @@
-package pawtropolis.command.model;
+package pawtropolis.game.command.model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pawtropolis.game.GameController;
-import pawtropolis.game.InputController;
+import pawtropolis.game.console.InputController;
 import pawtropolis.map.model.Direction;
 import pawtropolis.map.model.Door;
 import pawtropolis.map.model.Room;
 import pawtropolis.utils.Pair;
-
 import java.util.Map;
 
 @Component

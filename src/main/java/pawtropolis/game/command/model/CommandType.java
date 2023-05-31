@@ -1,4 +1,4 @@
-package pawtropolis.command.model;
+package pawtropolis.game.command.model;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import java.util.Arrays;

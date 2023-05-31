@@ -1,4 +1,4 @@
-package pawtropolis.game;
+package pawtropolis.game.console;
 import java.util.Scanner;
 
 public final class InputController {

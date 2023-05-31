@@ -1,4 +1,4 @@
-package pawtropolis.command.model;
+package pawtropolis.game.command.model;
 import pawtropolis.game.GameController;
 
 public abstract class Command {

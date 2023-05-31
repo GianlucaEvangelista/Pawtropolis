@@ -1,18 +1,18 @@
-package pawtropolis.command.model;
+package pawtropolis.game.command.model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pawtropolis.game.GameController;
 
 @Component
-public class UnknownCommand extends Command {
+public class LookCommand extends Command {
 
     @Autowired
-    private UnknownCommand(GameController gameController) {
+    private LookCommand(GameController gameController) {
         super(gameController);
     }
 
     @Override
     public void execute() {
-        System.out.println("Command isn't valid!");
+        System.out.println(gameController.getMapController().getCurrentRoomDescription());
     }
 }

@@ -1,4 +1,4 @@
-package pawtropolis.command.model;
+package pawtropolis.game.command.model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pawtropolis.game.GameController;

@@ -8,7 +8,7 @@ import pawtropolis.map.model.Direction;
 import pawtropolis.map.model.Door;
 import pawtropolis.map.model.Room;
 import pawtropolis.utils.Pair;
-import pawtropolis.player.Item;
+import pawtropolis.game.model.Item;
 import pawtropolis.zoo.model.Animal;
 import pawtropolis.zoo.model.Eagle;
 import pawtropolis.zoo.model.Lion;

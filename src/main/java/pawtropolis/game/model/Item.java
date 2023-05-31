@@ -1,4 +1,4 @@
-package pawtropolis.player;
+package pawtropolis.game.model;
 import lombok.*;
 
 @Getter

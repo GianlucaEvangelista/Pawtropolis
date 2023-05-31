@@ -1,8 +1,8 @@
-package pawtropolis.player;
+package pawtropolis.game.model;
 import lombok.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import pawtropolis.game.InputController;
+import pawtropolis.game.console.InputController;
 import java.util.List;
 
 @Getter
