@@ -139,4 +139,13 @@ public class MapController {
     public Door getCurrentRoomAdjacentRoomDoor(Direction direction) {
         return currentRoom.getAdjacentRoomDoor(direction);
     }
+
+    public void changeRoom(Direction direction) {
+        Room nextRoom = currentRoom.getAdjacentRoom(direction);
+        if (nextRoom != null) {
+            currentRoom = nextRoom;
+        }
+    }
 }
+
+
