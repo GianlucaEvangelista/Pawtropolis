@@ -2,8 +2,12 @@ package pawtropolis.command.model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pawtropolis.game.GameController;
+import pawtropolis.game.InputController;
 import pawtropolis.map.model.Direction;
+import pawtropolis.map.model.Door;
 import pawtropolis.map.model.Room;
+import pawtropolis.utils.Pair;
+
 import java.util.Map;
 
 @Component
@@ -31,12 +35,40 @@ public class GoCommand extends Command implements CommandWithArg {
             System.out.println(INVALID_DIRECTION);
             return;
         }
-        Map<Direction, Room> currentAdjacentRooms = gameController.getMapController().getCurrentRoomAdjacentRooms();
+        Map<Direction, Pair<Room, Door>> currentAdjacentRooms = gameController.getMapController().getCurrentRoomAdjacentRooms();
         if(currentAdjacentRooms.containsKey(direction)) {
-            gameController.getMapController().setCurrentRoom(currentAdjacentRooms.get(direction));
-            System.out.println(gameController.getMapController().getCurrentRoomDescription(gameController));
+            Room nextRoom = gameController.getMapController().getCurrentRoomAdjacentRoom(direction);
+            Door nextRoomDoor = gameController.getMapController().getCurrentRoomAdjacentRoomDoor(direction);
+            if(!nextRoomDoor.isOpen()) {
+                tryToOpenTheDoor(nextRoomDoor, nextRoom);
+            } else {
+                gameController.getMapController().setCurrentRoom(nextRoom);
+            }
+            System.out.println(gameController.getMapController().getCurrentRoomDescription());
         } else {
             System.out.println(DIRECTION_NOT_AVAILABLE);
+        }
+    }
+
+    public void tryToOpenTheDoor(Door door, Room room) {
+        System.out.println("The door is locked: would you like to use an item to unlock it? Y/N");
+        switch (InputController.getInputString()) {
+            case "Y":
+                System.out.println("Type the name of the item to use");
+                String chosenItemName = InputController.getInputString();
+                if(!gameController.getPlayer().isItemInBag(chosenItemName)) {
+                    System.out.println("You don't have this item in your bag!");
+                } else if(door.openTheDoor(gameController.getPlayer().getItemInBag(chosenItemName))) {
+                    gameController.getPlayer().removeItemFromBag(gameController.getPlayer().getItemInBag(chosenItemName));
+                    System.out.println("You unlocked the door!");
+                    gameController.getMapController().setCurrentRoom(room);
+                }
+                break;
+            case "N":
+                break;
+            default:
+                System.out.println("Invalid choice! The door is still locked");
+                break;
         }
     }
 

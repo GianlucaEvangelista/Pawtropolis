@@ -1,8 +1,10 @@
 package pawtropolis.command;
 import lombok.*;
 import org.springframework.stereotype.Component;
-import pawtropolis.command.model.*;
 import pawtropolis.game.InputController;
+import pawtropolis.command.model.Command;
+import pawtropolis.command.model.CommandWithArg;
+
 import java.util.Arrays;
 import java.util.List;
 

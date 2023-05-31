@@ -13,6 +13,6 @@ public class LookCommand extends Command {
 
     @Override
     public void execute() {
-        System.out.println(gameController.getMapController().getCurrentRoomDescription(gameController));
+        System.out.println(gameController.getMapController().getCurrentRoomDescription());
     }
 }

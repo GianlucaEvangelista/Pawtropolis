@@ -5,7 +5,9 @@ import lombok.Setter;
 import org.springframework.stereotype.Component;
 import pawtropolis.game.GameController;
 import pawtropolis.map.model.Direction;
+import pawtropolis.map.model.Door;
 import pawtropolis.map.model.Room;
+import pawtropolis.utils.Pair;
 import pawtropolis.player.Item;
 import pawtropolis.zoo.model.Animal;
 import pawtropolis.zoo.model.Eagle;
@@ -30,22 +32,27 @@ public class MapController {
 
     private static Room createMap() {
         Room entrance = new Room("Entrance");
-        entrance.addItem(new Item("knife", "knife to kill small animals", 5));
+        Item flute = new Item("flute", "instrument to open doors", 5);
+        entrance.addItem(flute);
         Room bedroom = new Room("Bedroom");
-        bedroom.addItem(new Item("mushrooms", "Argo's favourite food", 3));
+        Item mushrooms = new Item("mushrooms", "Argo's favourite food", 3);
+        bedroom.addItem(mushrooms);
         bedroom.addAnimal(new Tiger("Arya", "salad", 10, LocalDate.of(2020,7,11), 260.00, 94.00, 86.50));
-        bedroom.addAdjacentRoom(entrance, Direction.WEST);
+        bedroom.addAdjacentRoom(entrance, new Door(true, flute), Direction.WEST);
         Room kitchen = new Room("Kitchen");
-        kitchen.addItem(new Item("chips", "Sky's favourite food", 1));
+        Item chips = new Item("chips", "Sky's favourite food", 1);
+        kitchen.addItem(chips);
         kitchen.addAnimal(new Lion("Argo", "mushrooms", 9, LocalDate.of(2020,6,23), 192.10, 116.80, 92.10));
-        kitchen.addAdjacentRoom(entrance,Direction.SOUTH);
+        kitchen.addAdjacentRoom(entrance, new Door(false, flute), Direction.SOUTH);
         Room livingRoom = new Room("Living room");
-        livingRoom.addItem(new Item("gun", "gun to kill big animals", 7));
+        Item violin = new Item("violin", "instrument to open doors", 7);
+        livingRoom.addItem(violin);
         livingRoom.addAnimal(new Eagle("Sky", "chips", 3, LocalDate.of(2021,4,20), 4.50, 81.20, 210.10));
-        livingRoom.addAdjacentRoom(entrance, Direction.EAST);
+        livingRoom.addAdjacentRoom(entrance, new Door(true, violin), Direction.EAST);
         Room bathroom = new Room("Bathroom");
-        bathroom.addItem(new Item("salad", "Arya's favourite food", 2));
-        bathroom.addAdjacentRoom(livingRoom, Direction.NORTH);
+        Item salad = new Item("salad", "Arya's favourite food", 2);
+        bathroom.addItem(salad);
+        bathroom.addAdjacentRoom(livingRoom, new Door(false, violin), Direction.NORTH);
         return entrance;
     }
 
@@ -73,36 +80,63 @@ public class MapController {
         return currentRoom.getAnimals();
     }
 
-    public String getCurrentRoomItemsNames(GameController gameController) {
+    public String getCurrentRoomItemsNames() {
         String roomItems = "";
         if(!currentRoom.getItems().isEmpty()) {
-            roomItems = gameController.getMapController().getCurrentRoomItems().stream()
-                    .map(Item::getName).collect(Collectors.joining(", "));
+            roomItems = getCurrentRoomItems().stream().map(Item::getName).collect(Collectors.joining(", "));
         }
         return roomItems;
     }
 
-    public String getCurrentRoomAnimalsNames(GameController gameController) {
+    public String getCurrentRoomAnimalsNames() {
         String roomAnimals = "";
         if(!currentRoom.getAnimals().isEmpty()) {
-            roomAnimals = gameController.getMapController().getCurrentRoomAnimals().stream()
+            roomAnimals = getCurrentRoomAnimals().stream()
                     .map(animal -> animal.getName() + " (" + animal.getClass().getSimpleName() + ")")
                     .collect(Collectors.joining(", "));
         }
         return roomAnimals;
     }
 
-    public String getCurrentRoomDescription(GameController gameController) {
+    public String getCurrentRoomAdjacentRoomsNames() {
+        if(currentRoom.getAdjacentRooms().isEmpty()) {
+            return "there aren't adjacent rooms";
+        }
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Map.Entry<Direction, Pair<Room, Door>> entry : currentRoom.getAdjacentRooms().entrySet()) {
+            Direction direction = entry.getKey();
+            String roomName = entry.getValue().getFirst().getName();
+            String doorIsOpen = entry.getValue().getSecond().isOpen() ? "open" : "locked";
+            String template = "%s : %s (%s), ";
+            String formattedEntry = String.format(template, direction, roomName, doorIsOpen);
+            stringBuilder.append(formattedEntry);
+        }
+        if (stringBuilder.length() > 2) {
+            stringBuilder.setLength(stringBuilder.length() - 2); //delete last ", " (2 characters)
+        }
+        return stringBuilder.toString();
+    }
+
+    public String getCurrentRoomDescription() {
         return  "You are in room " + this.getCurrentRoomName() + "\n" +
-                "Items: " + this.getCurrentRoomItemsNames(gameController) + "\n" +
-                "NPCs: " + this.getCurrentRoomAnimalsNames(gameController);
+                "Items: " + this.getCurrentRoomItemsNames() + "\n" +
+                "NPCs: " + this.getCurrentRoomAnimalsNames() + "\n" +
+                "Adjacent rooms: " + this.getCurrentRoomAdjacentRoomsNames();
     }
 
     public String getCurrentRoomName() {
         return currentRoom.getName();
     }
 
-    public Map<Direction, Room> getCurrentRoomAdjacentRooms() {
+    public Map<Direction, Pair<Room, Door>> getCurrentRoomAdjacentRooms() {
         return currentRoom.getAdjacentRooms();
+    }
+
+    public Room getCurrentRoomAdjacentRoom(Direction direction) {
+        return currentRoom.getAdjacentRoom(direction);
+    }
+
+    public Door getCurrentRoomAdjacentRoomDoor(Direction direction) {
+        return currentRoom.getAdjacentRoomDoor(direction);
     }
 }

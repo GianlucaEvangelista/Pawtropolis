@@ -3,7 +3,9 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import pawtropolis.command.model.*;
+import pawtropolis.command.model.Command;
+import pawtropolis.command.model.CommandType;
+
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
