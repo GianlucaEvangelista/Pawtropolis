@@ -2,7 +2,7 @@ package pawtropolis.map.model;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-import pawtropolis.game.model.Item;
+import pawtropolis.player.Item;
 
 @Getter
 @Setter
