@@ -14,6 +14,7 @@ import pawtropolis.zoo.model.Eagle;
 import pawtropolis.zoo.model.Lion;
 import pawtropolis.zoo.model.Tiger;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -98,30 +99,17 @@ public class MapController {
         return roomAnimals;
     }
 
-    public String getCurrentRoomAdjacentRoomsNames() {
-        if(currentRoom.getAdjacentRooms().isEmpty()) {
-            return "there aren't adjacent rooms";
-        }
-        StringBuilder stringBuilder = new StringBuilder();
-        for (Map.Entry<Direction, Pair<Room, Door>> entry : currentRoom.getAdjacentRooms().entrySet()) {
-            Direction direction = entry.getKey();
-            String roomName = entry.getValue().getFirst().getName();
-            String doorIsOpen = entry.getValue().getSecond().isOpen() ? "open" : "locked";
-            String template = "%s : %s (%s), ";
-            String formattedEntry = String.format(template, direction, roomName, doorIsOpen);
-            stringBuilder.append(formattedEntry);
-        }
-        if (stringBuilder.length() > 2) {
-            stringBuilder.setLength(stringBuilder.length() - 2); //delete last ", " (2 characters)
-        }
-        return stringBuilder.toString();
+    public String getCurrentRoomAdjacentRoomsDescription() {
+        List<String> adjacentRoomsList = new ArrayList<>();
+        getCurrentRoomAdjacentRooms().forEach((direction, pair) -> adjacentRoomsList.add(direction.getDirectionString().toUpperCase() + " " + pair.getFirst().getName() + " - " + (pair.getSecond().isOpen() ? "Open" : "Locked")));
+        return String.join(", ", adjacentRoomsList);
     }
 
     public String getCurrentRoomDescription() {
         return  "You are in room " + this.getCurrentRoomName() + "\n" +
                 "Items: " + this.getCurrentRoomItemsNames() + "\n" +
                 "NPCs: " + this.getCurrentRoomAnimalsNames() + "\n" +
-                "Adjacent rooms: " + this.getCurrentRoomAdjacentRoomsNames();
+                "Adjacent rooms: " + this.getCurrentRoomAdjacentRoomsDescription();
     }
 
     public String getCurrentRoomName() {
