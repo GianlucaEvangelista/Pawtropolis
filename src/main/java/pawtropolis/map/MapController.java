@@ -58,11 +58,11 @@ public class MapController {
     }
 
     public boolean currentRoomContainsItem(String itemName) {
-        return currentRoom.getItems().stream().anyMatch(item -> item.getName().equals(itemName));
+        return currentRoom.containsItem(itemName);
     }
 
     public Item getCurrentRoomItem (String itemName) {
-        return currentRoom.getItems().stream().filter(item -> item.getName().equals(itemName)).findFirst().orElse(null);
+        return currentRoom.getItem(itemName);
     }
 
     public List<Item> getCurrentRoomItems() {
@@ -82,46 +82,23 @@ public class MapController {
     }
 
     public String getCurrentRoomItemsNames() {
-        String roomItems = "";
-        if(!currentRoom.getItems().isEmpty()) {
-            roomItems = getCurrentRoomItems().stream().map(Item::getName).collect(Collectors.joining(", "));
-        }
-        return roomItems;
+        return currentRoom.getItemsNames();
     }
 
     public String getCurrentRoomAnimalsNames() {
-        String roomAnimals = "";
-        if(!currentRoom.getAnimals().isEmpty()) {
-            roomAnimals = getCurrentRoomAnimals().stream()
-                    .map(animal -> animal.getName() + " (" + animal.getClass().getSimpleName() + ")")
-                    .collect(Collectors.joining(", "));
-        }
-        return roomAnimals;
+        return currentRoom.getAnimalsNames();
     }
 
     public String getCurrentRoomAdjacentRoomsDescription() {
-        List<String> adjacentRoomsList = new ArrayList<>();
-        getCurrentRoomAdjacentRooms().forEach((direction, pair) -> adjacentRoomsList.add(direction.getDirectionString().toUpperCase() + " " + pair.getFirst().getName() + " - " + (pair.getSecond().isOpen() ? "Open" : "Locked")));
-        return String.join(", ", adjacentRoomsList);
+        return currentRoom.getAdjacentRoomsDescription();
     }
 
     public String getCurrentRoomDescription() {
-        return  "You are in room " + this.getCurrentRoomName() + "\n" +
-                "Items: " + this.getCurrentRoomItemsNames() + "\n" +
-                "NPCs: " + this.getCurrentRoomAnimalsNames() + "\n" +
-                "Adjacent rooms: " + this.getCurrentRoomAdjacentRoomsDescription();
-    }
-
-    public String getCurrentRoomName() {
-        return currentRoom.getName();
+        return  currentRoom.getDescription();
     }
 
     public Map<Direction, Pair<Room, Door>> getCurrentRoomAdjacentRooms() {
         return currentRoom.getAdjacentRooms();
-    }
-
-    public Room getCurrentRoomAdjacentRoom(Direction direction) {
-        return currentRoom.getAdjacentRoom(direction);
     }
 
     public Door getCurrentRoomAdjacentRoomDoor(Direction direction) {

@@ -4,6 +4,7 @@ import pawtropolis.utils.Pair;
 import pawtropolis.game.model.Item;
 import pawtropolis.zoo.model.Animal;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Getter
 @Setter
@@ -55,5 +56,44 @@ public class Room {
 
     public Door getAdjacentRoomDoor(Direction direction) {
         return adjacentRooms.get(direction).getSecond();
+    }
+
+    public boolean containsItem(String itemName) {
+        return getItems().stream().anyMatch(item -> item.getName().equals(itemName));
+    }
+
+    public Item getItem (String itemName) {
+        return getItems().stream().filter(item -> item.getName().equals(itemName)).findFirst().orElse(null);
+    }
+
+    public String getItemsNames() {
+        String roomItems = "";
+        if(!getItems().isEmpty()) {
+            roomItems = getItems().stream().map(Item::getName).collect(Collectors.joining(", "));
+        }
+        return roomItems;
+    }
+
+    public String getAnimalsNames() {
+        String roomAnimals = "";
+        if(!getAnimals().isEmpty()) {
+            roomAnimals = getAnimals().stream()
+                    .map(animal -> animal.getName() + " (" + animal.getClass().getSimpleName() + ")")
+                    .collect(Collectors.joining(", "));
+        }
+        return roomAnimals;
+    }
+
+    public String getAdjacentRoomsDescription() {
+        List<String> adjacentRoomsList = new ArrayList<>();
+        getAdjacentRooms().forEach((direction, pair) -> adjacentRoomsList.add(direction.getDirectionString().toUpperCase() + " " + pair.getFirst().getName() + " - " + (pair.getSecond().isOpen() ? "Open" : "Locked")));
+        return String.join(", ", adjacentRoomsList);
+    }
+
+    public String getDescription() {
+        return  "Room: " + this.getName() + "\n" +
+                "Items: " + this.getItemsNames() + "\n" +
+                "NPCs: " + this.getAnimalsNames() + "\n" +
+                "Adjacent rooms: " + this.getAdjacentRoomsDescription();
     }
 }
