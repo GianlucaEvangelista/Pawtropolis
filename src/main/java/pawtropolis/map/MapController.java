@@ -14,10 +14,8 @@ import pawtropolis.zoo.model.Eagle;
 import pawtropolis.zoo.model.Lion;
 import pawtropolis.zoo.model.Tiger;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 @Getter
 @Setter
