@@ -33,4 +33,8 @@ public class Bag {
     public Item getItem(String itemName) {
         return items.stream().filter(i -> i.getName().equals(itemName)).findAny().orElse(null);
     }
+
+    public boolean isThereEnoughSpace(Item itemToAdd) {
+        return getAvailableSlots() >= itemToAdd.getRequiredSlots();
+    }
 }

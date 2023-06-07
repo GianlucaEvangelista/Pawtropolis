@@ -44,8 +44,8 @@ public class Player {
         return bag.getItem(itemName);
     }
 
-    public boolean isThereEnoughSpace(Item itemToAdd) {
-        return bag.getAvailableSlots() >= itemToAdd.getRequiredSlots();
+    public boolean hasEnoughSpaceInBag(Item itemToAdd) {
+        return bag.isThereEnoughSpace(itemToAdd);
     }
 
     public boolean isItemInBag(String itemName) {

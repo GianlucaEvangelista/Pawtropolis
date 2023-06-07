@@ -20,7 +20,7 @@ public class GetCommand extends Command implements CommandWithArg {
             return;
         }
         if(gameController.getMapController().currentRoomContainsItem(commandArg)) {
-            if(gameController.getPlayer().isThereEnoughSpace(gameController.getMapController().getCurrentRoomItem(commandArg))) {
+            if(gameController.getPlayer().hasEnoughSpaceInBag(gameController.getMapController().getCurrentRoomItem(commandArg))) {
                 gameController.getPlayer().addItemToBag(gameController.getMapController().getCurrentRoomItem(commandArg));
                 gameController.getMapController().removeItemFromCurrentRoom(gameController.getMapController().getCurrentRoomItem(commandArg));
                 System.out.println("You put " + commandArg + " in the bag");
