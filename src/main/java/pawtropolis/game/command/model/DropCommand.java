@@ -22,7 +22,7 @@ public class DropCommand extends Command implements CommandWithArg {
         }
         if(gameController.getPlayer().isItemInBag(commandArg)) {
             Item chosenItem = gameController.getPlayer().getItemInBag(commandArg);
-            gameController.getMapController().addItemToCurrentRoom(commandArg, gameController);
+            gameController.getMapController().addItemToCurrentRoom(chosenItem);
             gameController.getPlayer().removeItemFromBag(chosenItem);
             System.out.println("You dropped " + commandArg + " out of the bag");
             return;

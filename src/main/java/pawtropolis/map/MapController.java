@@ -67,8 +67,8 @@ public class MapController {
         return currentRoom.getItems();
     }
 
-    public void addItemToCurrentRoom (String itemName, GameController gameController) {
-        currentRoom.addItem(gameController.getPlayer().getItemInBag(itemName));
+    public void addItemToCurrentRoom (Item item) {
+        currentRoom.addItem(item);
     }
 
     public void removeItemFromCurrentRoom (Item item) {
