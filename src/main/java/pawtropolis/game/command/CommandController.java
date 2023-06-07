@@ -39,7 +39,7 @@ public class CommandController {
 
     public List<String> getCommandFromInput() {
         System.out.println(MENU);
-        String commandInputString = InputController.getInputString();
+        String commandInputString = InputController.getInputString().toLowerCase();
         return Arrays.asList(commandInputString.split(" ", 2));
     }
 }
