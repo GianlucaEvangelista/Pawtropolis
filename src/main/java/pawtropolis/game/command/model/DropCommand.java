@@ -2,6 +2,7 @@ package pawtropolis.game.command.model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pawtropolis.game.GameController;
+import pawtropolis.game.model.Item;
 
 @Component
 public class DropCommand extends Command implements CommandWithArg {
@@ -20,8 +21,9 @@ public class DropCommand extends Command implements CommandWithArg {
             return;
         }
         if(gameController.getPlayer().isItemInBag(commandArg)) {
+            Item chosenItem = gameController.getPlayer().getItemInBag(commandArg);
             gameController.getMapController().addItemToCurrentRoom(commandArg, gameController);
-            gameController.getPlayer().removeItemFromBag(commandArg);
+            gameController.getPlayer().removeItemFromBag(chosenItem);
             System.out.println("You dropped " + commandArg + " out of the bag");
             return;
         }
