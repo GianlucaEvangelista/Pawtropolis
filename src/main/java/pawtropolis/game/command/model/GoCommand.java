@@ -46,11 +46,11 @@ public class GoCommand extends Command implements CommandWithArg {
 
     public void tryToUnlockDoor(Door door, Direction direction) {
         System.out.println("The door is locked: would you like to use an item to unlock it? Y/N");
-        String inputString = InputController.getInputString();
-        switch (inputString.toUpperCase()) {
+        String inputString = InputController.getInputString().toUpperCase();
+        switch (inputString) {
             case "Y":
                 System.out.println("Type the name of the item to use");
-                String chosenItemName = InputController.getInputString();
+                String chosenItemName = InputController.getInputString().toLowerCase();
                 if(!gameController.getPlayer().isItemInBag(chosenItemName)) {
                     System.out.println("You don't have this item in your bag!");
                 } else if(door.unlockDoor(gameController.getPlayer().getItemInBag(chosenItemName))) {
