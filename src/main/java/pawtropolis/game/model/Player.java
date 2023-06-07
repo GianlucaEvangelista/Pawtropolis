@@ -36,10 +36,6 @@ public class Player {
         bag.removeItem(item);
     }
 
-    public void removeItemFromBag(String itemName) {
-        bag.removeItem(itemName);
-    }
-
     public List<String> getItemsInBag() {
         return bag.getItems().stream().map(Item::getName).toList();
     }
