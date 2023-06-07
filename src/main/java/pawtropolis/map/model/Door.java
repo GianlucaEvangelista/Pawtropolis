@@ -14,11 +14,17 @@ public class Door {
     private Item keyItem;
 
     public boolean unlockDoor(Item item) {
-        if(this.keyItem == item) {
+        if(isTheRightKey(item)) {
             this.locked = false;
             return true;
         }
         System.out.println("This isn't the right item to open this door!");
         return false;
+    }
+
+    public boolean isTheRightKey(Item item) {
+        return this.keyItem.getName().equals(item.getName()) &&
+                this.keyItem.getDescription().equals(item.getDescription()) &&
+                this.keyItem.getRequiredSlots() == item.getRequiredSlots();
     }
 }
