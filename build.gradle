@@ -30,6 +30,9 @@ dependencies {
 
     implementation 'org.springframework:spring-context:5.3.13'
     implementation 'org.springframework:spring-web:5.3.13'
+
+    implementation 'org.hibernate:hibernate-core:5.5.7.Final'
+    implementation 'org.postgresql:postgresql:42.2.24'
 }
 
 buildScan {
