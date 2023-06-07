@@ -60,6 +60,8 @@ public class GoCommand extends Command implements CommandWithArg {
                     gameController.getPlayer().removeItemFromBag(gameController.getPlayer().getItemInBag(chosenItemName));
                     System.out.println("You unlocked the door!");
                     gameController.getMapController().changeRoom(direction);
+                } else {
+                    System.out.println("This isn't the right item to unlock this door!");
                 }
                 break;
             case "N":

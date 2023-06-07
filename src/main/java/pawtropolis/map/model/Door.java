@@ -14,12 +14,10 @@ public class Door {
     private Item keyItem;
 
     public boolean unlockDoor(Item item) {
-        if(isTheRightKey(item)) {
+        if(item != null && isTheRightKey(item)) {
             this.locked = false;
-            return true;
         }
-        System.out.println("This isn't the right item to open this door!");
-        return false;
+        return !isLocked();
     }
 
     public boolean isTheRightKey(Item item) {
