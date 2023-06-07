@@ -3,6 +3,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pawtropolis.game.GameController;
 import pawtropolis.game.console.InputController;
+import pawtropolis.game.model.Item;
 import pawtropolis.map.model.Direction;
 import pawtropolis.map.model.Door;
 import pawtropolis.map.model.Room;
@@ -53,12 +54,15 @@ public class GoCommand extends Command implements CommandWithArg {
                 String chosenItemName = InputController.getInputString().toLowerCase();
                 if(!gameController.getPlayer().isItemInBag(chosenItemName)) {
                     System.out.println("You don't have this item in your bag!");
-                } else if(door.unlockDoor(gameController.getPlayer().getItemInBag(chosenItemName))) {
-                    gameController.getPlayer().removeItemFromBag(gameController.getPlayer().getItemInBag(chosenItemName));
-                    System.out.println("You unlocked the door!");
-                    gameController.getMapController().changeRoom(direction);
                 } else {
-                    System.out.println("This isn't the right item to unlock this door!");
+                    Item chosenItem = gameController.getPlayer().getItemInBag(chosenItemName);
+                    if(door.unlockDoor(chosenItem)) {
+                        gameController.getPlayer().removeItemFromBag(chosenItem);
+                        System.out.println("You unlocked the door!");
+                        gameController.getMapController().changeRoom(direction);
+                    } else {
+                        System.out.println("This isn't the right item to unlock this door!");
+                    }
                 }
                 break;
             case "N":
