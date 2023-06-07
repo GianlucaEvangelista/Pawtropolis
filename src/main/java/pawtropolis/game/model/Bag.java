@@ -30,14 +30,6 @@ public class Bag {
         availableSlots += item.getRequiredSlots();
     }
 
-    public void removeItem(String itemName) {
-        items.stream().filter(i -> i.getName().equals(itemName)).findFirst()
-                .ifPresent(i -> {
-                    items.remove(i);
-                    availableSlots += i.getRequiredSlots();
-                });
-    }
-
     public Item getItem(String itemName) {
         return items.stream().filter(i -> i.getName().equals(itemName)).findAny().orElse(null);
     }
