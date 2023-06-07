@@ -36,21 +36,21 @@ public class MapController {
         Item mushrooms = new Item("mushrooms", "Argo's favourite food", 3);
         bedroom.addItem(mushrooms);
         bedroom.addAnimal(new Tiger("Arya", "salad", 10, LocalDate.of(2020,7,11), 260.00, 94.00, 86.50));
-        bedroom.addAdjacentRoom(entrance, new Door(true, flute), Direction.WEST);
+        bedroom.addAdjacentRoom(entrance, new Door(false, flute), Direction.WEST);
         Room kitchen = new Room("Kitchen");
         Item chips = new Item("chips", "Sky's favourite food", 1);
         kitchen.addItem(chips);
         kitchen.addAnimal(new Lion("Argo", "mushrooms", 9, LocalDate.of(2020,6,23), 192.10, 116.80, 92.10));
-        kitchen.addAdjacentRoom(entrance, new Door(false, flute), Direction.SOUTH);
+        kitchen.addAdjacentRoom(entrance, new Door(true, flute), Direction.SOUTH);
         Room livingRoom = new Room("Living room");
         Item violin = new Item("violin", "instrument to open doors", 7);
         livingRoom.addItem(violin);
         livingRoom.addAnimal(new Eagle("Sky", "chips", 3, LocalDate.of(2021,4,20), 4.50, 81.20, 210.10));
-        livingRoom.addAdjacentRoom(entrance, new Door(true, violin), Direction.EAST);
+        livingRoom.addAdjacentRoom(entrance, new Door(false, violin), Direction.EAST);
         Room bathroom = new Room("Bathroom");
         Item salad = new Item("salad", "Arya's favourite food", 2);
         bathroom.addItem(salad);
-        bathroom.addAdjacentRoom(livingRoom, new Door(false, violin), Direction.NORTH);
+        bathroom.addAdjacentRoom(livingRoom, new Door(true, violin), Direction.NORTH);
         return entrance;
     }
 
