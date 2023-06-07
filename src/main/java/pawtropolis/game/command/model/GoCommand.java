@@ -12,16 +12,12 @@ import java.util.Map;
 @Component
 public class GoCommand extends Command implements CommandWithArg {
 
-    private static final String DIRECTION_NOT_AVAILABLE = "There isn't a room in the required direction!";
-    private static final String INVALID_DIRECTION = "Invalid direction!";
-
     private String commandArg;
 
     @Autowired
     private GoCommand(GameController gameController) {
         super(gameController);
     }
-
 
     @Override
     public void execute() {
@@ -31,7 +27,7 @@ public class GoCommand extends Command implements CommandWithArg {
         }
         Direction direction = Direction.fromString(commandArg);
         if(direction.equals(Direction.UNKNOWN)) {
-            System.out.println(INVALID_DIRECTION);
+            System.out.println("Invalid direction!");
             return;
         }
         Map<Direction, Pair<Room, Door>> currentAdjacentRooms = gameController.getMapController().getCurrentRoomAdjacentRooms();
@@ -44,7 +40,7 @@ public class GoCommand extends Command implements CommandWithArg {
             }
             System.out.println(gameController.getMapController().getCurrentRoomDescription());
         } else {
-            System.out.println(DIRECTION_NOT_AVAILABLE);
+            System.out.println("There isn't a room in the required direction!");
         }
     }
 
