@@ -3,6 +3,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pawtropolis.game.GameController;
 
+import java.util.List;
+
 @Component
 public class BagCommand extends Command {
 
@@ -13,10 +15,11 @@ public class BagCommand extends Command {
 
     @Override
     public void execute() {
-        if(gameController.getPlayer().getItemsInBag().isEmpty()) {
+        List<String> itemsInBag = gameController.getPlayer().getItemsInBag();
+        if(itemsInBag.isEmpty()) {
             System.out.println("Bag is empty");
         } else {
-            String bagItems = String.join(", ", gameController.getPlayer().getItemsInBag());
+            String bagItems = String.join(", ", itemsInBag);
             System.out.println("In bag: " + bagItems);
         }
     }
