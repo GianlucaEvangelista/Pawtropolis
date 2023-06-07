@@ -86,7 +86,7 @@ public class Room {
 
     public String getAdjacentRoomsDescription() {
         List<String> adjacentRoomsList = new ArrayList<>();
-        getAdjacentRooms().forEach((direction, pair) -> adjacentRoomsList.add(direction.getDirectionString().toUpperCase() + " " + pair.getFirst().getName() + " - " + (pair.getSecond().isOpen() ? "Open" : "Locked")));
+        getAdjacentRooms().forEach((direction, pair) -> adjacentRoomsList.add(direction.getDirectionString().toUpperCase() + " " + pair.getFirst().getName() + " - " + (pair.getSecond().isLocked() ? "Locked" : "Unlocked")));
         return String.join(", ", adjacentRoomsList);
     }
 

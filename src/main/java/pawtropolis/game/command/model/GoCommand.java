@@ -37,8 +37,8 @@ public class GoCommand extends Command implements CommandWithArg {
         Map<Direction, Pair<Room, Door>> currentAdjacentRooms = gameController.getMapController().getCurrentRoomAdjacentRooms();
         if(currentAdjacentRooms.containsKey(direction)) {
             Door nextRoomDoor = gameController.getMapController().getCurrentRoomAdjacentRoomDoor(direction);
-            if(!nextRoomDoor.isOpen()) {
-                tryToOpenTheDoor(nextRoomDoor, direction);
+            if(nextRoomDoor.isLocked()) {
+                tryToUnlockDoor(nextRoomDoor, direction);
             } else {
                 gameController.getMapController().changeRoom(direction);
             }
@@ -48,7 +48,7 @@ public class GoCommand extends Command implements CommandWithArg {
         }
     }
 
-    public void tryToOpenTheDoor(Door door, Direction direction) {
+    public void tryToUnlockDoor(Door door, Direction direction) {
         System.out.println("The door is locked: would you like to use an item to unlock it? Y/N");
         switch (InputController.getInputString()) {
             case "Y":
@@ -56,7 +56,7 @@ public class GoCommand extends Command implements CommandWithArg {
                 String chosenItemName = InputController.getInputString();
                 if(!gameController.getPlayer().isItemInBag(chosenItemName)) {
                     System.out.println("You don't have this item in your bag!");
-                } else if(door.openTheDoor(gameController.getPlayer().getItemInBag(chosenItemName))) {
+                } else if(door.unlockDoor(gameController.getPlayer().getItemInBag(chosenItemName))) {
                     gameController.getPlayer().removeItemFromBag(gameController.getPlayer().getItemInBag(chosenItemName));
                     System.out.println("You unlocked the door!");
                     gameController.getMapController().changeRoom(direction);

@@ -9,13 +9,13 @@ import pawtropolis.game.model.Item;
 @AllArgsConstructor
 public class Door {
 
-    private boolean isOpen;
+    private boolean locked;
 
     private Item keyItem;
 
-    public boolean openTheDoor(Item item) {
+    public boolean unlockDoor(Item item) {
         if(this.keyItem == item) {
-            this.isOpen = true;
+            this.locked = false;
             return true;
         }
         System.out.println("This isn't the right item to open this door!");
