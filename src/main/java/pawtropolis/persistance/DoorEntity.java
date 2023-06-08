@@ -14,7 +14,7 @@ public class DoorEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(name = "open")
+    @Column(name = "locked")
     @NotNull
     private Boolean locked;
     @OneToOne(targetEntity = ItemEntity.class)
