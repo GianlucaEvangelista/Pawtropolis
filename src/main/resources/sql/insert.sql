@@ -36,12 +36,12 @@ VALUES
     (4, 'Living room'),
     (5, 'Bathroom');
 
-INSERT INTO doors (id, open, item_id)
+INSERT INTO doors (id, locked, item_id)
 VALUES
-    (1, true, 1),
-    (2, false, 1),
-    (3, true, 4),
-    (4, false, 4);
+    (1, false, 1),
+    (2, true, 1),
+    (3, false, 4),
+    (4, true, 4);
 
 INSERT INTO directions (id, name)
 VALUES
