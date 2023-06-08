@@ -1,21 +1,21 @@
 CREATE DATABASE pawtropolisDB;
 
-CREATE TABLE Bags
+CREATE TABLE bags
 (
     id INT PRIMARY KEY,
     available_slots INT NOT NULL
 );
 
-CREATE TABLE Players
+CREATE TABLE players
 (
     id INT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     life_points INT NOT NULL,
     bag_id INT NOT NULL,
-    FOREIGN KEY (bag_id) REFERENCES Bags (id)
+    FOREIGN KEY (bag_id) REFERENCES bags (id)
 );
 
-CREATE TABLE Items
+CREATE TABLE items
 (
     id INT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
@@ -23,64 +23,64 @@ CREATE TABLE Items
     required_slots INT NOT NULL
 );
 
-CREATE TABLE Items_in_bag
+CREATE TABLE items_in_bag
 (
     id INT PRIMARY KEY,
     bag_id INT NOT NULL,
     item_id INT NOT NULL,
-    FOREIGN KEY (bag_id) REFERENCES Bags (id),
-    FOREIGN KEY (item_id) REFERENCES Items (id)
+    FOREIGN KEY (bag_id) REFERENCES bags (id),
+    FOREIGN KEY (item_id) REFERENCES items (id)
 );
 
-CREATE TABLE Rooms
+CREATE TABLE rooms
 (
     id INT PRIMARY KEY,
     name VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE Items_in_room
+CREATE TABLE items_in_room
 (
     id INT PRIMARY KEY,
     room_id INT NOT NULL,
     item_id INT NOT NULL,
-    FOREIGN KEY (room_id) REFERENCES Rooms (id),
-    FOREIGN KEY (item_id) REFERENCES Items (id)
+    FOREIGN KEY (room_id) REFERENCES rooms (id),
+    FOREIGN KEY (item_id) REFERENCES items (id)
 );
 
-CREATE TABLE Doors
+CREATE TABLE doors
 (
     id INT PRIMARY KEY,
-    open BOOLEAN NOT NULL,
+    locked BOOLEAN NOT NULL,
     item_id INT NOT NULL,
-    FOREIGN KEY (item_id) REFERENCES Items (id)
+    FOREIGN KEY (item_id) REFERENCES items (id)
 );
 
-CREATE TABLE Directions
+CREATE TABLE directions
 (
     id INT PRIMARY KEY,
     name VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE Room_links
+CREATE TABLE room_links
 (
     id INT PRIMARY KEY,
     room_id INT NOT NULL,
     direction_id INT NOT NULL,
     adjacent_room_id INT NOT NULL,
     door_id INT NOT NULL,
-    FOREIGN KEY (room_id) REFERENCES Rooms (id),
-    FOREIGN KEY (direction_id) REFERENCES Directions (id),
-    FOREIGN KEY (adjacent_room_id) REFERENCES Rooms (id),
-    FOREIGN KEY (door_id) REFERENCES Doors (id)
+    FOREIGN KEY (room_id) REFERENCES rooms (id),
+    FOREIGN KEY (direction_id) REFERENCES directions (id),
+    FOREIGN KEY (adjacent_room_id) REFERENCES rooms (id),
+    FOREIGN KEY (door_id) REFERENCES doors (id)
 );
 
-CREATE TABLE Species
+CREATE TABLE species
 (
     id INT PRIMARY KEY,
     name VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE Animals
+CREATE TABLE animals
 (
     id INT PRIMARY KEY,
     name VARCHAR(255)  NOT NULL,
@@ -90,30 +90,30 @@ CREATE TABLE Animals
     weight DECIMAL(8, 3) NOT NULL,
     height DECIMAL(5, 2) NOT NULL,
     species_id INT NOT NULL,
-    FOREIGN KEY (species_id) REFERENCES Species (id)
+    FOREIGN KEY (species_id) REFERENCES species (id)
 );
 
-CREATE TABLE Tail_length
+CREATE TABLE tail_length
 (
     id INT PRIMARY KEY,
     tail_length DECIMAL(5, 2) NOT NULL,
     animal_id INT NOT NULL,
-    FOREIGN KEY (animal_id) REFERENCES Animals (id)
+    FOREIGN KEY (animal_id) REFERENCES animals (id)
 );
 
-CREATE TABLE Wingspans
+CREATE TABLE wingspans
 (
     id INT PRIMARY KEY,
     wingspan DECIMAL(5, 2) NOT NULL,
     animal_id INT NOT NULL,
-    FOREIGN KEY (animal_id) REFERENCES Animals (id)
+    FOREIGN KEY (animal_id) REFERENCES animals (id)
 );
 
-CREATE TABLE Animals_in_room
+CREATE TABLE animals_in_room
 (
     id INT PRIMARY KEY,
     animal_id INT NOT NULL,
     room_id INT NOT NULL,
-    FOREIGN KEY (animal_id) REFERENCES Animals (id),
-    FOREIGN KEY (room_id) REFERENCES Rooms (id)
+    FOREIGN KEY (animal_id) REFERENCES animals (id),
+    FOREIGN KEY (room_id) REFERENCES rooms (id)
 );
