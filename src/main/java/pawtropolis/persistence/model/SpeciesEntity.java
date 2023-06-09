@@ -1,4 +1,4 @@
-package pawtropolis.persistance;
+package pawtropolis.persistence.model;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

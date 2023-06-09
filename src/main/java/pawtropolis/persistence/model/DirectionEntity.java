@@ -1,4 +1,4 @@
-package pawtropolis.persistance;
+package pawtropolis.persistence.model;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -6,19 +6,15 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "doors")
+@Table(name = "directions")
 @Getter
 @Setter
 @NoArgsConstructor
-public class DoorEntity {
+public class DirectionEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(name = "locked")
+    @Column(name = "name")
     @NotNull
-    private Boolean locked;
-    @OneToOne(targetEntity = ItemEntity.class)
-    @PrimaryKeyJoinColumn(referencedColumnName = "id")
-    @NotNull
-    private ItemEntity keyItemEntity;
+    private String name;
 }

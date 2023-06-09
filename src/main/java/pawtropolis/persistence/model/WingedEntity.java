@@ -1,4 +1,4 @@
-package pawtropolis.persistance;
+package pawtropolis.persistence.model;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -6,22 +6,19 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "players")
+@Table(name = "wingspans")
 @Getter
 @Setter
 @NoArgsConstructor
-public class PlayerEntity {
+public class WingedEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(name = "name")
+    @Column(name = "wingspan")
     @NotNull
-    private String name;
-    @Column(name = "life_points")
-    @NotNull
-    private Integer lifePoints;
-    @OneToOne(targetEntity = BagEntity.class)
+    private Double wingspan;
+    @OneToMany(targetEntity = AnimalEntity.class)
     @PrimaryKeyJoinColumn(referencedColumnName = "id")
     @NotNull
-    private BagEntity bagEntity;
+    private AnimalEntity animalEntity;
 }
