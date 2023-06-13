@@ -2,10 +2,12 @@ package pawtropolis.map;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pawtropolis.map.model.Direction;
 import pawtropolis.map.model.Door;
 import pawtropolis.map.model.Room;
+import pawtropolis.persistence.ItemService;
 import pawtropolis.utils.Pair;
 import pawtropolis.game.model.Item;
 import pawtropolis.zoo.model.Animal;
@@ -24,24 +26,27 @@ public class MapController {
     @Getter(AccessLevel.NONE)
     private Room currentRoom;
 
-    private MapController() {
+    private final ItemService itemService;
+
+    @Autowired
+    private MapController(ItemService itemService) {
+        this.itemService = itemService;
         this.currentRoom = createMap();
     }
 
-    private static Room createMap() {
+    private Room createMap() {
         Room entrance = new Room("Entrance");
-        Item flute = new Item("flute", "instrument to open doors", 5);
-        entrance.addItem(flute);
+        entrance.addItem(itemService.getItemById(1));
         Room bedroom = new Room("Bedroom");
         Item mushrooms = new Item("mushrooms", "Argo's favourite food", 3);
         bedroom.addItem(mushrooms);
         bedroom.addAnimal(new Tiger("Arya", "salad", 10, LocalDate.of(2020,7,11), 260.00, 94.00, 86.50));
-        bedroom.addAdjacentRoom(entrance, new Door(false, flute), Direction.WEST);
+        bedroom.addAdjacentRoom(entrance, new Door(false, itemService.getItemById(1)), Direction.WEST);
         Room kitchen = new Room("Kitchen");
         Item chips = new Item("chips", "Sky's favourite food", 1);
         kitchen.addItem(chips);
         kitchen.addAnimal(new Lion("Argo", "mushrooms", 9, LocalDate.of(2020,6,23), 192.10, 116.80, 92.10));
-        kitchen.addAdjacentRoom(entrance, new Door(true, flute), Direction.SOUTH);
+        kitchen.addAdjacentRoom(entrance, new Door(true, itemService.getItemById(1)), Direction.SOUTH);
         Room livingRoom = new Room("Living room");
         Item violin = new Item("violin", "instrument to open doors", 7);
         livingRoom.addItem(violin);
