@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "wingspans")
+@Table(name = "winged")
 @Getter
 @Setter
 @NoArgsConstructor
