@@ -93,7 +93,7 @@ CREATE TABLE animals
     FOREIGN KEY (species_id) REFERENCES species (id)
 );
 
-CREATE TABLE tail_length
+CREATE TABLE tailed
 (
     id INT PRIMARY KEY,
     tail_length DECIMAL(5, 2) NOT NULL,
@@ -101,7 +101,7 @@ CREATE TABLE tail_length
     FOREIGN KEY (animal_id) REFERENCES animals (id)
 );
 
-CREATE TABLE wingspans
+CREATE TABLE winged
 (
     id INT PRIMARY KEY,
     wingspan DECIMAL(5, 2) NOT NULL,
