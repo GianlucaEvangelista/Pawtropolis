@@ -6,7 +6,7 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "tail_length")
+@Table(name = "tailed")
 @Getter
 @Setter
 @NoArgsConstructor
