@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "wingspans")
@@ -20,5 +21,5 @@ public class WingedEntity {
     @OneToMany(targetEntity = AnimalEntity.class)
     @PrimaryKeyJoinColumn(referencedColumnName = "id")
     @NotNull
-    private AnimalEntity animalEntity;
+    private List<AnimalEntity> animalEntity;
 }
