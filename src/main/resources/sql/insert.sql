@@ -10,13 +10,13 @@ VALUES
     (2, 'Argo', 'mushrooms', 9, '2020-06-23', 192.10, 116.80, 2),
     (3, 'Sky', 'chips', 3, '2021-04-20', 4.50, 81.20, 3);
 
-INSERT INTO tail_length (id, tail_length, animal_id)
+INSERT INTO tailed (id, tail_length, animal_id)
 VALUES
     (1, 86.50, 1),
     (2, 92.10, 2);
 
 
-INSERT INTO wingspans (id, wingspan, animal_id)
+INSERT INTO winged (id, wingspan, animal_id)
 VALUES
     (1, 210.10, 3);
 
