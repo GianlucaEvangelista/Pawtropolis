@@ -14,7 +14,7 @@ import java.util.List;
 public class BagEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     @Column(name = "available_slots")
     @NonNull
     private Integer availableSlots;

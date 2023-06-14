@@ -13,7 +13,7 @@ import lombok.Setter;
 public class DirectionEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     @Column(name = "name")
     @NonNull
     private String name;

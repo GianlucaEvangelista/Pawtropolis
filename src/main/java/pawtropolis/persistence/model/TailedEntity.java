@@ -13,7 +13,7 @@ import lombok.Setter;
 public class TailedEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     @Column(name = "tail_length")
     @NonNull
     private Double tailLength;

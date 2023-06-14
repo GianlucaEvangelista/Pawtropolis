@@ -14,7 +14,7 @@ import java.util.List;
 public class WingedEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     @Column(name = "wingspan")
     @NonNull
     private Double wingspan;

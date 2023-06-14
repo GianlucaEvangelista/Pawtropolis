@@ -13,7 +13,7 @@ import lombok.Setter;
 public class DoorEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     @Column(name = "locked")
     @NonNull
     private Boolean locked;
