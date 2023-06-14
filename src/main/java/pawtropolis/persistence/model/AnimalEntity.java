@@ -1,9 +1,9 @@
 package pawtropolis.persistence.model;
-import jakarta.validation.constraints.NotNull;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 import lombok.Setter;
-import javax.persistence.*;
 
 @Entity
 @Table(name = "animals")
@@ -15,23 +15,23 @@ public class AnimalEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(name = "name")
-    @NotNull
+    @NonNull
     private String name;
     @Column(name = "favourite_food")
-    @NotNull
+    @NonNull
     private String favouriteFood;
     @Column(name = "age")
-    @NotNull
+    @NonNull
     private Integer age;
     @Column(name = "weight")
-    @NotNull
+    @NonNull
     private Double weight;
     @Column(name = "height")
-    @NotNull
+    @NonNull
     private Double height;
     @ManyToOne(targetEntity = SpeciesEntity.class)
     @PrimaryKeyJoinColumn(referencedColumnName = "id")
-    @NotNull
+    @NonNull
     private SpeciesEntity speciesEntity;
 }
 

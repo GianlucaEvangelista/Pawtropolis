@@ -1,9 +1,9 @@
 package pawtropolis.persistence.model;
-import jakarta.validation.constraints.NotNull;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 import lombok.Setter;
-import javax.persistence.*;
 
 @Entity
 @Table(name = "doors")
@@ -15,10 +15,10 @@ public class DoorEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(name = "locked")
-    @NotNull
+    @NonNull
     private Boolean locked;
     @OneToOne(targetEntity = ItemEntity.class)
     @PrimaryKeyJoinColumn(referencedColumnName = "id")
-    @NotNull
+    @NonNull
     private ItemEntity keyItemEntity;
 }

@@ -1,10 +1,9 @@
 package pawtropolis.persistence.model;
-import jakarta.validation.constraints.NotNull;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 import lombok.Setter;
-
-import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -17,7 +16,7 @@ public class BagEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(name = "available_slots")
-    @NotNull
+    @NonNull
     private Integer availableSlots;
     @ManyToMany
     @JoinTable(

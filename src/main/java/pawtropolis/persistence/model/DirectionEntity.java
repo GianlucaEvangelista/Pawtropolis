@@ -1,9 +1,9 @@
 package pawtropolis.persistence.model;
-import jakarta.validation.constraints.NotNull;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 import lombok.Setter;
-import javax.persistence.*;
 
 @Entity
 @Table(name = "directions")
@@ -15,6 +15,6 @@ public class DirectionEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(name = "name")
-    @NotNull
+    @NonNull
     private String name;
 }

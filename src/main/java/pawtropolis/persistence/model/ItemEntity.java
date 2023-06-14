@@ -1,9 +1,7 @@
 package pawtropolis.persistence.model;
-import jakarta.validation.constraints.NotNull;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import javax.persistence.*;
+import jakarta.persistence.*;
+import lombok.*;
+import java.util.List;
 
 @Entity
 @Table(name = "items")
@@ -15,16 +13,16 @@ public class ItemEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(name = "name")
-    @NotNull
+    @NonNull
     private String name;
     @Column(name = "description")
-    @NotNull
+    @NonNull
     private String description;
     @Column(name = "required_slots")
-    @NotNull
+    @NonNull
     private Integer requiredSlots;
     @ManyToMany(mappedBy = "items")
-    private BagEntity bagEntity;
+    private List<BagEntity> bagEntity;
     @ManyToMany(mappedBy = "items")
-    private RoomEntity roomEntity;
+    private List<RoomEntity> roomEntity;
 }

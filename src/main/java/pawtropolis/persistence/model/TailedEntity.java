@@ -1,9 +1,9 @@
 package pawtropolis.persistence.model;
-import jakarta.validation.constraints.NotNull;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 import lombok.Setter;
-import javax.persistence.*;
 
 @Entity
 @Table(name = "tailed")
@@ -15,10 +15,10 @@ public class TailedEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(name = "tail_length")
-    @NotNull
+    @NonNull
     private Double tailLength;
     @OneToOne(targetEntity = AnimalEntity.class)
     @PrimaryKeyJoinColumn(referencedColumnName = "id")
-    @NotNull
+    @NonNull
     private AnimalEntity animalEntity;
 }

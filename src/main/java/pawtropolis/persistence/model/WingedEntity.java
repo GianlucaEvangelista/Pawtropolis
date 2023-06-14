@@ -1,9 +1,9 @@
 package pawtropolis.persistence.model;
-import jakarta.validation.constraints.NotNull;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 import lombok.Setter;
-import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -16,10 +16,10 @@ public class WingedEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(name = "wingspan")
-    @NotNull
+    @NonNull
     private Double wingspan;
     @OneToMany(targetEntity = AnimalEntity.class)
     @PrimaryKeyJoinColumn(referencedColumnName = "id")
-    @NotNull
+    @NonNull
     private List<AnimalEntity> animalEntity;
 }
