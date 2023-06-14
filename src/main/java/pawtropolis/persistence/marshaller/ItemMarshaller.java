@@ -1,4 +1,4 @@
-package pawtropolis.persistence;
+package pawtropolis.persistence.marshaller;
 import org.springframework.stereotype.Component;
 import pawtropolis.game.model.Item;
 import pawtropolis.persistence.model.ItemEntity;

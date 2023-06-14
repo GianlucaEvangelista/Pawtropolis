@@ -1,8 +1,10 @@
-package pawtropolis.persistence;
+package pawtropolis.persistence.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pawtropolis.game.model.Item;
+import pawtropolis.persistence.marshaller.ItemMarshaller;
 import pawtropolis.persistence.model.ItemEntity;
+import pawtropolis.persistence.repository.ItemRepository;
 
 @Service
 public class ItemService {
