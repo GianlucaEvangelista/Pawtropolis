@@ -1,6 +1,9 @@
 package pawtropolis.game.model;
 import lombok.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import pawtropolis.persistence.model.BagEntity;
+import pawtropolis.persistence.service.BagService;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,10 +15,22 @@ public class Bag {
     private final List<Item> items;
     private int availableSlots;
     private static final int MAX_SLOTS = 10;
+    private BagService bagService;
 
-    private Bag() {
+    @Autowired
+    private Bag(BagService bagService) {
         this.availableSlots = MAX_SLOTS;
         this.items = new ArrayList<>();
+        this.bagService = bagService;
+    }
+
+    public Bag(List<Item> items, int availableSlots) {
+        this.items = items;
+        this.availableSlots = availableSlots;
+    }
+
+    public BagEntity saveBag() {
+        return bagService.saveBag(this);
     }
 
     public void addItem(Item item) {
