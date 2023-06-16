@@ -18,14 +18,14 @@ public class RoomEntity {
     @Column(name = "name")
     @NonNull
     private String name;
-    @ManyToMany
+    @ManyToMany (fetch = FetchType.EAGER)
     @JoinTable(
             name = "items_in_room",
             joinColumns = @JoinColumn(name = "room_id"),
             inverseJoinColumns = @JoinColumn(name = "item_id")
             )
     private List<ItemEntity> itemEntities;
-    @ManyToMany
+    @ManyToMany (fetch = FetchType.EAGER)
     @JoinTable(
             name = "animals_in_room",
             joinColumns = @JoinColumn(name = "room_id"),

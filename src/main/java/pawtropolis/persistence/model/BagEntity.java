@@ -18,7 +18,7 @@ public class BagEntity {
     @Column(name = "available_slots")
     @NonNull
     private Integer availableSlots;
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "items_in_bag",
             joinColumns = @JoinColumn(name = "bag_id"),

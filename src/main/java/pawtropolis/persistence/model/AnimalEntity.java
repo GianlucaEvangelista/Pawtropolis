@@ -29,7 +29,7 @@ public class AnimalEntity {
     @Column(name = "height")
     @NonNull
     private Double height;
-    @ManyToOne(targetEntity = SpeciesEntity.class)
+    @ManyToOne(targetEntity = SpeciesEntity.class, fetch = FetchType.EAGER)
     @PrimaryKeyJoinColumn(referencedColumnName = "id")
     @NonNull
     private SpeciesEntity speciesEntity;

@@ -21,8 +21,8 @@ public class ItemEntity {
     @Column(name = "required_slots")
     @NonNull
     private Integer requiredSlots;
-    @ManyToMany(mappedBy = "items")
+    @ManyToMany(mappedBy = "itemEntities", fetch = FetchType.EAGER)
     private List<BagEntity> bagEntity;
-    @ManyToMany(mappedBy = "items")
+    @ManyToMany(mappedBy = "itemEntities", fetch = FetchType.EAGER)
     private List<RoomEntity> roomEntity;
 }
