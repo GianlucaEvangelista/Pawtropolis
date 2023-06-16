@@ -29,6 +29,7 @@ public class GameController {
 
     public void runGame() {
         System.out.println("Welcome to Pawtropolis!");
+        player.savePlayer();
         do {
             this.commandController.executeCommand();
         } while(!wantToEndGame);
