@@ -13,6 +13,10 @@ public class Door {
 
     private Item keyItem;
 
+    public Door(){
+        locked = false;
+    }
+
     public boolean unlockDoor(Item item) {
         if(item != null && isTheRightKey(item)) {
             this.locked = false;
