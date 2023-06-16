@@ -21,7 +21,7 @@ public class PlayerEntity {
     @NonNull
     private Integer lifePoints;
     @OneToOne(targetEntity = BagEntity.class)
-    @PrimaryKeyJoinColumn(referencedColumnName = "id")
+    @JoinColumn(name="bag_id", referencedColumnName = "id")
     @NonNull
     private BagEntity bagEntity;
 }
