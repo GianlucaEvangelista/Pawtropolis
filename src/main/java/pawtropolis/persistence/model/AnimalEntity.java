@@ -5,6 +5,8 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.Setter;
 
+import java.time.LocalDate;
+
 @Entity
 @Table(name = "animals")
 @Getter
@@ -23,6 +25,9 @@ public class AnimalEntity {
     @Column(name = "age")
     @NonNull
     private Integer age;
+    @Column(name = "arrival_date")
+    @NonNull
+    private LocalDate arrivalDate;
     @Column(name = "weight")
     @NonNull
     private Double weight;
