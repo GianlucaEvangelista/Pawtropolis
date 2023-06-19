@@ -34,6 +34,10 @@ public class AnimalEntity {
     @Column(name = "height")
     @NonNull
     private Double height;
+    @Column(name = "tail_length")
+    private Double tailLength;
+    @Column(name = "wingspan")
+    private Double wingspan;
     @ManyToOne(targetEntity = SpeciesEntity.class, fetch = FetchType.EAGER)
     @JoinColumn(name = "species_id", referencedColumnName = "id")
     @NonNull
