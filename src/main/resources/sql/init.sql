@@ -51,7 +51,7 @@ CREATE TABLE doors
 (
     id SERIAL PRIMARY KEY,
     locked BOOLEAN NOT NULL,
-    item_id SERIAL NOT NULL,
+    item_id SERIAL,
     FOREIGN KEY (item_id) REFERENCES items (id)
 );
 
@@ -89,24 +89,10 @@ CREATE TABLE animals
     arrival_date DATE NOT NULL,
     weight DECIMAL(8, 3) NOT NULL,
     height DECIMAL(5, 2) NOT NULL,
+    tail_length DECIMAL(5, 2),
+    wingspan DECIMAL(5, 2),
     species_id SERIAL NOT NULL,
     FOREIGN KEY (species_id) REFERENCES species (id)
-);
-
-CREATE TABLE tailed
-(
-    id SERIAL PRIMARY KEY,
-    tail_length DECIMAL(5, 2) NOT NULL,
-    animal_id SERIAL NOT NULL,
-    FOREIGN KEY (animal_id) REFERENCES animals (id)
-);
-
-CREATE TABLE winged
-(
-    id SERIAL PRIMARY KEY,
-    wingspan DECIMAL(5, 2) NOT NULL,
-    animal_id SERIAL NOT NULL,
-    FOREIGN KEY (animal_id) REFERENCES animals (id)
 );
 
 CREATE TABLE animals_in_room

@@ -4,21 +4,11 @@ VALUES
     (2, 'Lion'),
     (3, 'Eagle');
 
-INSERT INTO animals (id, name, favourite_food, age, arrival_date, weight, height, species_id)
+INSERT INTO animals (id, name, favourite_food, age, arrival_date, weight, height, tail_length, wingspan, species_id)
 VALUES
-    (1, 'Arya', 'salad', 10, '2020-07-11', 260.00, 94.00, 1),
-    (2, 'Argo', 'mushrooms', 9, '2020-06-23', 192.10, 116.80, 2),
-    (3, 'Sky', 'chips', 3, '2021-04-20', 4.50, 81.20, 3);
-
-INSERT INTO tailed (id, tail_length, animal_id)
-VALUES
-    (1, 86.50, 1),
-    (2, 92.10, 2);
-
-
-INSERT INTO winged (id, wingspan, animal_id)
-VALUES
-    (1, 210.10, 3);
+    (1, 'Arya', 'salad', 10, '2020-07-11', 260.00, 94.00, 86.50, null, 1),
+    (2, 'Argo', 'mushrooms', 9, '2020-06-23', 192.10, 116.80, 92.10, null, 2),
+    (3, 'Sky', 'chips', 3, '2021-04-20', 4.50, 81.20, null, 210.10, 3);
 
 INSERT INTO items (id, name, description, required_slots)
 VALUES
