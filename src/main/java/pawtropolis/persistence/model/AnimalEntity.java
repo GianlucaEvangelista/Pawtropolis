@@ -30,7 +30,7 @@ public class AnimalEntity {
     @NonNull
     private Double height;
     @ManyToOne(targetEntity = SpeciesEntity.class, fetch = FetchType.EAGER)
-    @PrimaryKeyJoinColumn(referencedColumnName = "id")
+    @JoinColumn(name = "species_id", referencedColumnName = "id")
     @NonNull
     private SpeciesEntity speciesEntity;
 }
