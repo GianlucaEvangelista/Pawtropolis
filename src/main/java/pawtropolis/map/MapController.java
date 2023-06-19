@@ -7,14 +7,11 @@ import org.springframework.stereotype.Component;
 import pawtropolis.map.model.Direction;
 import pawtropolis.map.model.Door;
 import pawtropolis.map.model.Room;
+import pawtropolis.persistence.service.AnimalService;
 import pawtropolis.persistence.service.ItemService;
 import pawtropolis.utils.Pair;
 import pawtropolis.game.model.Item;
 import pawtropolis.zoo.model.Animal;
-import pawtropolis.zoo.model.Eagle;
-import pawtropolis.zoo.model.Lion;
-import pawtropolis.zoo.model.Tiger;
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
@@ -27,10 +24,12 @@ public class MapController {
     private Room currentRoom;
 
     private final ItemService itemService;
+    private final AnimalService animalService;
 
     @Autowired
-    private MapController(ItemService itemService) {
+    private MapController(ItemService itemService, AnimalService animalService) {
         this.itemService = itemService;
+        this.animalService = animalService;
         this.currentRoom = createMap();
     }
 
@@ -40,17 +39,17 @@ public class MapController {
         Room bedroom = new Room("Bedroom");
         Item mushrooms = new Item("mushrooms", "Argo's favourite food", 3);
         bedroom.addItem(mushrooms);
-        bedroom.addAnimal(new Tiger("Arya", "salad", 10, LocalDate.of(2020,7,11), 260.00, 94.00, 86.50));
+        bedroom.addAnimal(animalService.getAnimalById(1));
         bedroom.addAdjacentRoom(entrance, new Door(false, itemService.getItemById(1)), Direction.WEST);
         Room kitchen = new Room("Kitchen");
         Item chips = new Item("chips", "Sky's favourite food", 1);
         kitchen.addItem(chips);
-        kitchen.addAnimal(new Lion("Argo", "mushrooms", 9, LocalDate.of(2020,6,23), 192.10, 116.80, 92.10));
+        kitchen.addAnimal(animalService.getAnimalById(2));
         kitchen.addAdjacentRoom(entrance, new Door(true, itemService.getItemById(1)), Direction.SOUTH);
         Room livingRoom = new Room("Living room");
         Item violin = new Item("violin", "instrument to open doors", 7);
         livingRoom.addItem(violin);
-        livingRoom.addAnimal(new Eagle("Sky", "chips", 3, LocalDate.of(2021,4,20), 4.50, 81.20, 210.10));
+        livingRoom.addAnimal(animalService.getAnimalById(3));
         livingRoom.addAdjacentRoom(entrance, new Door(false, violin), Direction.EAST);
         Room bathroom = new Room("Bathroom");
         Item salad = new Item("salad", "Arya's favourite food", 2);
