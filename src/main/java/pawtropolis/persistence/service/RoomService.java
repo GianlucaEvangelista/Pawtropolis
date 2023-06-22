@@ -28,4 +28,11 @@ public class RoomService {
         room.setAdjacentRooms(roomLinkService.getRoomLinkByRoomEntityId(id));
         return room;
     }
+
+    public Room getRoomByName(String name) {
+        RoomEntity roomEntity = roomRepository.findByName(name);
+        Room room = roomMarshaller.toRoom(roomEntity);
+        room.setAdjacentRooms(roomLinkService.getRoomLinkByRoomEntityId(roomEntity.getId()));
+        return room;
+    }
 }
