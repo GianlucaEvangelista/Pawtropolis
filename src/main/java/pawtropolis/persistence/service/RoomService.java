@@ -11,19 +11,21 @@ import pawtropolis.persistence.repository.RoomRepository;
 public class RoomService {
 
     private final RoomRepository roomRepository;
-
+    private final RoomLinkService roomLinkService;
     private final RoomMarshaller roomMarshaller;
 
     @Autowired
-    public RoomService(RoomRepository roomRepository, RoomMarshaller roomMarshaller) {
+    public RoomService(RoomRepository roomRepository, RoomLinkService roomLinkService, RoomMarshaller roomMarshaller) {
         this.roomRepository = roomRepository;
+        this.roomLinkService = roomLinkService;
         this.roomMarshaller = roomMarshaller;
     }
 
     public Room getRoomById(int id) {
         RoomEntity roomEntity = roomRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Room not found"));
-
-        return roomMarshaller.toRoom(roomEntity);
+        Room room = roomMarshaller.toRoom(roomEntity);
+        room.setAdjacentRooms(roomLinkService.getRoomLinkByRoomEntityId(id));
+        return room;
     }
 }
