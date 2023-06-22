@@ -32,4 +32,7 @@ public class RoomEntity {
             inverseJoinColumns = @JoinColumn(name = "animal_id")
     )
     private List<AnimalEntity> animalEntities;
+
+    @OneToMany(mappedBy = "room")
+    private List<RoomLinkEntity> adjacentRooms;
 }
