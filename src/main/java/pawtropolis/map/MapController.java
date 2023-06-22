@@ -67,7 +67,7 @@ public class MapController {
     }
 
     public String getCurrentRoomDescription() {
-        return  currentRoom.getDescription();
+        return roomService.getRoomByName(currentRoom.getName()).getDescription();
     }
 
     public Map<Direction, Pair<Room, Door>> getCurrentRoomAdjacentRooms() {
