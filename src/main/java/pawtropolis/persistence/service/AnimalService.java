@@ -15,7 +15,7 @@ public class AnimalService {
         this.animalRepository = animalRepository;
         this.animalMarshaller = animalMarshaller;
     }
-    public <T extends Animal> T getAnimalById(int id) {
+    public Animal getAnimalById(int id) {
         AnimalEntity animalEntity = animalRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Animal not found"));
 

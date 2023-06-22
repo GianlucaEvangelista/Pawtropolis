@@ -39,7 +39,7 @@ public class AnimalMarshaller {
         return animalEntity;
     }
 
-    public <T extends Animal> T toAnimal(AnimalEntity animalEntity) {
+    public Animal toAnimal(AnimalEntity animalEntity) {
         String animalName = animalEntity.getName();
         String animalFavouriteFood = animalEntity.getFavouriteFood();
         int animalAge = animalEntity.getAge();
