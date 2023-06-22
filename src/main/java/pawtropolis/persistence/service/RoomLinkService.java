@@ -5,7 +5,6 @@ import pawtropolis.map.model.Direction;
 import pawtropolis.map.model.Door;
 import pawtropolis.map.model.Room;
 import pawtropolis.persistence.marshaller.RoomLinkMarshaller;
-import pawtropolis.persistence.model.RoomEntity;
 import pawtropolis.persistence.repository.RoomLinkRepository;
 import pawtropolis.utils.Pair;
 import java.util.Map;
