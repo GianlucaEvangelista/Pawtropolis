@@ -22,33 +22,12 @@ public class MapController {
     @Getter(AccessLevel.NONE)
     private Room currentRoom;
 
-    private final ItemService itemService;
-    private final AnimalService animalService;
     private final RoomService roomService;
-    private final DoorService doorService;
-    private final DirectionService directionService;
 
     @Autowired
-    private MapController(ItemService itemService, AnimalService animalService, RoomService roomService, DoorService doorService, DirectionService directionService) {
-        this.itemService = itemService;
-        this.animalService = animalService;
+    private MapController(RoomService roomService) {
         this.roomService = roomService;
-        this.doorService = doorService;
-        this.directionService = directionService;
-        this.currentRoom = createMap();
-    }
-
-    private Room createMap() {
-        Room entrance = roomService.getRoomById(1);
-        Room bedroom = roomService.getRoomById(2);
-        bedroom.addAdjacentRoom(entrance, doorService.getDoorById(1), directionService.getDirectionById(4));
-        Room kitchen = roomService.getRoomById(3);
-        kitchen.addAdjacentRoom(entrance, doorService.getDoorById(2), directionService.getDirectionById(3));
-        Room livingRoom = roomService.getRoomById(4);
-        livingRoom.addAdjacentRoom(entrance, doorService.getDoorById(3), directionService.getDirectionById(2));
-        Room bathroom = roomService.getRoomById(5);
-        bathroom.addAdjacentRoom(livingRoom, doorService.getDoorById(4), directionService.getDirectionById(1));
-        return entrance;
+        this.currentRoom = roomService.getRoomByName("Entrance");
     }
 
     public boolean currentRoomContainsItem(String itemName) {
