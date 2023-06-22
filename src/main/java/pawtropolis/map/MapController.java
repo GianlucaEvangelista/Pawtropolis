@@ -7,8 +7,7 @@ import org.springframework.stereotype.Component;
 import pawtropolis.map.model.Direction;
 import pawtropolis.map.model.Door;
 import pawtropolis.map.model.Room;
-import pawtropolis.persistence.service.AnimalService;
-import pawtropolis.persistence.service.ItemService;
+import pawtropolis.persistence.service.*;
 import pawtropolis.utils.Pair;
 import pawtropolis.game.model.Item;
 import pawtropolis.zoo.model.Animal;
@@ -25,36 +24,30 @@ public class MapController {
 
     private final ItemService itemService;
     private final AnimalService animalService;
+    private final RoomService roomService;
+    private final DoorService doorService;
+    private final DirectionService directionService;
 
     @Autowired
-    private MapController(ItemService itemService, AnimalService animalService) {
+    private MapController(ItemService itemService, AnimalService animalService, RoomService roomService, DoorService doorService, DirectionService directionService) {
         this.itemService = itemService;
         this.animalService = animalService;
+        this.roomService = roomService;
+        this.doorService = doorService;
+        this.directionService = directionService;
         this.currentRoom = createMap();
     }
 
     private Room createMap() {
-        Room entrance = new Room("Entrance");
-        entrance.addItem(itemService.getItemById(1));
-        Room bedroom = new Room("Bedroom");
-        Item mushrooms = new Item("mushrooms", "Argo's favourite food", 3);
-        bedroom.addItem(mushrooms);
-        bedroom.addAnimal(animalService.getAnimalById(1));
-        bedroom.addAdjacentRoom(entrance, new Door(false, itemService.getItemById(1)), Direction.WEST);
-        Room kitchen = new Room("Kitchen");
-        Item chips = new Item("chips", "Sky's favourite food", 1);
-        kitchen.addItem(chips);
-        kitchen.addAnimal(animalService.getAnimalById(2));
-        kitchen.addAdjacentRoom(entrance, new Door(true, itemService.getItemById(1)), Direction.SOUTH);
-        Room livingRoom = new Room("Living room");
-        Item violin = new Item("violin", "instrument to open doors", 7);
-        livingRoom.addItem(violin);
-        livingRoom.addAnimal(animalService.getAnimalById(3));
-        livingRoom.addAdjacentRoom(entrance, new Door(false, violin), Direction.EAST);
-        Room bathroom = new Room("Bathroom");
-        Item salad = new Item("salad", "Arya's favourite food", 2);
-        bathroom.addItem(salad);
-        bathroom.addAdjacentRoom(livingRoom, new Door(true, violin), Direction.NORTH);
+        Room entrance = roomService.getRoomById(1);
+        Room bedroom = roomService.getRoomById(2);
+        bedroom.addAdjacentRoom(entrance, doorService.getDoorById(1), directionService.getDirectionById(4));
+        Room kitchen = roomService.getRoomById(3);
+        kitchen.addAdjacentRoom(entrance, doorService.getDoorById(2), directionService.getDirectionById(3));
+        Room livingRoom = roomService.getRoomById(4);
+        livingRoom.addAdjacentRoom(entrance, doorService.getDoorById(3), directionService.getDirectionById(2));
+        Room bathroom = roomService.getRoomById(5);
+        bathroom.addAdjacentRoom(livingRoom, doorService.getDoorById(4), directionService.getDirectionById(1));
         return entrance;
     }
 
