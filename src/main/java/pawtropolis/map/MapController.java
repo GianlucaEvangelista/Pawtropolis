@@ -47,7 +47,7 @@ public class MapController {
     }
 
     public void removeItemFromCurrentRoom (Item item) {
-        currentRoom.removeItem(item);
+        roomService.removeItemFromRoom(currentRoom, item);
     }
 
     public List<Animal> getCurrentRoomAnimals() {
