@@ -81,7 +81,7 @@ public class MapController {
     public void changeRoom(Direction direction) {
         Room nextRoom = currentRoom.getAdjacentRoom(direction);
         if (nextRoom != null) {
-            currentRoom = nextRoom;
+            currentRoom = roomService.getRoomByName(nextRoom.getName());;
         }
     }
 }
