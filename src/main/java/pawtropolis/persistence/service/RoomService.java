@@ -1,8 +1,9 @@
 package pawtropolis.persistence.service;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pawtropolis.game.model.Item;
 import pawtropolis.map.model.Room;
-import pawtropolis.persistence.marshaller.RoomLinkMarshaller;
 import pawtropolis.persistence.marshaller.RoomMarshaller;
 import pawtropolis.persistence.model.RoomEntity;
 import pawtropolis.persistence.repository.RoomRepository;
@@ -34,5 +35,9 @@ public class RoomService {
         Room room = roomMarshaller.toRoom(roomEntity);
         room.setAdjacentRooms(roomLinkService.getRoomLinkByRoomEntityId(roomEntity.getId()));
         return room;
+    }
+    @Transactional
+    public void removeItemFromRoom(Room room, Item item) {
+        roomRepository.deleteItemInRoom(room.getName(), item.getName());
     }
 }
