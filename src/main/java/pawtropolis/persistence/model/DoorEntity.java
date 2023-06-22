@@ -19,6 +19,5 @@ public class DoorEntity {
     private Boolean locked;
     @OneToOne(targetEntity = ItemEntity.class)
     @PrimaryKeyJoinColumn(referencedColumnName = "id")
-    @NonNull
     private ItemEntity keyItemEntity;
 }
