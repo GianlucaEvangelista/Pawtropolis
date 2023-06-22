@@ -2,6 +2,7 @@ package pawtropolis.persistence.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pawtropolis.map.model.Room;
+import pawtropolis.persistence.marshaller.RoomLinkMarshaller;
 import pawtropolis.persistence.marshaller.RoomMarshaller;
 import pawtropolis.persistence.model.RoomEntity;
 import pawtropolis.persistence.repository.RoomRepository;
