@@ -18,6 +18,6 @@ public class DoorEntity {
     @NonNull
     private Boolean locked;
     @OneToOne(targetEntity = ItemEntity.class)
-    @PrimaryKeyJoinColumn(referencedColumnName = "id")
+    @JoinColumn(name = "item_id", referencedColumnName = "id")
     private ItemEntity keyItemEntity;
 }
