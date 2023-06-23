@@ -3,7 +3,6 @@ import lombok.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pawtropolis.game.console.InputController;
-import pawtropolis.persistence.service.PlayerService;
 import java.util.List;
 
 @Getter
@@ -15,13 +14,11 @@ public class Player {
     private int lifePoints;
     private static final int MAX_LIFE_POINTS = 100;
     private final Bag bag;
-    private PlayerService playerService;
 
     @Autowired
-    private Player(Bag bag, PlayerService playerService) {
+    private Player(Bag bag) {
         this.lifePoints = MAX_LIFE_POINTS;
         this.bag = bag;
-        this.playerService = playerService;
         askPlayerName();
     }
 
@@ -29,10 +26,6 @@ public class Player {
         this.name = name;
         this.lifePoints = lifePoints;
         this.bag = bag;
-    }
-
-    public void savePlayer() {
-        playerService.savePlayer(this, bag.saveBag());
     }
 
     public void askPlayerName() {
