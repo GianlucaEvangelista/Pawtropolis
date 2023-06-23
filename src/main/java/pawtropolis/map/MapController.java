@@ -35,8 +35,8 @@ public class MapController {
         return currentRoom.containsItem(itemName);
     }
 
-    public Item getCurrentRoomItem (String itemName) {
-        return currentRoom.getItem(itemName);
+    public ItemEntity getCurrentRoomItemEntity(String itemName) {
+        return roomService.getItemEntityFromRoom(currentRoom, itemName);
     }
 
     public List<Item> getCurrentRoomItems() {
