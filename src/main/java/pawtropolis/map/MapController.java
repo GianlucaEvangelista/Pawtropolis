@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import pawtropolis.map.model.Direction;
 import pawtropolis.map.model.Door;
 import pawtropolis.map.model.Room;
+import pawtropolis.persistence.model.ItemEntity;
 import pawtropolis.persistence.service.*;
 import pawtropolis.utils.Pair;
 import pawtropolis.game.model.Item;
