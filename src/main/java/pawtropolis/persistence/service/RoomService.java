@@ -36,8 +36,9 @@ public class RoomService {
         room.setAdjacentRooms(roomLinkService.getRoomLinkByRoomEntityId(roomEntity.getId()));
         return room;
     }
+
     @Transactional
-    public void removeItemFromRoom(Room room, Item item) {
-        roomRepository.deleteItemInRoom(room.getName(), item.getName());
+    public void removeItemFromRoom(Room room, ItemEntity itemEntity) {
+        roomRepository.deleteItemInRoom(room.getName(), itemEntity.getId());
     }
 }
