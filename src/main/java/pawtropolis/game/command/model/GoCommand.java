@@ -7,6 +7,7 @@ import pawtropolis.game.model.Item;
 import pawtropolis.map.model.Direction;
 import pawtropolis.map.model.Door;
 import pawtropolis.map.model.Room;
+import pawtropolis.persistence.service.DoorService;
 import pawtropolis.utils.Pair;
 import java.util.Map;
 
@@ -14,10 +15,12 @@ import java.util.Map;
 public class GoCommand extends Command implements CommandWithArg {
 
     private String commandArg;
+    private DoorService doorService;
 
     @Autowired
-    private GoCommand(GameController gameController) {
+    private GoCommand(GameController gameController, DoorService doorService) {
         super(gameController);
+        this.doorService = doorService;
     }
 
     @Override
@@ -56,10 +59,12 @@ public class GoCommand extends Command implements CommandWithArg {
                     System.out.println("You don't have this item in your bag!");
                 } else {
                     Item chosenItem = gameController.getPlayer().getItemInBag(chosenItemName);
-                    if(door.unlockDoor(chosenItem)) {
-                        gameController.getPlayer().removeItemFromBag(chosenItem);
-                        System.out.println("You unlocked the door!");
-                        gameController.getMapController().changeRoom(direction);
+                    if(door.isTheRightKey(chosenItem)) {
+                        if(doorService.unlockDoor(door)) {
+                            gameController.getPlayer().removeItemFromBag(chosenItem);
+                            System.out.println("You unlocked the door!");
+                            gameController.getMapController().changeRoom(direction);
+                        }
                     } else {
                         System.out.println("This isn't the right item to unlock this door!");
                     }
