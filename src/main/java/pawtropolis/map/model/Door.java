@@ -8,6 +8,7 @@ import pawtropolis.game.model.Item;
 @Setter
 @AllArgsConstructor
 public class Door {
+    private Integer id;
 
     private boolean locked;
 

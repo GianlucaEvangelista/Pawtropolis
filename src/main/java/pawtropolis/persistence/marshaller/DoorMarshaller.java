@@ -23,8 +23,9 @@ public class DoorMarshaller {
     }
 
     public Door toDoor(DoorEntity doorEntity) {
+        Integer id = doorEntity.getId();
         boolean locked = doorEntity.getLocked();
         Item keyItem = itemMarshaller.toItem(doorEntity.getKeyItemEntity());
-        return new Door(locked, keyItem);
+        return new Door(id, locked, keyItem);
     }
 }
