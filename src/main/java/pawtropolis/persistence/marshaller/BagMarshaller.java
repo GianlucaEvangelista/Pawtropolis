@@ -15,6 +15,7 @@ public class BagMarshaller {
     public BagMarshaller(ItemMarshaller itemMarshaller) {
         this.itemMarshaller = itemMarshaller;
     }
+
     public BagEntity toBagEntity(Bag bag) {
         BagEntity bagEntity = new BagEntity();
         bagEntity.setAvailableSlots(bag.getAvailableSlots());
@@ -23,8 +24,9 @@ public class BagMarshaller {
     }
 
     public Bag toBag(BagEntity bagEntity) {
+        Integer id = bagEntity.getId();
         int availableSlots = bagEntity.getAvailableSlots();
         List<Item> items = bagEntity.getItemEntities().stream().map(itemMarshaller::toItem).toList();
-        return new Bag(items, availableSlots);
+        return new Bag(id, items, availableSlots);
     }
 }
