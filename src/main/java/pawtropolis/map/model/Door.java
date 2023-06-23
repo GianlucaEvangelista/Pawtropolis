@@ -18,13 +18,6 @@ public class Door {
         locked = false;
     }
 
-    public boolean unlockDoor(Item item) {
-        if(item != null && isTheRightKey(item)) {
-            this.locked = false;
-        }
-        return !isLocked();
-    }
-
     public boolean isTheRightKey(Item item) {
         return this.keyItem.getName().equals(item.getName()) &&
                 this.keyItem.getDescription().equals(item.getDescription()) &&
