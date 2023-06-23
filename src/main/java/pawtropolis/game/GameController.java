@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 import pawtropolis.game.command.CommandController;
 import pawtropolis.map.MapController;
 import pawtropolis.game.model.Player;
+import pawtropolis.persistence.service.PlayerService;
 
 @Getter
 @Setter
@@ -16,12 +17,14 @@ public class GameController {
     private MapController mapController;
     private CommandController commandController;
     private boolean wantToEndGame;
+    private PlayerService playerService;
 
     @Autowired
-    public GameController(Player player, MapController mapController, CommandController commandController) {
+    public GameController(Player player, MapController mapController, CommandController commandController, PlayerService playerService) {
         this.player = player;
         this.mapController = mapController;
         this.commandController = commandController;
+        this.playerService = playerService;
         this.wantToEndGame = false;
     }
 
@@ -31,7 +34,7 @@ public class GameController {
 
     public void runGame() {
         System.out.println("Welcome to Pawtropolis!");
-        player.savePlayer();
+        playerService.savePlayer(this.player);
         do {
             this.commandController.executeCommand();
         } while(!wantToEndGame);
