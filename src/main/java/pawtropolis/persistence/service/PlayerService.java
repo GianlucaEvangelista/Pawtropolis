@@ -11,13 +11,14 @@ import pawtropolis.persistence.repository.PlayerRepository;
 public class PlayerService {
 
     private final PlayerRepository playerRepository;
-
     private final PlayerMarshaller playerMarshaller;
+    private final BagService bagService;
 
     @Autowired
-    public PlayerService(PlayerRepository playerRepository, PlayerMarshaller playerMarshaller) {
+    public PlayerService(PlayerRepository playerRepository, PlayerMarshaller playerMarshaller, BagService bagService) {
         this.playerRepository = playerRepository;
         this.playerMarshaller = playerMarshaller;
+        this.bagService = bagService;
     }
 
     public Player getPlayerById(int id) {
@@ -27,7 +28,8 @@ public class PlayerService {
         return playerMarshaller.toPlayer(playerEntity);
     }
 
-    public void savePlayer(Player player, BagEntity bagEntity) {
+    public void savePlayer(Player player) {
+        BagEntity bagEntity = bagService.saveBag(player.getBag());
         PlayerEntity playerEntity = playerMarshaller.toPlayerEntity(player, bagEntity);
         playerRepository.save(playerEntity);
     }
