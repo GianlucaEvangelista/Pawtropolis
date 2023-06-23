@@ -2,12 +2,14 @@ package pawtropolis.game;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import pawtropolis.game.command.CommandController;
 import pawtropolis.map.MapController;
 import pawtropolis.game.model.Player;
 
 @Getter
 @Setter
+@Component
 public class GameController {
 
     private Player player;
