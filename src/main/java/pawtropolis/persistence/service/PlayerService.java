@@ -30,6 +30,7 @@ public class PlayerService {
 
     public void savePlayer(Player player) {
         BagEntity bagEntity = bagService.saveBag(player.getBag());
+        player.getBag().setId(bagEntity.getId());
         PlayerEntity playerEntity = playerMarshaller.toPlayerEntity(player, bagEntity);
         playerRepository.save(playerEntity);
     }
