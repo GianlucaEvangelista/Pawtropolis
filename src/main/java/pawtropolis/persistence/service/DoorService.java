@@ -35,9 +35,9 @@ public class DoorService {
     }
 
     public boolean isTheRightKey(Door door, ItemEntity item) {
-        DoorEntity doorEntity = doorRepository.findById(door.getId()).orElse(new DoorEntity());
-        return doorEntity.getKeyItemEntity().getName().equals(item.getName()) &&
+        Optional<DoorEntity> optionalDoorEntity = doorRepository.findById(door.getId());
+        return optionalDoorEntity.filter(doorEntity -> doorEntity.getKeyItemEntity().getName().equals(item.getName()) &&
                 doorEntity.getKeyItemEntity().getDescription().equals(item.getDescription()) &&
-                doorEntity.getKeyItemEntity().getRequiredSlots().equals(item.getRequiredSlots());
+                doorEntity.getKeyItemEntity().getRequiredSlots().equals(item.getRequiredSlots())).isPresent();
     }
 }
