@@ -56,4 +56,19 @@ public class PlayerService {
         BagEntity bagEntity = bagRepository.findById(player.getBag().getId()).orElse(new BagEntity());
         return bagService.getItems(bagEntity).stream().map(Item::getName).toList();
     }
+
+    public boolean isItemInBag(Player player, String itemName) {
+        BagEntity bagEntity = bagRepository.findById(player.getBag().getId()).orElse(new BagEntity());
+        return bagService.getItems(bagEntity).stream().anyMatch(item -> item.getName().equals(itemName));
+    }
+
+    public ItemEntity getItemEntityFromBag(Player player, String itemName) {
+        BagEntity bagEntity = bagRepository.findById(player.getBag().getId()).orElse(new BagEntity());
+        return bagService.getItemEntity(bagEntity, itemName);
+    }
+
+    public void removeItemFromBag(Player player, ItemEntity itemEntity) {
+        BagEntity bagEntity = bagRepository.findById(player.getBag().getId()).orElse(new BagEntity());
+        bagService.removeItem(bagEntity, itemEntity);
+    }
 }
