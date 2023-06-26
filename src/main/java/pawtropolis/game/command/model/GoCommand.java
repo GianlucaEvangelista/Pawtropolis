@@ -36,7 +36,7 @@ public class GoCommand extends Command implements CommandWithArg {
         }
         Map<Direction, Pair<Room, Door>> currentAdjacentRooms = gameController.getMapController().getCurrentRoomAdjacentRooms();
         if(currentAdjacentRooms.containsKey(direction)) {
-            Door nextRoomDoor = gameController.getMapController().getCurrentRoomAdjacentRoomDoor(direction);
+            Door nextRoomDoor =  currentAdjacentRooms.get(direction).getSecond();
             if(nextRoomDoor.isLocked()) {
                 tryToUnlockDoor(nextRoomDoor, direction);
             } else {
