@@ -2,12 +2,16 @@ package pawtropolis.persistence.service;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pawtropolis.map.model.Direction;
+import pawtropolis.map.model.Door;
 import pawtropolis.map.model.Room;
 import pawtropolis.persistence.marshaller.RoomMarshaller;
 import pawtropolis.persistence.model.ItemEntity;
 import pawtropolis.persistence.model.RoomEntity;
 import pawtropolis.persistence.repository.ItemRepository;
 import pawtropolis.persistence.repository.RoomRepository;
+import pawtropolis.utils.Pair;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -56,5 +60,10 @@ public class RoomService {
         RoomEntity roomEntity = roomRepository.findByName(room.getName());
         roomEntity.getItemEntities().add(itemEntity);
         roomRepository.save(roomEntity);
+    }
+
+    public Map<Direction, Pair<Room, Door>> getAdjacentRooms(Room currentRoom) {
+        RoomEntity roomEntity = roomRepository.findByName(currentRoom.getName());
+        return roomLinkService.getRoomLinkByRoomEntityId(roomEntity.getId());
     }
 }
