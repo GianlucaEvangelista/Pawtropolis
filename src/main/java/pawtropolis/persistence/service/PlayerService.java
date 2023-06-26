@@ -4,8 +4,11 @@ import org.springframework.stereotype.Service;
 import pawtropolis.game.model.Player;
 import pawtropolis.persistence.marshaller.PlayerMarshaller;
 import pawtropolis.persistence.model.BagEntity;
+import pawtropolis.persistence.model.ItemEntity;
 import pawtropolis.persistence.model.PlayerEntity;
+import pawtropolis.persistence.repository.BagRepository;
 import pawtropolis.persistence.repository.PlayerRepository;
+import java.util.Optional;
 
 @Service
 public class PlayerService {
@@ -13,12 +16,14 @@ public class PlayerService {
     private final PlayerRepository playerRepository;
     private final PlayerMarshaller playerMarshaller;
     private final BagService bagService;
+    private final BagRepository bagRepository;
 
     @Autowired
-    public PlayerService(PlayerRepository playerRepository, PlayerMarshaller playerMarshaller, BagService bagService) {
+    public PlayerService(PlayerRepository playerRepository, PlayerMarshaller playerMarshaller, BagService bagService, BagRepository bagRepository) {
         this.playerRepository = playerRepository;
         this.playerMarshaller = playerMarshaller;
         this.bagService = bagService;
+        this.bagRepository = bagRepository;
     }
 
     public Player getPlayerById(int id) {
@@ -33,5 +38,15 @@ public class PlayerService {
         player.getBag().setId(bagEntity.getId());
         PlayerEntity playerEntity = playerMarshaller.toPlayerEntity(player, bagEntity);
         playerRepository.save(playerEntity);
+    }
+
+    public void addItemToBag(ItemEntity itemEntity, Player player) {
+        Optional<BagEntity> optionalBagEntity = bagRepository.findById(player.getBag().getId());
+        optionalBagEntity.ifPresent(bagEntity -> bagService.addItem(itemEntity, bagEntity));
+    }
+
+    public boolean hasEnoughSpaceInBag(ItemEntity itemEntityToAdd, Player player) {
+        BagEntity bagEntity = bagRepository.findById(player.getBag().getId()).orElse(null);
+        return bagEntity != null && bagService.isThereEnoughSpace(bagEntity, itemEntityToAdd);
     }
 }
