@@ -2,7 +2,7 @@ package pawtropolis.game.command.model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pawtropolis.game.GameController;
-import pawtropolis.game.model.Item;
+import pawtropolis.persistence.model.ItemEntity;
 
 @Component
 public class GetCommand extends Command implements CommandWithArg {
@@ -21,10 +21,10 @@ public class GetCommand extends Command implements CommandWithArg {
             return;
         }
         if(gameController.getMapController().currentRoomContainsItem(commandArg)) {
-            Item chosenItem = gameController.getMapController().getCurrentRoomItem(commandArg);
-            if(gameController.getPlayer().hasEnoughSpaceInBag(chosenItem)) {
-                gameController.getPlayer().addItemToBag(chosenItem);
-                gameController.getMapController().removeItemFromCurrentRoom(chosenItem);
+            ItemEntity chosenItemEntity = gameController.getMapController().getCurrentRoomItemEntity(commandArg);
+            if(gameController.getPlayerService().hasEnoughSpaceInBag(chosenItemEntity, gameController.getPlayer())) {
+                gameController.getPlayerService().addItemToBag(chosenItemEntity, gameController.getPlayer());
+                gameController.getMapController().removeItemFromCurrentRoom(chosenItemEntity);
                 System.out.println("You put " + commandArg + " in the bag");
                 return;
             }
