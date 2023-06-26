@@ -55,7 +55,7 @@ public class GoCommand extends Command implements CommandWithArg {
             case "Y":
                 System.out.println("Type the name of the item to use");
                 String chosenItemName = InputController.getInputString().toLowerCase();
-                if(!gameController.getPlayer().isItemInBag(chosenItemName)) {
+                if(!gameController.getPlayerService().isItemInBag(gameController.getPlayer(), chosenItemName)) {
                     System.out.println("You don't have this item in your bag!");
                 } else {
                     Item chosenItem = gameController.getPlayer().getItemInBag(chosenItemName);
