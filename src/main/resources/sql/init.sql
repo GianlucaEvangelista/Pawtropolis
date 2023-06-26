@@ -11,7 +11,7 @@ CREATE TABLE players
     id SERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     life_points INT NOT NULL,
-    bag_id SERIAL NOT NULL,
+    bag_id INTEGER NOT NULL,
     FOREIGN KEY (bag_id) REFERENCES bags (id)
 );
 
@@ -25,9 +25,9 @@ CREATE TABLE items
 
 CREATE TABLE items_in_bag
 (
-    id SERIAL PRIMARY KEY,
-    bag_id SERIAL NOT NULL,
-    item_id SERIAL NOT NULL,
+    bag_id INTEGER NOT NULL,
+    item_id INTEGER NOT NULL,
+    PRIMARY KEY (bag_id, item_id),
     FOREIGN KEY (bag_id) REFERENCES bags (id),
     FOREIGN KEY (item_id) REFERENCES items (id)
 );
@@ -40,9 +40,9 @@ CREATE TABLE rooms
 
 CREATE TABLE items_in_room
 (
-    id SERIAL PRIMARY KEY,
-    room_id SERIAL NOT NULL,
-    item_id SERIAL NOT NULL,
+    room_id INTEGER NOT NULL,
+    item_id INTEGER NOT NULL,
+    PRIMARY KEY (room_id, item_id),
     FOREIGN KEY (room_id) REFERENCES rooms (id),
     FOREIGN KEY (item_id) REFERENCES items (id)
 );
@@ -51,7 +51,7 @@ CREATE TABLE doors
 (
     id SERIAL PRIMARY KEY,
     locked BOOLEAN NOT NULL,
-    item_id SERIAL,
+    item_id INTEGER,
     FOREIGN KEY (item_id) REFERENCES items (id)
 );
 
@@ -64,10 +64,10 @@ CREATE TABLE directions
 CREATE TABLE room_links
 (
     id SERIAL PRIMARY KEY,
-    room_id SERIAL NOT NULL,
-    direction_id SERIAL NOT NULL,
-    adjacent_room_id SERIAL NOT NULL,
-    door_id SERIAL NOT NULL,
+    room_id INTEGER NOT NULL,
+    direction_id INTEGER NOT NULL,
+    adjacent_room_id INTEGER NOT NULL,
+    door_id INTEGER NOT NULL,
     FOREIGN KEY (room_id) REFERENCES rooms (id),
     FOREIGN KEY (direction_id) REFERENCES directions (id),
     FOREIGN KEY (adjacent_room_id) REFERENCES rooms (id),
@@ -91,15 +91,15 @@ CREATE TABLE animals
     height DECIMAL(5, 2) NOT NULL,
     tail_length DECIMAL(5, 2),
     wingspan DECIMAL(5, 2),
-    species_id SERIAL NOT NULL,
+    species_id INTEGER NOT NULL,
     FOREIGN KEY (species_id) REFERENCES species (id)
 );
 
 CREATE TABLE animals_in_room
 (
-    id SERIAL PRIMARY KEY,
-    animal_id SERIAL NOT NULL,
-    room_id SERIAL NOT NULL,
+    animal_id INTEGER NOT NULL,
+    room_id INTEGER NOT NULL,
+    PRIMARY KEY (animal_id, room_id),
     FOREIGN KEY (animal_id) REFERENCES animals (id),
     FOREIGN KEY (room_id) REFERENCES rooms (id)
 );

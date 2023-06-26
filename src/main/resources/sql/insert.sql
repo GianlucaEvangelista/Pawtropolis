@@ -51,19 +51,19 @@ VALUES
     (7, 5, 1, 4, 4),
     (8, 4, 3, 5, 4);
 
-INSERT INTO items_in_room (id, room_id, item_id)
+INSERT INTO items_in_room (room_id, item_id)
 VALUES
-    (1, 1, 1),
-    (2, 2, 2),
-    (3, 3, 3),
-    (4, 4, 4),
-    (5, 5, 5);
+    (1, 1),
+    (2, 2),
+    (3, 3),
+    (4, 4),
+    (5, 5);
 
-INSERT INTO animals_in_room (id, room_id, animal_id)
+INSERT INTO animals_in_room (room_id, animal_id)
 VALUES
-    (1, 2, 1),
-    (2, 3, 2),
-    (3, 4, 3);
+    (2, 1),
+    (3, 2),
+    (4, 3);
 
 
 
