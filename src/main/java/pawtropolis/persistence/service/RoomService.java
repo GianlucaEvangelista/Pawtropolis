@@ -51,4 +51,10 @@ public class RoomService {
     public void removeItemFromRoom(Room room, ItemEntity itemEntity) {
         roomRepository.deleteItemInRoom(room.getName(), itemEntity.getId());
     }
+
+    public void addItem(Room room, ItemEntity itemEntity) {
+        RoomEntity roomEntity = roomRepository.findByName(room.getName());
+        roomEntity.getItemEntities().add(itemEntity);
+        roomRepository.save(roomEntity);
+    }
 }
