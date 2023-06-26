@@ -18,9 +18,4 @@ public class Door {
         locked = false;
     }
 
-    public boolean isTheRightKey(Item item) {
-        return this.keyItem.getName().equals(item.getName()) &&
-                this.keyItem.getDescription().equals(item.getDescription()) &&
-                this.keyItem.getRequiredSlots() == item.getRequiredSlots();
-    }
 }
