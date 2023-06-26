@@ -1,6 +1,7 @@
 package pawtropolis.persistence.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pawtropolis.game.model.Item;
 import pawtropolis.game.model.Player;
 import pawtropolis.persistence.marshaller.PlayerMarshaller;
 import pawtropolis.persistence.model.BagEntity;
@@ -8,6 +9,7 @@ import pawtropolis.persistence.model.ItemEntity;
 import pawtropolis.persistence.model.PlayerEntity;
 import pawtropolis.persistence.repository.BagRepository;
 import pawtropolis.persistence.repository.PlayerRepository;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -48,5 +50,10 @@ public class PlayerService {
     public boolean hasEnoughSpaceInBag(ItemEntity itemEntityToAdd, Player player) {
         BagEntity bagEntity = bagRepository.findById(player.getBag().getId()).orElse(null);
         return bagEntity != null && bagService.isThereEnoughSpace(bagEntity, itemEntityToAdd);
+    }
+
+    public List<String> getItemsFromBag(Player player) {
+        BagEntity bagEntity = bagRepository.findById(player.getBag().getId()).orElse(new BagEntity());
+        return bagService.getItems(bagEntity).stream().map(Item::getName).toList();
     }
 }
