@@ -43,8 +43,8 @@ public class MapController {
         return currentRoom.getItems();
     }
 
-    public void addItemToCurrentRoom (Item item) {
-        currentRoom.addItem(item);
+    public void addItemToCurrentRoom (ItemEntity itemEntity) {
+        roomService.addItem(currentRoom, itemEntity);
     }
 
     public void removeItemFromCurrentRoom (ItemEntity itemEntity) {
