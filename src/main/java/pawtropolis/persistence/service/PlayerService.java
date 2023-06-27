@@ -9,9 +9,7 @@ import pawtropolis.persistence.model.ItemEntity;
 import pawtropolis.persistence.model.PlayerEntity;
 import pawtropolis.persistence.repository.BagRepository;
 import pawtropolis.persistence.repository.PlayerRepository;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class PlayerService {
@@ -44,39 +42,32 @@ public class PlayerService {
     }
 
     public void addItemToBag(ItemEntity itemEntity, Player player) {
-        Optional<BagEntity> optionalBagEntity = bagRepository.findById(player.getBag().getId());
-        optionalBagEntity.ifPresent(bagEntity -> bagService.addItem(itemEntity, bagEntity));
+        BagEntity bagEntity = bagService.getBagEntityById(player.getBag().getId());
+        bagService.addItem(itemEntity, bagEntity);
     }
 
     public boolean hasEnoughSpaceInBag(ItemEntity itemEntityToAdd, Player player) {
-        Optional<BagEntity> optionalBagEntity = bagRepository.findById(player.getBag().getId());
-        return optionalBagEntity.filter(bagEntity -> bagService.isThereEnoughSpace(bagEntity, itemEntityToAdd)).isPresent();
+        BagEntity bagEntity = bagService.getBagEntityById(player.getBag().getId());
+        return bagService.isThereEnoughSpace(bagEntity, itemEntityToAdd);
     }
 
     public List<String> getItemsFromBag(Player player) {
-        Optional<BagEntity> optionalBagEntity = bagRepository.findById(player.getBag().getId());
-        List<String> items = new ArrayList<>();
-        optionalBagEntity.ifPresent(bagEntity -> items.addAll(bagService.getItems(bagEntity).stream().map(Item::getName).toList()));
-        return items;
+        BagEntity bagEntity = bagService.getBagEntityById(player.getBag().getId());
+        return bagService.getItems(bagEntity).stream().map(Item::getName).toList();
     }
 
     public boolean isItemInBag(Player player, String itemName) {
-        Optional<BagEntity> optionalBagEntity = bagRepository.findById(player.getBag().getId());
-        return optionalBagEntity.filter(bagEntity -> bagService.getItems(bagEntity).stream().anyMatch(item -> item.getName().equals(itemName))).isPresent();
+        BagEntity bagEntity = bagService.getBagEntityById(player.getBag().getId());
+        return bagService.getItems(bagEntity).stream().anyMatch(item -> item.getName().equals(itemName));
     }
 
     public ItemEntity getItemEntityFromBag(Player player, String itemName) {
-        Optional<BagEntity> optionalBagEntity = bagRepository.findById(player.getBag().getId());
-        if(optionalBagEntity.isPresent()) {
-            BagEntity bagEntity = optionalBagEntity.get();
-            return bagService.getItemEntity(bagEntity, itemName);
-        } else {
-            return null;
-        }
+        BagEntity bagEntity = bagService.getBagEntityById(player.getBag().getId());
+        return bagService.getItemEntity(bagEntity, itemName);
     }
 
     public void removeItemFromBag(Player player, ItemEntity itemEntity) {
-        Optional<BagEntity> optionalBagEntity = bagRepository.findById(player.getBag().getId());
-        optionalBagEntity.ifPresent(bagEntity -> bagService.removeItem(bagEntity, itemEntity));
+        BagEntity bagEntity = bagService.getBagEntityById(player.getBag().getId());
+        bagService.removeItem(bagEntity, itemEntity);
     }
 }

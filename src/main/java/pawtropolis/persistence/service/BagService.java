@@ -10,6 +10,7 @@ import pawtropolis.persistence.model.ItemEntity;
 import pawtropolis.persistence.repository.BagRepository;
 import pawtropolis.persistence.repository.ItemRepository;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BagService {
@@ -32,6 +33,11 @@ public class BagService {
                 .orElseThrow(() -> new IllegalArgumentException("Item not found"));
 
         return bagMarshaller.toBag(bagEntity);
+    }
+
+    public BagEntity getBagEntityById(Integer id) {
+        Optional<BagEntity> optionalBagEntity = bagRepository.findById(id);
+        return optionalBagEntity.orElse(null);
     }
 
     public BagEntity saveBag(Bag bag) {
