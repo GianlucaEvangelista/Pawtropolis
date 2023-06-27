@@ -15,6 +15,7 @@ public class DoorService {
     private final DoorRepository doorRepository;
 
     private final DoorMarshaller doorMarshaller;
+
     @Autowired
     public DoorService(DoorRepository doorRepository, DoorMarshaller doorMarshaller, ItemRepository itemRepository) {
         this.doorRepository = doorRepository;
