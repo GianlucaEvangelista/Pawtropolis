@@ -21,7 +21,6 @@ public class ItemService {
     public Item getItemById(int id) {
         ItemEntity itemEntity = itemRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Item not found"));
-
         return itemMarshaller.toItem(itemEntity);
     }
 
