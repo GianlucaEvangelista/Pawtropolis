@@ -10,9 +10,6 @@ import pawtropolis.map.model.Room;
 import pawtropolis.persistence.model.ItemEntity;
 import pawtropolis.persistence.service.*;
 import pawtropolis.utils.Pair;
-import pawtropolis.game.model.Item;
-import pawtropolis.zoo.model.Animal;
-import java.util.List;
 import java.util.Map;
 
 @Getter
