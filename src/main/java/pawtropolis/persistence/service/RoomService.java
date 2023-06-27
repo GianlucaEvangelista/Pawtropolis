@@ -70,7 +70,7 @@ public class RoomService {
     }
 
     public boolean containsItem(Room room, String itemName) {
-        RoomEntity roomEntity = roomRepository.findByName(room.getName());
-        return roomEntity.getItemEntities().stream().anyMatch(item -> item.getName().equals(itemName));
+        Optional<RoomEntity> optionalRoomEntity = roomRepository.findById(room.getId());
+        return optionalRoomEntity.filter(roomEntity -> roomEntity.getItemEntities().stream().anyMatch(item -> item.getName().equals(itemName))).isPresent();
     }
 }
