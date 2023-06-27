@@ -17,13 +17,13 @@ public class RoomLinkMarshaller {
     private final RoomMarshaller roomMarshaller;
     private final DirectionMarshaller directionMarshaller;
 
-
     @Autowired
     public RoomLinkMarshaller(DoorMarshaller doorMarshaller, RoomMarshaller roomMarshaller, DirectionMarshaller directionMarshaller) {
         this.doorMarshaller = doorMarshaller;
         this.roomMarshaller = roomMarshaller;
         this.directionMarshaller = directionMarshaller;
     }
+
     public List<RoomLinkEntity> toRoomLinkEntityList(Room room) {
         List<RoomLinkEntity> roomLinkEntityList = new ArrayList<>();
         List<Map.Entry<Direction, Pair<Room, Door>>> mapEntryList = room.getAdjacentRooms().entrySet().stream().toList();
@@ -37,6 +37,7 @@ public class RoomLinkMarshaller {
         }
         return roomLinkEntityList;
     }
+
     public Map<Direction, Pair<Room, Door>> toMap(List<RoomLinkEntity> roomLinks) {
         Map<Direction, Pair<Room, Door>> adjacentRooms = new EnumMap<>(Direction.class);
         for (RoomLinkEntity roomLink: roomLinks) {
@@ -44,7 +45,7 @@ public class RoomLinkMarshaller {
             Door door = doorMarshaller.toDoor(roomLink.getDoor());
             Room adjacentRoom = roomMarshaller.toRoom(roomLink.getAdjacentRoom());
             adjacentRooms.put(direction, new Pair<>(adjacentRoom, door));
-        };
+        }
         return adjacentRooms;
     }
 }
