@@ -7,7 +7,6 @@ import pawtropolis.persistence.marshaller.PlayerMarshaller;
 import pawtropolis.persistence.model.BagEntity;
 import pawtropolis.persistence.model.ItemEntity;
 import pawtropolis.persistence.model.PlayerEntity;
-import pawtropolis.persistence.repository.BagRepository;
 import pawtropolis.persistence.repository.PlayerRepository;
 import java.util.List;
 
@@ -17,14 +16,12 @@ public class PlayerService {
     private final PlayerRepository playerRepository;
     private final PlayerMarshaller playerMarshaller;
     private final BagService bagService;
-    private final BagRepository bagRepository;
 
     @Autowired
-    public PlayerService(PlayerRepository playerRepository, PlayerMarshaller playerMarshaller, BagService bagService, BagRepository bagRepository) {
+    public PlayerService(PlayerRepository playerRepository, PlayerMarshaller playerMarshaller, BagService bagService) {
         this.playerRepository = playerRepository;
         this.playerMarshaller = playerMarshaller;
         this.bagService = bagService;
-        this.bagRepository = bagRepository;
     }
 
     public Player getPlayerById(int id) {
