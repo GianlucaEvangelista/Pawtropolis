@@ -56,9 +56,7 @@ public class PlayerService {
     public List<String> getItemsFromBag(Player player) {
         Optional<BagEntity> optionalBagEntity = bagRepository.findById(player.getBag().getId());
         List<String> items = new ArrayList<>();
-        optionalBagEntity.ifPresent(bagEntity -> {
-            items.addAll(bagService.getItems(bagEntity).stream().map(Item::getName).toList());
-        });
+        optionalBagEntity.ifPresent(bagEntity -> items.addAll(bagService.getItems(bagEntity).stream().map(Item::getName).toList()));
         return items;
     }
 
