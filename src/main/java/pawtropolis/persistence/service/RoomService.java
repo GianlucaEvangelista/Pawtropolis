@@ -38,6 +38,11 @@ public class RoomService {
         return room;
     }
 
+    public RoomEntity getRoomEntityById(Integer id) {
+        Optional<RoomEntity> optionalRoomEntity = roomRepository.findById(id);
+        return optionalRoomEntity.orElse(null);
+    }
+
     public ItemEntity getItemEntityFromRoom(Room room, String itemName) {
         Integer itemId = roomRepository.getItemIdFromRoom(room.getId(), itemName);
         Optional<ItemEntity> optionalItemEntity = itemRepository.findById(itemId);
@@ -52,13 +57,10 @@ public class RoomService {
     }
 
     public Room getRoomById(Integer id) {
-        Optional<RoomEntity> optionalRoomEntity = roomRepository.findById(id);
-        if(optionalRoomEntity.isPresent()) {
-            Room room = roomMarshaller.toRoom(optionalRoomEntity.get());
-            room.setAdjacentRooms(roomLinkService.getRoomLinkByRoomEntityId(optionalRoomEntity.get().getId()));
-            return room;
-        }
-        return null;
+        RoomEntity roomEntity = getRoomEntityById(id);
+        Room room = roomMarshaller.toRoom(roomEntity);
+        room.setAdjacentRooms(roomLinkService.getRoomLinkByRoomEntityId(roomEntity.getId()));
+        return room;
     }
 
     @Transactional
@@ -67,20 +69,18 @@ public class RoomService {
     }
 
     public void addItem(Room room, ItemEntity itemEntity) {
-        Optional<RoomEntity> optionalRoomEntity = roomRepository.findById(room.getId());
-        optionalRoomEntity.ifPresent(roomEntity -> {
-            roomEntity.getItemEntities().add(itemEntity);
-            roomRepository.save(roomEntity);
-        });
+        RoomEntity roomEntity = getRoomEntityById(room.getId());
+        roomEntity.getItemEntities().add(itemEntity);
+        roomRepository.save(roomEntity);
     }
 
-    public Map<Direction, Pair<Room, Door>> getAdjacentRooms(Room currentRoom) {
-        Optional<RoomEntity> optionalRoomEntity = roomRepository.findById(currentRoom.getId());
-        return optionalRoomEntity.map(roomEntity -> roomLinkService.getRoomLinkByRoomEntityId(roomEntity.getId())).orElse(null);
+    public Map<Direction, Pair<Room, Door>> getAdjacentRooms(Room room) {
+        RoomEntity roomEntity = getRoomEntityById(room.getId());
+        return roomLinkService.getRoomLinkByRoomEntityId(roomEntity.getId());
     }
 
     public boolean containsItem(Room room, String itemName) {
-        Optional<RoomEntity> optionalRoomEntity = roomRepository.findById(room.getId());
-        return optionalRoomEntity.filter(roomEntity -> roomEntity.getItemEntities().stream().anyMatch(item -> item.getName().equals(itemName))).isPresent();
+        RoomEntity roomEntity = getRoomEntityById(room.getId());
+        return roomEntity.getItemEntities().stream().anyMatch(item -> item.getName().equals(itemName));
     }
 }
