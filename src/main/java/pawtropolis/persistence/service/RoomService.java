@@ -57,9 +57,11 @@ public class RoomService {
     }
 
     public void addItem(Room room, ItemEntity itemEntity) {
-        RoomEntity roomEntity = roomRepository.findByName(room.getName());
-        roomEntity.getItemEntities().add(itemEntity);
-        roomRepository.save(roomEntity);
+        Optional<RoomEntity> optionalRoomEntity = roomRepository.findById(room.getId());
+        optionalRoomEntity.ifPresent(roomEntity -> {
+            roomEntity.getItemEntities().add(itemEntity);
+            roomRepository.save(roomEntity);
+        });
     }
 
     public Map<Direction, Pair<Room, Door>> getAdjacentRooms(Room currentRoom) {
