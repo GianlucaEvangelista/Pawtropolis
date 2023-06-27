@@ -39,32 +39,12 @@ public class MapController {
         return roomService.getItemEntityFromRoom(currentRoom, itemName);
     }
 
-    public List<Item> getCurrentRoomItems() {
-        return currentRoom.getItems();
-    }
-
     public void addItemToCurrentRoom (ItemEntity itemEntity) {
         roomService.addItem(currentRoom, itemEntity);
     }
 
     public void removeItemFromCurrentRoom (ItemEntity itemEntity) {
         roomService.removeItemFromRoom(currentRoom, itemEntity);
-    }
-
-    public List<Animal> getCurrentRoomAnimals() {
-        return currentRoom.getAnimals();
-    }
-
-    public String getCurrentRoomItemsNames() {
-        return currentRoom.getItemsNames();
-    }
-
-    public String getCurrentRoomAnimalsNames() {
-        return currentRoom.getAnimalsNames();
-    }
-
-    public String getCurrentRoomAdjacentRoomsDescription() {
-        return currentRoom.getAdjacentRoomsDescription();
     }
 
     public String getCurrentRoomDescription() {
