@@ -66,4 +66,9 @@ public class RoomService {
         RoomEntity roomEntity = roomRepository.findByName(currentRoom.getName());
         return roomLinkService.getRoomLinkByRoomEntityId(roomEntity.getId());
     }
+
+    public boolean containsItem(Room room, String itemName) {
+        RoomEntity roomEntity = roomRepository.findByName(room.getName());
+        return roomEntity.getItemEntities().stream().anyMatch(item -> item.getName().equals(itemName));
+    }
 }
