@@ -43,8 +43,6 @@ public class DoorService {
 
     public boolean isTheRightKey(Door door, ItemEntity item) {
         DoorEntity doorEntity = getDoorEntityById(door.getId());
-        return doorEntity.getKeyItemEntity().getName().equals(item.getName()) &&
-                doorEntity.getKeyItemEntity().getDescription().equals(item.getDescription()) &&
-                doorEntity.getKeyItemEntity().getRequiredSlots().equals(item.getRequiredSlots());
+        return doorEntity.getKeyItemEntity().getId().equals(item.getId());
     }
 }
