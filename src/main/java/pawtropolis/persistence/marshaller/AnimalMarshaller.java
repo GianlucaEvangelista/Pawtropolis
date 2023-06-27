@@ -52,22 +52,18 @@ public class AnimalMarshaller {
         Species speciesClass = Species.fromString(species);
         Class<? extends Animal> animalClass = speciesClass.getSpeciesClass();
         if (animalClass != null) {
-            return createAnimalInstance(animalClass, animalName, animalFavouriteFood, animalAge, animalArrivalDate, animalWeight, animalHeight, animalTailLength, animalWingspan);
+            try {
+                Constructor<? extends Animal> constructor = animalClass.getDeclaredConstructor(String.class, String.class, int.class, LocalDate.class, double.class, double.class, double.class);
+                if (Tailed.class.isAssignableFrom(animalClass)) {
+                    return constructor.newInstance(animalName, animalFavouriteFood, animalAge, animalArrivalDate, animalWeight, animalHeight, animalTailLength);
+                } else if (Winged.class.isAssignableFrom(animalClass)) {
+                    return constructor.newInstance(animalName, animalFavouriteFood, animalAge, animalArrivalDate, animalWeight, animalHeight, animalWingspan);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         return null;
     }
 
-    private <T extends Animal> T createAnimalInstance(Class<T> animalClass, String animalName, String animalFavouriteFood, int animalAge, LocalDate animalArrivalDate, Double animalWeight, Double animalHeight, Double animalTailLength, Double animalWingspan) {
-        try {
-            Constructor<T> constructor = animalClass.getDeclaredConstructor(String.class, String.class, int.class, LocalDate.class, double.class, double.class, double.class);
-            if (Tailed.class.isAssignableFrom(animalClass)) {
-                return constructor.newInstance(animalName, animalFavouriteFood, animalAge, animalArrivalDate, animalWeight, animalHeight, animalTailLength);
-            } else if (Winged.class.isAssignableFrom(animalClass)) {
-                return constructor.newInstance(animalName, animalFavouriteFood, animalAge, animalArrivalDate, animalWeight, animalHeight, animalWingspan);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
 }
