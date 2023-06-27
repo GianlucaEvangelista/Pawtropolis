@@ -39,7 +39,7 @@ public class RoomService {
     }
 
     public ItemEntity getItemEntityFromRoom(Room room, String itemName) {
-        Integer itemId = roomRepository.getItemIdFromRoom(room.getName(), itemName);
+        Integer itemId = roomRepository.getItemIdFromRoom(room.getId(), itemName);
         Optional<ItemEntity> optionalItemEntity = itemRepository.findById(itemId);
         return optionalItemEntity.orElse(null);
     }
