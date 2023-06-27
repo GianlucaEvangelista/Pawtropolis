@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class Room {
 
+    private Integer id;
     private String name;
     private List<Item> items;
     private List<Animal> animals;

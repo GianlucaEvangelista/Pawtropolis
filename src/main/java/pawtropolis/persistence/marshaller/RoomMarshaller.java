@@ -32,9 +32,10 @@ public class RoomMarshaller {
     }
 
     public Room toRoom(RoomEntity roomEntity) {
+        Integer id = roomEntity.getId();
         String name = roomEntity.getName();
         List<Item> items = roomEntity.getItemEntities().stream().map(itemMarshaller::toItem).toList();
         List<Animal> animals = roomEntity.getAnimalEntities().stream().map(animalMarshaller::toAnimal).toList();
-        return new Room(name, items, animals, new EnumMap<>(Direction.class));
+        return new Room(id, name, items, animals, new EnumMap<>(Direction.class));
     }
 }
