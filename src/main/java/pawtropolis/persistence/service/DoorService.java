@@ -27,17 +27,22 @@ public class DoorService {
 
         return doorMarshaller.toDoor(doorEntity);
     }
+
+    public DoorEntity getDoorEntityById(Integer id) {
+        Optional<DoorEntity> optionalDoorEntity = doorRepository.findById(id);
+        return optionalDoorEntity.orElse(null);
+    }
     @Transactional
     public boolean unlockDoor(Door door) {
-        Optional<DoorEntity> optionalDoorEntity = doorRepository.findById(door.getId());
-        optionalDoorEntity.ifPresent(doorEntity -> doorEntity.setLocked(false));
-        return optionalDoorEntity.filter(doorEntity -> !doorEntity.getLocked()).isPresent();
+        DoorEntity doorEntity = getDoorEntityById(door.getId());
+        doorEntity.setLocked(false);
+        return !doorEntity.getLocked();
     }
 
     public boolean isTheRightKey(Door door, ItemEntity item) {
-        Optional<DoorEntity> optionalDoorEntity = doorRepository.findById(door.getId());
-        return optionalDoorEntity.filter(doorEntity -> doorEntity.getKeyItemEntity().getName().equals(item.getName()) &&
+        DoorEntity doorEntity = getDoorEntityById(door.getId());
+        return doorEntity.getKeyItemEntity().getName().equals(item.getName()) &&
                 doorEntity.getKeyItemEntity().getDescription().equals(item.getDescription()) &&
-                doorEntity.getKeyItemEntity().getRequiredSlots().equals(item.getRequiredSlots())).isPresent();
+                doorEntity.getKeyItemEntity().getRequiredSlots().equals(item.getRequiredSlots());
     }
 }
