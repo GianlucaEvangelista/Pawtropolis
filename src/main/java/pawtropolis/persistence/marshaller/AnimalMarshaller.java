@@ -56,9 +56,10 @@ public class AnimalMarshaller {
         }
         return null;
     }
-    private <T extends Animal> T createAnimalInstance(Class<? extends Animal> animalClass, String animalName, String animalFavouriteFood, int animalAge, LocalDate animalArrivalDate, Double animalWeight, Double animalHeight, Double animalTailLength, Double animalWingspan) {
+
+    private <T extends Animal> T createAnimalInstance(Class<T> animalClass, String animalName, String animalFavouriteFood, int animalAge, LocalDate animalArrivalDate, Double animalWeight, Double animalHeight, Double animalTailLength, Double animalWingspan) {
         try {
-            Constructor<T> constructor = (Constructor<T>) animalClass.getDeclaredConstructor(String.class, String.class, int.class, LocalDate.class, double.class, double.class, double.class);
+            Constructor<T> constructor = animalClass.getDeclaredConstructor(String.class, String.class, int.class, LocalDate.class, double.class, double.class, double.class);
             if (Tailed.class.isAssignableFrom(animalClass)) {
                 return constructor.newInstance(animalName, animalFavouriteFood, animalAge, animalArrivalDate, animalWeight, animalHeight, animalTailLength);
             } else if (Winged.class.isAssignableFrom(animalClass)) {
