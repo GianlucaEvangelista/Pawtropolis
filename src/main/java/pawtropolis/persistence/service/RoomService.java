@@ -53,7 +53,7 @@ public class RoomService {
 
     @Transactional
     public void removeItemFromRoom(Room room, ItemEntity itemEntity) {
-        roomRepository.deleteItemInRoom(room.getName(), itemEntity.getId());
+        roomRepository.deleteItemFromRoom(room.getId(), itemEntity.getId());
     }
 
     public void addItem(Room room, ItemEntity itemEntity) {
