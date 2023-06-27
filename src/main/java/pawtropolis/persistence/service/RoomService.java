@@ -51,6 +51,16 @@ public class RoomService {
         return room;
     }
 
+    public Room getRoomById(Integer id) {
+        Optional<RoomEntity> optionalRoomEntity = roomRepository.findById(id);
+        if(optionalRoomEntity.isPresent()) {
+            Room room = roomMarshaller.toRoom(optionalRoomEntity.get());
+            room.setAdjacentRooms(roomLinkService.getRoomLinkByRoomEntityId(optionalRoomEntity.get().getId()));
+            return room;
+        }
+        return null;
+    }
+
     @Transactional
     public void removeItemFromRoom(Room room, ItemEntity itemEntity) {
         roomRepository.deleteItemFromRoom(room.getId(), itemEntity.getId());
