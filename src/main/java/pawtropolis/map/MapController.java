@@ -32,7 +32,7 @@ public class MapController {
     }
 
     public boolean currentRoomContainsItem(String itemName) {
-        return currentRoom.containsItem(itemName);
+        return roomService.containsItem(currentRoom, itemName);
     }
 
     public ItemEntity getCurrentRoomItemEntity(String itemName) {
