@@ -32,6 +32,7 @@ public class DoorService {
         Optional<DoorEntity> optionalDoorEntity = doorRepository.findById(id);
         return optionalDoorEntity.orElse(null);
     }
+
     @Transactional
     public boolean unlockDoor(Door door) {
         DoorEntity doorEntity = getDoorEntityById(door.getId());
