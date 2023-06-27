@@ -75,8 +75,8 @@ public class RoomService {
     }
 
     public Map<Direction, Pair<Room, Door>> getAdjacentRooms(Room currentRoom) {
-        RoomEntity roomEntity = roomRepository.findByName(currentRoom.getName());
-        return roomLinkService.getRoomLinkByRoomEntityId(roomEntity.getId());
+        Optional<RoomEntity> optionalRoomEntity = roomRepository.findById(currentRoom.getId());
+        return optionalRoomEntity.map(roomEntity -> roomLinkService.getRoomLinkByRoomEntityId(roomEntity.getId())).orElse(null);
     }
 
     public boolean containsItem(Room room, String itemName) {
