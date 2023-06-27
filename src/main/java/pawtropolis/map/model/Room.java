@@ -32,10 +32,6 @@ public class Room {
         return adjacentRooms.get(direction).getFirst();
     }
 
-    public boolean containsItem(String itemName) {
-        return getItems().stream().anyMatch(item -> item.getName().equals(itemName));
-    }
-
     public String getItemsNames() {
         String roomItems = "";
         if(!getItems().isEmpty()) {
