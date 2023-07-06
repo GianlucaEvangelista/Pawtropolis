@@ -53,6 +53,10 @@ public class MapController {
         roomService.removeItemEntityFromRoomEntity(currentRoom, item);
     }
 
+    public void removeItemFromCurrentRoom(Item item) {
+        currentRoom.getItems().remove(item);
+    }
+
     public String getCurrentRoomDescription() {
         return roomService.getRoomById(currentRoom.getId()).getDescription();
     }
