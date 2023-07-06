@@ -2,7 +2,6 @@ package pawtropolis.persistence.service;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pawtropolis.game.model.Item;
 import pawtropolis.map.model.Door;
 import pawtropolis.persistence.marshaller.DoorMarshaller;
 import pawtropolis.persistence.model.DoorEntity;
