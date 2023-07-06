@@ -54,7 +54,7 @@ public class MapController {
     }
 
     public void removeItemFromCurrentRoom(Item item) {
-        currentRoom.getItems().remove(item);
+        currentRoom.removeItem(item);
     }
 
     public String getCurrentRoomDescription() {
