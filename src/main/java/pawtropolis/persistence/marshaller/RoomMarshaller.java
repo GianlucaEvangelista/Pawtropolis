@@ -6,6 +6,7 @@ import pawtropolis.map.model.Direction;
 import pawtropolis.map.model.Room;
 import pawtropolis.persistence.model.RoomEntity;
 import pawtropolis.zoo.model.Animal;
+import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
 
@@ -34,7 +35,7 @@ public class RoomMarshaller {
     public Room toRoom(RoomEntity roomEntity) {
         Integer id = roomEntity.getId();
         String name = roomEntity.getName();
-        List<Item> items = roomEntity.getItemEntities().stream().map(itemMarshaller::toItem).toList();
+        List<Item> items = new ArrayList<>(roomEntity.getItemEntities().stream().map(itemMarshaller::toItem).toList());
         List<Animal> animals = roomEntity.getAnimalEntities().stream().map(animalMarshaller::toAnimal).toList();
         return new Room(id, name, items, animals, new EnumMap<>(Direction.class));
     }
