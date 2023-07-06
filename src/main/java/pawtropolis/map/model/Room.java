@@ -67,7 +67,12 @@ public class Room {
     public void addItem(Item item) {
         items.add(item);
     }
+
     public Item getItem (String itemName) {
         return getItems().stream().filter(item -> item.getName().equals(itemName)).findFirst().orElse(null);
+    }
+
+    public void removeItem(Item item) {
+        items.removeIf(i -> i.getName().equals(item.getName()));
     }
 }
