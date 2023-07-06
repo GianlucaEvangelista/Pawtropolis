@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import pawtropolis.game.model.Item;
 import pawtropolis.map.model.Direction;
 import pawtropolis.map.model.Door;
 import pawtropolis.map.model.Room;
@@ -36,8 +37,8 @@ public class MapController {
         return roomService.getItemEntityFromRoom(currentRoom, itemName);
     }
 
-    public void addItemToCurrentRoom (ItemEntity itemEntity) {
-        roomService.addItem(currentRoom, itemEntity);
+    public void addItemEntityToRoomEntity (Item item) {
+        roomService.addItem(currentRoom, item);
     }
 
     public void removeItemFromCurrentRoom (ItemEntity itemEntity) {
