@@ -18,4 +18,11 @@ public class Door {
         locked = false;
     }
 
+    public boolean unlockDoor(Item item) {
+        if(this.keyItem.getId().equals(item.getId())) {
+            this.locked = false;
+        }
+        return !locked;
+    }
+
 }
