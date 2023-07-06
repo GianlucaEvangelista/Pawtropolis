@@ -40,7 +40,7 @@ public class Player {
         bag.removeItem(item);
     }
 
-    public Item getItemInBag(String itemName) {
+    public Item getItemFromBag(String itemName) {
         return bag.getItem(itemName);
     }
 
