@@ -49,8 +49,8 @@ public class MapController {
         roomService.addItem(currentRoom, item);
     }
 
-    public void removeItemFromCurrentRoom (ItemEntity itemEntity) {
-        roomService.removeItemFromRoom(currentRoom, itemEntity);
+    public void removeItemEntityFromCurrentRoom(Item item) {
+        roomService.removeItemEntityFromRoomEntity(currentRoom, item);
     }
 
     public String getCurrentRoomDescription() {
