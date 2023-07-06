@@ -4,6 +4,7 @@ import org.springframework.stereotype.Component;
 import pawtropolis.game.model.Bag;
 import pawtropolis.game.model.Item;
 import pawtropolis.persistence.model.BagEntity;
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -26,7 +27,7 @@ public class BagMarshaller {
     public Bag toBag(BagEntity bagEntity) {
         Integer id = bagEntity.getId();
         int availableSlots = bagEntity.getAvailableSlots();
-        List<Item> items = bagEntity.getItemEntities().stream().map(itemMarshaller::toItem).toList();
+        List<Item> items = new ArrayList<>(bagEntity.getItemEntities().stream().map(itemMarshaller::toItem).toList());
         return new Bag(id, items, availableSlots);
     }
 }
