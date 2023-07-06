@@ -3,6 +3,7 @@ import lombok.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pawtropolis.game.console.InputController;
+import java.util.List;
 
 @Getter
 @Setter
@@ -50,5 +51,9 @@ public class Player {
 
     public boolean isThereEnoughSpaceInBag(Item itemToAdd) {
         return bag.getAvailableSlots() >= itemToAdd.getRequiredSlots();
+    }
+
+    public List<String> getItemsFromBag() {
+        return bag.getItems().stream().map(Item::getName).toList();
     }
 }
