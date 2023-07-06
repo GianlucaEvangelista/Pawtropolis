@@ -1,9 +1,3 @@
-INSERT INTO species (id, name)
-VALUES
-    (1, 'Tiger'),
-    (2, 'Lion'),
-    (3, 'Eagle');
-
 INSERT INTO animals (id, name, favourite_food, age, arrival_date, weight, height, tail_length, wingspan, species_id)
 VALUES
     (1, 'Arya', 'salad', 10, '2020-07-11', 260.00, 94.00, 86.50, null, 1),
@@ -20,7 +14,6 @@ VALUES
 
 INSERT INTO rooms (id, name)
 VALUES
-    (1, 'Entrance'),
     (2, 'Bedroom'),
     (3, 'Kitchen'),
     (4, 'Living room'),
@@ -32,13 +25,6 @@ VALUES
     (2, true, 1),
     (3, false, 4),
     (4, true, 4);
-
-INSERT INTO directions (id, name)
-VALUES
-    (1, 'north'),
-    (2, 'east'),
-    (3, 'south'),
-    (4, 'west');
 
 INSERT INTO room_links (id, room_id, direction_id, adjacent_room_id, door_id)
 VALUES
