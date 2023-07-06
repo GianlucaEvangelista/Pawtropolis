@@ -8,8 +8,6 @@ import pawtropolis.persistence.marshaller.BagMarshaller;
 import pawtropolis.persistence.model.BagEntity;
 import pawtropolis.persistence.model.ItemEntity;
 import pawtropolis.persistence.repository.BagRepository;
-import pawtropolis.persistence.repository.ItemRepository;
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -18,21 +16,12 @@ public class BagService {
     private final BagRepository bagRepository;
     private final BagMarshaller bagMarshaller;
     private final ItemService itemService;
-    private final ItemRepository itemRepository;
 
     @Autowired
-    public BagService(BagRepository bagRepository, BagMarshaller bagMarshaller, ItemService itemService, ItemRepository itemRepository) {
+    public BagService(BagRepository bagRepository, BagMarshaller bagMarshaller, ItemService itemService) {
         this.bagRepository = bagRepository;
         this.bagMarshaller = bagMarshaller;
         this.itemService = itemService;
-        this.itemRepository = itemRepository;
-    }
-
-    public Bag getBagById(int id) {
-        BagEntity bagEntity = bagRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Item not found"));
-
-        return bagMarshaller.toBag(bagEntity);
     }
 
     public BagEntity getBagEntityById(Integer id) {
