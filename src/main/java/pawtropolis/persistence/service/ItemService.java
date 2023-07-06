@@ -5,6 +5,7 @@ import pawtropolis.game.model.Item;
 import pawtropolis.persistence.marshaller.ItemMarshaller;
 import pawtropolis.persistence.model.ItemEntity;
 import pawtropolis.persistence.repository.ItemRepository;
+import java.util.Optional;
 
 @Service
 public class ItemService {
@@ -22,6 +23,11 @@ public class ItemService {
         ItemEntity itemEntity = itemRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Item not found"));
         return itemMarshaller.toItem(itemEntity);
+    }
+
+    public ItemEntity getItemEntityById(Integer id) {
+        Optional<ItemEntity> optionalItemEntity = itemRepository.findById(id);
+        return optionalItemEntity.orElse(null);
     }
 
 }
