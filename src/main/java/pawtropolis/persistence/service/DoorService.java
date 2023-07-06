@@ -38,9 +38,4 @@ public class DoorService {
         DoorEntity doorEntity = getDoorEntityById(door.getId());
         doorEntity.setLocked(false);
     }
-
-    public boolean isTheRightKey(Door door, Item item) {
-        DoorEntity doorEntity = getDoorEntityById(door.getId());
-        return doorEntity.getKeyItemEntity().getId().equals(item.getId());
-    }
 }
