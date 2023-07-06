@@ -103,3 +103,20 @@ CREATE TABLE animals_in_room
     FOREIGN KEY (animal_id) REFERENCES animals (id),
     FOREIGN KEY (room_id) REFERENCES rooms (id)
 );
+
+INSERT INTO species (id, name)
+VALUES
+    (1, 'Tiger'),
+    (2, 'Lion'),
+    (3, 'Eagle');
+
+INSERT INTO rooms (id, name)
+VALUES
+    (1, 'Entrance');
+
+INSERT INTO directions (id, name)
+VALUES
+    (1, 'north'),
+    (2, 'east'),
+    (3, 'south'),
+    (4, 'west');
