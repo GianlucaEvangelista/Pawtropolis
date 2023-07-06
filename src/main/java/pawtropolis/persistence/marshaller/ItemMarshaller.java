@@ -15,9 +15,10 @@ public class ItemMarshaller {
     }
 
     public Item toItem(ItemEntity itemEntity) {
+        Integer id = itemEntity.getId();
         String itemName = itemEntity.getName();
         String itemDescription = itemEntity.getDescription();
         int itemRequiredSlots = itemEntity.getRequiredSlots();
-        return new Item(itemName, itemDescription, itemRequiredSlots);
+        return new Item(id, itemName, itemDescription, itemRequiredSlots);
     }
 }
