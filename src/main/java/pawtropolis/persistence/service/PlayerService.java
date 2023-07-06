@@ -62,8 +62,8 @@ public class PlayerService {
         return bagService.getItemEntity(bagEntity, itemName);
     }
 
-    public void removeItemFromBag(Player player, ItemEntity itemEntity) {
+    public void removeItemEntityFromBagEntity(Item item, Player player) {
         BagEntity bagEntity = bagService.getBagEntityById(player.getBag().getId());
-        bagService.removeItem(bagEntity, itemEntity);
+        bagService.removeItemEntity(bagEntity, item);
     }
 }
