@@ -44,4 +44,7 @@ public class Player {
         return bag.getItem(itemName);
     }
 
+    public boolean isItemInBag(String itemName) {
+        return bag.getItems().stream().anyMatch(item -> item.getName().equals(itemName));
+    }
 }
