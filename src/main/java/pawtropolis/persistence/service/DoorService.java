@@ -2,10 +2,10 @@ package pawtropolis.persistence.service;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pawtropolis.game.model.Item;
 import pawtropolis.map.model.Door;
 import pawtropolis.persistence.marshaller.DoorMarshaller;
 import pawtropolis.persistence.model.DoorEntity;
-import pawtropolis.persistence.model.ItemEntity;
 import pawtropolis.persistence.repository.DoorRepository;
 import pawtropolis.persistence.repository.ItemRepository;
 import java.util.Optional;
@@ -41,7 +41,7 @@ public class DoorService {
         return !doorEntity.getLocked();
     }
 
-    public boolean isTheRightKey(Door door, ItemEntity item) {
+    public boolean isTheRightKey(Door door, Item item) {
         DoorEntity doorEntity = getDoorEntityById(door.getId());
         return doorEntity.getKeyItemEntity().getId().equals(item.getId());
     }
