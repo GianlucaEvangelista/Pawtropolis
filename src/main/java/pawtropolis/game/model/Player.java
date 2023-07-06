@@ -47,4 +47,8 @@ public class Player {
     public boolean isItemInBag(String itemName) {
         return bag.getItems().stream().anyMatch(item -> item.getName().equals(itemName));
     }
+
+    public boolean isThereEnoughSpaceInBag(Item itemToAdd) {
+        return bag.getAvailableSlots() >= itemToAdd.getRequiredSlots();
+    }
 }
