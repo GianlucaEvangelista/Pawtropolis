@@ -14,7 +14,7 @@ public class BagCommand extends Command {
 
     @Override
     public void execute() {
-        List<String> itemsInBag = gameController.getPlayerService().getItemsFromBag(gameController.getPlayer());
+        List<String> itemsInBag = gameController.getPlayer().getItemsFromBag();
         if(itemsInBag.isEmpty()) {
             System.out.println("Bag is empty");
         } else {
