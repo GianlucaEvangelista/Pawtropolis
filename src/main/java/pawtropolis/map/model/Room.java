@@ -67,4 +67,7 @@ public class Room {
     public void addItem(Item item) {
         items.add(item);
     }
+    public Item getItem (String itemName) {
+        return getItems().stream().filter(item -> item.getName().equals(itemName)).findFirst().orElse(null);
+    }
 }
