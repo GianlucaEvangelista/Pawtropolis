@@ -3,16 +3,12 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pawtropolis.game.model.Item;
-import pawtropolis.map.model.Direction;
-import pawtropolis.map.model.Door;
 import pawtropolis.map.model.Room;
 import pawtropolis.persistence.marshaller.RoomMarshaller;
 import pawtropolis.persistence.model.ItemEntity;
 import pawtropolis.persistence.model.RoomEntity;
 import pawtropolis.persistence.repository.ItemRepository;
 import pawtropolis.persistence.repository.RoomRepository;
-import pawtropolis.utils.Pair;
-import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -31,14 +27,6 @@ public class RoomService {
         this.roomMarshaller = roomMarshaller;
         this.itemRepository = itemRepository;
         this.itemService = itemService;
-    }
-
-    public Room getRoomById(int id) {
-        RoomEntity roomEntity = roomRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Room not found"));
-        Room room = roomMarshaller.toRoom(roomEntity);
-        room.setAdjacentRooms(roomLinkService.getRoomLinkByRoomEntityId(id));
-        return room;
     }
 
     public RoomEntity getRoomEntityById(Integer id) {
@@ -76,11 +64,6 @@ public class RoomService {
         RoomEntity roomEntity = getRoomEntityById(room.getId());
         roomEntity.getItemEntities().add(itemEntity);
         roomRepository.save(roomEntity);
-    }
-
-    public Map<Direction, Pair<Room, Door>> getAdjacentRooms(Room room) {
-        RoomEntity roomEntity = getRoomEntityById(room.getId());
-        return roomLinkService.getRoomLinkByRoomEntityId(roomEntity.getId());
     }
 
     public boolean containsItem(Room room, String itemName) {
