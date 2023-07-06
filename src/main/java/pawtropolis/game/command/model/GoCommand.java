@@ -3,10 +3,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pawtropolis.game.GameController;
 import pawtropolis.game.console.InputController;
+import pawtropolis.game.model.Item;
 import pawtropolis.map.model.Direction;
 import pawtropolis.map.model.Door;
 import pawtropolis.map.model.Room;
-import pawtropolis.persistence.model.ItemEntity;
 import pawtropolis.persistence.service.DoorService;
 import pawtropolis.utils.Pair;
 import java.util.Map;
@@ -58,10 +58,10 @@ public class GoCommand extends Command implements CommandWithArg {
                 if(!gameController.getPlayerService().isItemInBag(gameController.getPlayer(), chosenItemName)) {
                     System.out.println("You don't have this item in your bag!");
                 } else {
-                    ItemEntity chosenItemEntity = gameController.getPlayerService().getItemEntityFromBag(gameController.getPlayer(), chosenItemName);
-                    if(doorService.isTheRightKey(door, chosenItemEntity)) {
+                    Item chosenItem = gameController.getPlayer().getItemFromBag(chosenItemName);
+                    if(doorService.isTheRightKey(door, chosenItem)) {
                         if(doorService.unlockDoor(door)) {
-                            gameController.getPlayerService().removeItemFromBag(gameController.getPlayer(), chosenItemEntity);
+                            gameController.getPlayerService().removeItemEntityFromBagEntity(chosenItem, gameController.getPlayer());
                             System.out.println("You unlocked the door!");
                             gameController.getMapController().changeRoom(direction);
                         }
