@@ -37,6 +37,10 @@ public class MapController {
         return roomService.getItemEntityFromRoom(currentRoom, itemName);
     }
 
+    public Item getCurrentRoomItem (String itemName) {
+        return currentRoom.getItem(itemName);
+    }
+
     public void addItemToCurrentRoom (Item item) {
         currentRoom.addItem(item);
     }
