@@ -22,10 +22,12 @@ public class MapController {
     private Room currentRoom;
 
     private final RoomService roomService;
+    private final DoorService doorService;
 
     @Autowired
-    private MapController(RoomService roomService) {
+    private MapController(RoomService roomService, DoorService doorService) {
         this.roomService = roomService;
+        this.doorService = doorService;
         this.currentRoom = roomService.getRoomByName("Entrance");
     }
 
@@ -70,6 +72,10 @@ public class MapController {
         if (nextRoom != null) {
             currentRoom = roomService.getRoomById(nextRoom.getId());
         }
+    }
+
+    public void unlockDoorEntity(Door door) {
+        this.doorService.unlockDoorEntity(door);
     }
 }
 

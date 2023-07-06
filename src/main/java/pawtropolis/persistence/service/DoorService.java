@@ -35,10 +35,9 @@ public class DoorService {
     }
 
     @Transactional
-    public boolean unlockDoor(Door door) {
+    public void unlockDoorEntity(Door door) {
         DoorEntity doorEntity = getDoorEntityById(door.getId());
         doorEntity.setLocked(false);
-        return !doorEntity.getLocked();
     }
 
     public boolean isTheRightKey(Door door, Item item) {

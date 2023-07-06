@@ -7,7 +7,6 @@ import pawtropolis.game.model.Item;
 import pawtropolis.map.model.Direction;
 import pawtropolis.map.model.Door;
 import pawtropolis.map.model.Room;
-import pawtropolis.persistence.service.DoorService;
 import pawtropolis.utils.Pair;
 import java.util.Map;
 
@@ -15,12 +14,10 @@ import java.util.Map;
 public class GoCommand extends Command implements CommandWithArg {
 
     private String commandArg;
-    private final DoorService doorService;
 
     @Autowired
-    private GoCommand(GameController gameController, DoorService doorService) {
+    private GoCommand(GameController gameController) {
         super(gameController);
-        this.doorService = doorService;
     }
 
     @Override
@@ -55,16 +52,16 @@ public class GoCommand extends Command implements CommandWithArg {
             case "Y":
                 System.out.println("Type the name of the item to use");
                 String chosenItemName = InputController.getInputString().toLowerCase();
-                if(!gameController.getPlayerService().isItemInBag(gameController.getPlayer(), chosenItemName)) {
+                if(!gameController.getPlayer().isItemInBag(chosenItemName)) {
                     System.out.println("You don't have this item in your bag!");
                 } else {
                     Item chosenItem = gameController.getPlayer().getItemFromBag(chosenItemName);
-                    if(doorService.isTheRightKey(door, chosenItem)) {
-                        if(doorService.unlockDoor(door)) {
-                            gameController.getPlayerService().removeItemEntityFromBagEntity(chosenItem, gameController.getPlayer());
-                            System.out.println("You unlocked the door!");
-                            gameController.getMapController().changeRoom(direction);
-                        }
+                    if(door.unlockDoor(chosenItem)) {
+                        gameController.getMapController().unlockDoorEntity(door);
+                        gameController.getPlayer().removeItemFromBag(chosenItem);
+                        gameController.getPlayerService().removeItemEntityFromBagEntity(chosenItem, gameController.getPlayer());
+                        System.out.println("You unlocked the door!");
+                        gameController.getMapController().changeRoom(direction);
                     } else {
                         System.out.println("This isn't the right item to unlock this door!");
                     }
