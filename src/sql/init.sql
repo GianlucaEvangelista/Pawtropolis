@@ -9,7 +9,7 @@ CREATE TABLE bags
 CREATE TABLE players
 (
     id SERIAL PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
+    name TEXT NOT NULL,
     life_points INT NOT NULL,
     bag_id INTEGER NOT NULL,
     FOREIGN KEY (bag_id) REFERENCES bags (id)
@@ -18,8 +18,8 @@ CREATE TABLE players
 CREATE TABLE items
 (
     id SERIAL PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    description VARCHAR(255) NOT NULL,
+    name TEXT NOT NULL,
+    description TEXT NOT NULL,
     required_slots INT NOT NULL
 );
 
@@ -35,7 +35,7 @@ CREATE TABLE items_in_bag
 CREATE TABLE rooms
 (
     id SERIAL PRIMARY KEY,
-    name VARCHAR(255) NOT NULL
+    name TEXT NOT NULL
 );
 
 CREATE TABLE items_in_room
@@ -58,7 +58,7 @@ CREATE TABLE doors
 CREATE TABLE directions
 (
     id SERIAL PRIMARY KEY,
-    name VARCHAR(255) NOT NULL
+    name TEXT NOT NULL
 );
 
 CREATE TABLE room_links
@@ -77,14 +77,14 @@ CREATE TABLE room_links
 CREATE TABLE species
 (
     id SERIAL PRIMARY KEY,
-    name VARCHAR(255) NOT NULL
+    name TEXT NOT NULL
 );
 
 CREATE TABLE animals
 (
     id SERIAL PRIMARY KEY,
-    name VARCHAR(255)  NOT NULL,
-    favourite_food VARCHAR(255)  NOT NULL,
+    name TEXT NOT NULL,
+    favourite_food TEXT NOT NULL,
     age INT NOT NULL,
     arrival_date DATE NOT NULL,
     weight DECIMAL(8, 3) NOT NULL,
