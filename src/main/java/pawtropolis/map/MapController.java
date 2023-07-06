@@ -62,7 +62,7 @@ public class MapController {
     }
 
     public Map<Direction, Pair<Room, Door>> getCurrentRoomAdjacentRooms() {
-        return roomService.getAdjacentRooms(currentRoom);
+        return currentRoom.getAdjacentRooms();
     }
 
     public void changeRoom(Direction direction) {
