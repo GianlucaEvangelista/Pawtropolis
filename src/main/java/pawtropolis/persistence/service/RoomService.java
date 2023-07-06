@@ -2,6 +2,7 @@ package pawtropolis.persistence.service;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pawtropolis.game.model.Item;
 import pawtropolis.map.model.Direction;
 import pawtropolis.map.model.Door;
 import pawtropolis.map.model.Room;
@@ -21,13 +22,15 @@ public class RoomService {
     private final RoomLinkService roomLinkService;
     private final RoomMarshaller roomMarshaller;
     private final ItemRepository itemRepository;
+    private final ItemService itemService;
 
     @Autowired
-    public RoomService(RoomRepository roomRepository, RoomLinkService roomLinkService, RoomMarshaller roomMarshaller, ItemRepository itemRepository) {
+    public RoomService(RoomRepository roomRepository, RoomLinkService roomLinkService, RoomMarshaller roomMarshaller, ItemRepository itemRepository, ItemService itemService) {
         this.roomRepository = roomRepository;
         this.roomLinkService = roomLinkService;
         this.roomMarshaller = roomMarshaller;
         this.itemRepository = itemRepository;
+        this.itemService = itemService;
     }
 
     public Room getRoomById(int id) {
@@ -68,7 +71,8 @@ public class RoomService {
         roomRepository.deleteItemFromRoom(room.getId(), itemEntity.getId());
     }
 
-    public void addItem(Room room, ItemEntity itemEntity) {
+    public void addItem(Room room, Item item) {
+        ItemEntity itemEntity = itemService.getItemEntityById(item.getId());
         RoomEntity roomEntity = getRoomEntityById(room.getId());
         roomEntity.getItemEntities().add(itemEntity);
         roomRepository.save(roomEntity);
