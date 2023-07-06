@@ -45,7 +45,8 @@ public class BagService {
     }
 
     @Transactional
-    public void addItem(ItemEntity itemEntity, BagEntity bagEntity) {
+    public void addItemEntity(Item item, BagEntity bagEntity) {
+        ItemEntity itemEntity = itemService.getItemEntityById(item.getId());
         if(bagEntity.getAvailableSlots() - itemEntity.getRequiredSlots() >= 0) {
             bagEntity.getItemEntities().add(itemEntity);
             bagEntity.setAvailableSlots(bagEntity.getAvailableSlots() - itemEntity.getRequiredSlots());
