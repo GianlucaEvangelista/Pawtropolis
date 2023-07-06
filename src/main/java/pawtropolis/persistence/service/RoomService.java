@@ -67,8 +67,8 @@ public class RoomService {
     }
 
     @Transactional
-    public void removeItemFromRoom(Room room, ItemEntity itemEntity) {
-        roomRepository.deleteItemFromRoom(room.getId(), itemEntity.getId());
+    public void removeItemEntityFromRoomEntity(Room room, Item item) {
+        roomRepository.deleteItemFromRoom(room.getId(), item.getId());
     }
 
     public void addItem(Room room, Item item) {
