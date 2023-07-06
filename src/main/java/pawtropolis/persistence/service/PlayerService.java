@@ -9,6 +9,7 @@ import pawtropolis.persistence.model.ItemEntity;
 import pawtropolis.persistence.model.PlayerEntity;
 import pawtropolis.persistence.repository.PlayerRepository;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PlayerService {
@@ -24,11 +25,9 @@ public class PlayerService {
         this.bagService = bagService;
     }
 
-    public Player getPlayerById(int id) {
-        PlayerEntity playerEntity = playerRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Item not found"));
-
-        return playerMarshaller.toPlayer(playerEntity);
+    public Optional<Player> getPlayerById(int id) {
+        Optional<PlayerEntity> optionalPlayerEntity = playerRepository.findById(id);
+        return optionalPlayerEntity.map(playerMarshaller::toPlayer);
     }
 
     public void savePlayer(Player player) {
