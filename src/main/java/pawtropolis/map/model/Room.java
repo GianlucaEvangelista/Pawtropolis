@@ -63,4 +63,8 @@ public class Room {
                 "NPCs: " + this.getAnimalsNames() + "\n" +
                 "Adjacent rooms: " + this.getAdjacentRoomsDescription();
     }
+
+    public void addItem(Item item) {
+        items.add(item);
+    }
 }
