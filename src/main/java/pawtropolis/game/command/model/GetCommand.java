@@ -26,6 +26,10 @@ public class GetCommand extends Command implements CommandWithArg {
                 gameController.getPlayer().addItemToBag(chosenItem);
                 gameController.getMapController().removeItemFromCurrentRoom(chosenItem);
                 System.out.println("You put " + commandArg + " in the bag");
+
+                gameController.getPlayerService().addItemEntityToBagEntity(chosenItem, gameController.getPlayer());
+                gameController.getMapController().removeItemEntityFromCurrentRoom(chosenItem);
+
                 return;
             }
             System.out.println("Not enough slots in the bag!");
