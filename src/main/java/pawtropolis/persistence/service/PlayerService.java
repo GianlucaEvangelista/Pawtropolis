@@ -40,11 +40,6 @@ public class PlayerService {
         bagService.addItemEntity(item, bagEntity);
     }
 
-    public boolean isItemInBag(Player player, String itemName) {
-        BagEntity bagEntity = bagService.getBagEntityById(player.getBag().getId());
-        return bagService.getItems(bagEntity).stream().anyMatch(item -> item.getName().equals(itemName));
-    }
-
     public void removeItemEntityFromBagEntity(Item item, Player player) {
         BagEntity bagEntity = bagService.getBagEntityById(player.getBag().getId());
         bagService.removeItemEntity(bagEntity, item);
