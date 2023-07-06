@@ -37,9 +37,9 @@ public class PlayerService {
         playerRepository.save(playerEntity);
     }
 
-    public void addItemToBag(ItemEntity itemEntity, Player player) {
+    public void addItemEntityToBagEntity(Item item, Player player) {
         BagEntity bagEntity = bagService.getBagEntityById(player.getBag().getId());
-        bagService.addItem(itemEntity, bagEntity);
+        bagService.addItemEntity(item, bagEntity);
     }
 
     public boolean hasEnoughSpaceInBag(ItemEntity itemEntityToAdd, Player player) {
