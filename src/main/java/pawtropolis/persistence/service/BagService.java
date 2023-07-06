@@ -69,7 +69,8 @@ public class BagService {
     }
 
     @Transactional
-    public void removeItem(BagEntity bagEntity, ItemEntity itemEntity) {
+    public void removeItemEntity(BagEntity bagEntity, Item item) {
+        ItemEntity itemEntity = itemService.getItemEntityById(item.getId());
         bagEntity.getItemEntities().removeIf(i -> i.getName().equals(itemEntity.getName()));
         bagEntity.setAvailableSlots(bagEntity.getAvailableSlots() + itemEntity.getRequiredSlots());
         bagRepository.save(bagEntity);
