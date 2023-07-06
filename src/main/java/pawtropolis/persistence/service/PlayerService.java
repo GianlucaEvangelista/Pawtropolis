@@ -5,10 +5,8 @@ import pawtropolis.game.model.Item;
 import pawtropolis.game.model.Player;
 import pawtropolis.persistence.marshaller.PlayerMarshaller;
 import pawtropolis.persistence.model.BagEntity;
-import pawtropolis.persistence.model.ItemEntity;
 import pawtropolis.persistence.model.PlayerEntity;
 import pawtropolis.persistence.repository.PlayerRepository;
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -42,24 +40,9 @@ public class PlayerService {
         bagService.addItemEntity(item, bagEntity);
     }
 
-    public boolean hasEnoughSpaceInBag(ItemEntity itemEntityToAdd, Player player) {
-        BagEntity bagEntity = bagService.getBagEntityById(player.getBag().getId());
-        return bagService.isThereEnoughSpace(bagEntity, itemEntityToAdd);
-    }
-
-    public List<String> getItemsFromBag(Player player) {
-        BagEntity bagEntity = bagService.getBagEntityById(player.getBag().getId());
-        return bagService.getItems(bagEntity).stream().map(Item::getName).toList();
-    }
-
     public boolean isItemInBag(Player player, String itemName) {
         BagEntity bagEntity = bagService.getBagEntityById(player.getBag().getId());
         return bagService.getItems(bagEntity).stream().anyMatch(item -> item.getName().equals(itemName));
-    }
-
-    public ItemEntity getItemEntityFromBag(Player player, String itemName) {
-        BagEntity bagEntity = bagService.getBagEntityById(player.getBag().getId());
-        return bagService.getItemEntity(bagEntity, itemName);
     }
 
     public void removeItemEntityFromBagEntity(Item item, Player player) {
