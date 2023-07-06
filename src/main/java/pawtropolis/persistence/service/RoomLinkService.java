@@ -19,6 +19,7 @@ public class RoomLinkService {
         this.roomLinkRepository = roomLinkRepository;
         this.roomLinkMarshaller = roomLinkMarshaller;
     }
+
     public Map<Direction, Pair<Room, Door>> getRoomLinkByRoomEntityId(Integer roomId) {
         return roomLinkMarshaller.toMap(roomLinkRepository.findByRoomId(roomId));
     }
