@@ -54,20 +54,6 @@ public class BagService {
         }
     }
 
-    public boolean isThereEnoughSpace(BagEntity bagEntity, ItemEntity itemEntityToAdd) {
-        return bagEntity.getAvailableSlots() >= itemEntityToAdd.getRequiredSlots();
-    }
-
-    public List<Item> getItems(BagEntity bagEntity) {
-        List<Integer> itemsId = bagRepository.getItemsIdFromBag(bagEntity.getId());
-        return itemsId.stream().map(itemService::getItemById).toList();
-    }
-
-    public ItemEntity getItemEntity(BagEntity bagEntity, String itemName) {
-        Integer itemEntityId = bagRepository.getItemIdFromBag(bagEntity.getId(), itemName);
-        return itemRepository.findById(itemEntityId).orElse(null);
-    }
-
     @Transactional
     public void removeItemEntity(BagEntity bagEntity, Item item) {
         ItemEntity itemEntity = itemService.getItemEntityById(item.getId());
