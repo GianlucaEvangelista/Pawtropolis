@@ -64,4 +64,7 @@ public class PlayerService {
         return Optional.of(playerMarshaller.toPlayer(chosenPlayerEntity));
     }
 
+    public List<String> getPlayerEntityNames() {
+        return playerRepository.findAll().stream().map(PlayerEntity::getName).toList();
+    }
 }
