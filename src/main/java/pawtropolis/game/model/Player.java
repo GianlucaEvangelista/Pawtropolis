@@ -19,7 +19,7 @@ public class Player {
     private Player(Bag bag) {
         this.lifePoints = MAX_LIFE_POINTS;
         this.bag = bag;
-        askPlayerName();
+        this.name = null;
     }
 
     public Player(String name, int lifePoints, Bag bag) {
@@ -28,9 +28,18 @@ public class Player {
         this.bag = bag;
     }
 
-    public void askPlayerName() {
-        System.out.println("Insert Player's name:");
-        setName(InputController.getInputString());
+    public void askPlayerName(List<String> playerNames) {
+        boolean validName = false;
+        do {
+            System.out.println("Insert new player's name:");
+            String chosenName = InputController.getInputString();
+            if(playerNames.stream().noneMatch(playerName -> playerName.equalsIgnoreCase(chosenName))) {
+                setName(chosenName);
+                validName = true;
+            } else {
+                System.out.println("Name already used! Choose a new name");
+            }
+        } while(!validName);
     }
 
     public void addItemToBag(Item item) {

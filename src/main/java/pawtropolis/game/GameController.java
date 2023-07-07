@@ -4,9 +4,11 @@ import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pawtropolis.game.command.CommandController;
+import pawtropolis.game.console.InputController;
 import pawtropolis.map.MapController;
 import pawtropolis.game.model.Player;
 import pawtropolis.persistence.service.PlayerService;
+import java.util.Optional;
 
 @Getter
 @Setter
@@ -34,10 +36,36 @@ public class GameController {
 
     public void runGame() {
         System.out.println("Welcome to Pawtropolis!");
-        playerService.savePlayer(this.player);
+        choosePlayer();
         do {
             this.commandController.executeCommand();
         } while(!wantToEndGame);
         System.exit(0);
+    }
+
+    public void choosePlayer() {
+        boolean validPlayer = false;
+        do {
+            System.out.println("Select your player: NEW / LOAD");
+            String userChoice = InputController.getInputString().toLowerCase();
+            switch (userChoice) {
+                case "new":
+                    this.player.askPlayerName(playerService.getPlayerEntityNames());
+                    playerService.savePlayer(this.player);
+                    validPlayer = true;
+                    break;
+                case "load":
+                    Optional<Player> optionalPlayer = playerService.loadPlayer();
+                    if(optionalPlayer.isPresent()) {
+                        setPlayer(optionalPlayer.get());
+                        validPlayer = true;
+                    }
+                    break;
+                default:
+                    System.out.println("Invalid input!");
+                    break;
+            }
+        }while(!validPlayer);
+
     }
 }
