@@ -120,19 +120,24 @@ CREATE TABLE animals_in_room
     FOREIGN KEY (room_id) REFERENCES rooms (id)
 );
 
-INSERT INTO species (id, name)
+INSERT INTO species (name)
 VALUES
-    (1, 'Tiger'),
-    (2, 'Lion'),
-    (3, 'Eagle');
+    ('Tiger'),
+    ('Lion'),
+    ('Eagle');
 
-INSERT INTO rooms (id, name)
-VALUES
-    (1, 'Entrance');
+WITH default_map AS (
+    INSERT INTO maps DEFAULT VALUES
+        RETURNING id
+)
 
-INSERT INTO directions (id, name)
+INSERT INTO rooms (name, map_id)
+SELECT 'Entrance', id
+FROM default_map;
+
+INSERT INTO directions (name)
 VALUES
-    (1, 'north'),
-    (2, 'east'),
-    (3, 'south'),
-    (4, 'west');
+    ('north'),
+    ('east'),
+    ('south'),
+    ('west');
