@@ -23,6 +23,20 @@ CREATE TABLE items
     required_slots INT NOT NULL
 );
 
+CREATE TABLE maps
+(
+    id SERIAL PRIMARY KEY
+);
+
+CREATE TABLE games
+(
+    id SERIAL PRIMARY KEY,
+    player_id INTEGER NOT NULL,
+    map_id INTEGER NOT NULL,
+    FOREIGN KEY (player_id) REFERENCES  players (id),
+    FOREIGN KEY (map_id) REFERENCES maps (id)
+);
+
 CREATE TABLE items_in_bag
 (
     bag_id INTEGER NOT NULL,
@@ -35,7 +49,9 @@ CREATE TABLE items_in_bag
 CREATE TABLE rooms
 (
     id SERIAL PRIMARY KEY,
-    name TEXT NOT NULL
+    name TEXT NOT NULL,
+    map_id INTEGER NOT NULL,
+    FOREIGN KEY (map_id) REFERENCES maps (id)
 );
 
 CREATE TABLE items_in_room
