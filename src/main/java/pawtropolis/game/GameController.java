@@ -54,7 +54,9 @@ public class GameController {
             switch (userChoice) {
                 case "new" -> {
                     this.player.askPlayerName(playerService.getPlayerEntityNames());
-                    playerService.savePlayer(this.player);
+                    Integer playerId = playerService.savePlayer(this.player).getId();
+                    player.setId(playerId);
+                    sqlExecutor.executeSqlScript(player.getId());
                     validPlayer = true;
                 }
                 case "load" -> {
