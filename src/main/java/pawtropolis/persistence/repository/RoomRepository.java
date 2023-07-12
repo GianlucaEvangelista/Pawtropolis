@@ -6,7 +6,6 @@ import org.springframework.data.repository.query.Param;
 import pawtropolis.persistence.model.RoomEntity;
 
 public interface RoomRepository extends JpaRepository<RoomEntity, Integer> {
-    RoomEntity findByName(String name);
     @Modifying
     @Query(value = "DELETE FROM items_in_room WHERE room_id = :roomId AND item_id = :itemId", nativeQuery = true)
     void deleteItemFromRoom(@Param("roomId") Integer roomId, @Param("itemId") Integer itemId);
