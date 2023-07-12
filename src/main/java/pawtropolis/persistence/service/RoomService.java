@@ -70,4 +70,11 @@ public class RoomService {
         RoomEntity roomEntity = getRoomEntityById(room.getId());
         return roomEntity.getItemEntities().stream().anyMatch(item -> item.getName().equals(itemName));
     }
+
+    public Room getEntrance(Integer mapId) {
+        Integer entranceId = roomRepository.getEntranceIdFromMapId(mapId, "Entrance");
+        Room room = roomMarshaller.toRoom(getRoomEntityById(entranceId));
+        room.setAdjacentRooms(roomLinkService.getRoomLinkByRoomId(room.getId()));
+        return room;
+    }
 }
