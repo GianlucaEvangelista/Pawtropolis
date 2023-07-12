@@ -32,11 +32,11 @@ public class PlayerService {
         return optionalPlayerEntity.map(playerMarshaller::toPlayer);
     }
 
-    public void savePlayer(Player player) {
+    public PlayerEntity savePlayer(Player player) {
         BagEntity bagEntity = bagService.saveBag(player.getBag());
         player.getBag().setId(bagEntity.getId());
         PlayerEntity playerEntity = playerMarshaller.toPlayerEntity(player, bagEntity);
-        playerRepository.save(playerEntity);
+        return playerRepository.save(playerEntity);
     }
 
     public void addItemEntityToBagEntity(Item item, Player player) {
