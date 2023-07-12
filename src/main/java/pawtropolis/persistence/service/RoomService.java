@@ -50,7 +50,7 @@ public class RoomService {
     public Room getRoomById(Integer id) {
         RoomEntity roomEntity = getRoomEntityById(id);
         Room room = roomMarshaller.toRoom(roomEntity);
-        room.setAdjacentRooms(roomLinkService.getRoomLinkByRoomEntityId(roomEntity.getId()));
+        room.setAdjacentRooms(roomLinkService.getRoomLinkByRoomId(roomEntity.getId()));
         return room;
     }
 
