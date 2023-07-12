@@ -8,6 +8,7 @@ import pawtropolis.game.console.InputController;
 import pawtropolis.map.MapController;
 import pawtropolis.game.model.Player;
 import pawtropolis.persistence.service.PlayerService;
+import pawtropolis.utils.SqlExecutor;
 import java.util.Optional;
 
 @Getter
@@ -20,14 +21,16 @@ public class GameController {
     private CommandController commandController;
     private boolean wantToEndGame;
     private PlayerService playerService;
+    private SqlExecutor sqlExecutor;
 
     @Autowired
-    public GameController(Player player, MapController mapController, CommandController commandController, PlayerService playerService) {
+    public GameController(Player player, MapController mapController, CommandController commandController, PlayerService playerService, SqlExecutor sqlExecutor) {
         this.player = player;
         this.mapController = mapController;
         this.commandController = commandController;
         this.playerService = playerService;
         this.wantToEndGame = false;
+        this.sqlExecutor = sqlExecutor;
     }
 
     public void endGame() {
