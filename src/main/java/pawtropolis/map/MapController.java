@@ -77,6 +77,10 @@ public class MapController {
     public void unlockDoorEntity(Door door) {
         this.doorService.unlockDoorEntity(door);
     }
+
+    public void loadMap(Integer mapId) {
+        setCurrentRoom(roomService.getEntrance(mapId));
+    }
 }
 
 
