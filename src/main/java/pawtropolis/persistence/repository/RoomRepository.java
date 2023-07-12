@@ -13,4 +13,7 @@ public interface RoomRepository extends JpaRepository<RoomEntity, Integer> {
 
     @Query(value = "SELECT item_id FROM items_in_room WHERE room_id = :roomId AND item_id = (SELECT id FROM items WHERE name = :itemName)", nativeQuery = true)
     Integer getItemIdFromRoom(@Param("roomId") Integer roomId, @Param("itemName") String itemName);
+
+    @Query(value = "SELECT id FROM rooms WHERE map_id = :mapId AND name = :roomName", nativeQuery = true)
+    Integer getEntranceIdFromMapId(@Param("mapId") Integer mapId, @Param("roomName") String roomName);
 }
