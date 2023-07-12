@@ -2,6 +2,11 @@ WITH new_map AS (
     INSERT INTO maps DEFAULT VALUES
            RETURNING id
 ),
+    game AS (
+        INSERT INTO games (player_id, map_id)
+            SELECT :playerId, id
+            FROM new_map
+),
     entrance_id AS (
         INSERT INTO rooms (name, map_id)
             SELECT 'Entrance', id
