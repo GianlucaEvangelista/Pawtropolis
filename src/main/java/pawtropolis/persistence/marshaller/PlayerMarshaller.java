@@ -32,9 +32,10 @@ public class PlayerMarshaller {
     }
 
     public Player toPlayer(PlayerEntity playerEntity) {
+        Integer id = playerEntity.getId();
         String playerName = playerEntity.getName();
         int playerLifePoints = playerEntity.getLifePoints();
         Bag playerBag = bagMarshaller.toBag(playerEntity.getBagEntity());
-        return new Player(playerName, playerLifePoints, playerBag);
+        return new Player(id, playerName, playerLifePoints, playerBag);
     }
 }

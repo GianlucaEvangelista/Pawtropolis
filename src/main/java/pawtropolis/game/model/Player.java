@@ -10,6 +10,7 @@ import java.util.List;
 @Component
 public class Player {
 
+    private Integer id;
     private String name;
     private int lifePoints;
     private static final int MAX_LIFE_POINTS = 100;
@@ -17,12 +18,14 @@ public class Player {
 
     @Autowired
     private Player(Bag bag) {
+        this.id = null;
+        this.name = null;
         this.lifePoints = MAX_LIFE_POINTS;
         this.bag = bag;
-        this.name = null;
     }
 
-    public Player(String name, int lifePoints, Bag bag) {
+    public Player(Integer id, String name, int lifePoints, Bag bag) {
+        this.id = id;
         this.name = name;
         this.lifePoints = lifePoints;
         this.bag = bag;
