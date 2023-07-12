@@ -40,13 +40,6 @@ public class RoomService {
         return optionalItemEntity.orElse(null);
     }
 
-    public Room getRoomByName(String name) {
-        RoomEntity roomEntity = roomRepository.findByName(name);
-        Room room = roomMarshaller.toRoom(roomEntity);
-        room.setAdjacentRooms(roomLinkService.getRoomLinkByRoomEntityId(roomEntity.getId()));
-        return room;
-    }
-
     public Room getRoomById(Integer id) {
         RoomEntity roomEntity = getRoomEntityById(id);
         Room room = roomMarshaller.toRoom(roomEntity);
