@@ -20,7 +20,6 @@ public class MapController {
 
     @Getter(AccessLevel.NONE)
     private Room currentRoom;
-
     private final RoomService roomService;
     private final DoorService doorService;
 
@@ -28,7 +27,6 @@ public class MapController {
     private MapController(RoomService roomService, DoorService doorService) {
         this.roomService = roomService;
         this.doorService = doorService;
-        this.currentRoom = roomService.getRoomByName("Entrance");
     }
 
     public boolean currentRoomContainsItem(String itemName) {
