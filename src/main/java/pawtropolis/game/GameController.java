@@ -40,6 +40,7 @@ public class GameController {
     public void runGame() {
         System.out.println("Welcome to Pawtropolis!");
         choosePlayer();
+        loadGame();
         do {
             this.commandController.executeCommand();
         } while(!wantToEndGame);
@@ -69,6 +70,10 @@ public class GameController {
                 default -> System.out.println("Invalid input!");
             }
         }while(!validPlayer);
+    }
 
+    public void loadGame() {
+        Integer mapId = playerService.getMapId(player.getId());
+        mapController.loadMap(mapId);
     }
 }
