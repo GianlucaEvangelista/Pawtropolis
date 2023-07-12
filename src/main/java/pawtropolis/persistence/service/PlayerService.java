@@ -67,4 +67,8 @@ public class PlayerService {
     public List<String> getPlayerEntityNames() {
         return playerRepository.findAll().stream().map(PlayerEntity::getName).toList();
     }
+
+    public Integer getMapId(Integer playerId) {
+        return playerRepository.getMapIdFromPlayerId(playerId);
+    }
 }
