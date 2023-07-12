@@ -8,7 +8,6 @@ import pawtropolis.game.model.Item;
 import pawtropolis.map.model.Direction;
 import pawtropolis.map.model.Door;
 import pawtropolis.map.model.Room;
-import pawtropolis.persistence.model.ItemEntity;
 import pawtropolis.persistence.service.*;
 import pawtropolis.utils.Pair;
 import java.util.Map;
@@ -31,10 +30,6 @@ public class MapController {
 
     public boolean currentRoomContainsItem(String itemName) {
         return roomService.containsItem(currentRoom, itemName);
-    }
-
-    public ItemEntity getCurrentRoomItemEntity(String itemName) {
-        return roomService.getItemEntityFromRoom(currentRoom, itemName);
     }
 
     public Item getCurrentRoomItem (String itemName) {
@@ -80,5 +75,3 @@ public class MapController {
         setCurrentRoom(roomService.getEntrance(mapId));
     }
 }
-
-
