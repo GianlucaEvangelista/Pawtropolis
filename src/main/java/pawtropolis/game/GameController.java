@@ -52,21 +52,19 @@ public class GameController {
             System.out.println("Select your player: NEW / LOAD");
             String userChoice = InputController.getInputString().toLowerCase();
             switch (userChoice) {
-                case "new":
+                case "new" -> {
                     this.player.askPlayerName(playerService.getPlayerEntityNames());
                     playerService.savePlayer(this.player);
                     validPlayer = true;
-                    break;
-                case "load":
+                }
+                case "load" -> {
                     Optional<Player> optionalPlayer = playerService.loadPlayer();
                     if(optionalPlayer.isPresent()) {
                         setPlayer(optionalPlayer.get());
                         validPlayer = true;
                     }
-                    break;
-                default:
-                    System.out.println("Invalid input!");
-                    break;
+                }
+                default -> System.out.println("Invalid input!");
             }
         }while(!validPlayer);
 
